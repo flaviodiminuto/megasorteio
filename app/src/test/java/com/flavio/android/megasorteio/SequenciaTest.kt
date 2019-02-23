@@ -10,8 +10,9 @@ class SequenciaTest {
 
     @RepeatedTest(10)
     fun testGerarSequencia(){
-        assertNotEquals(sequencia.gerarSequencia(),sequencia.gerarSequencia())
+        assertEquals(sequencia.gerarSequencia(6),sequencia.gerarSequencia(6))
     }
+
     @Test
     fun testTamanhoSequencia(){
         val sequencia1 = Sequencia(4)
@@ -31,20 +32,25 @@ class SequenciaTest {
         assertEquals(sequencia.ordenaNumerosSequencia(sequenciaDesordenada), arrayListOf<Int>(1,2,3,4,5,6))
 
     }
-    @RepeatedTest(10)
-    fun testaSequenciaUnica(){
-        val quantidadeSequencias = 3
-        var sequenciaInicial = arrayListOf<Sequencia>()
-        for(i in 0..quantidadeSequencias) {
-            sequenciaInicial.add(Sequencia(6))
-        }
-        assertNotEquals(sequenciaInicial.toString(),sequencia.sequenciaUnica(sequenciaInicial).toString())
-    }
 
     @Test
     fun testaToString(){
         var sequencia = Sequencia(arrayListOf(1,2,3,4,5,6))
         assertEquals("1 2 3 4 5 6", sequencia.toString())
+    }
+
+    @Test
+    fun testSetValor(){
+        assertEquals(3.5,sequencia.setValor(5))
+        assertEquals(24.5,sequencia.setValor(6))
+        assertEquals(98.0,sequencia.setValor(7))
+        assertEquals(294.0,sequencia.setValor(8))
+        assertEquals(735.0,sequencia.setValor(9))
+        assertEquals(1617.0,sequencia.setValor(10))
+        assertEquals(3234.0,sequencia.setValor(11))
+        assertEquals(6006.0,sequencia.setValor(12))
+        assertEquals(10510.5,sequencia.setValor(13))
+        assertEquals(17517.5,sequencia.setValor(14))
     }
 
 }
