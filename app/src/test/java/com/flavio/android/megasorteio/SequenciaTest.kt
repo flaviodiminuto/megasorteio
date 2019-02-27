@@ -6,24 +6,24 @@ import org.junit.jupiter.api.RepeatedTest
 import org.junit.jupiter.api.Test
 
 class SequenciaTest {
-    var sequencia = Sequencia(4)
+    private var sequencia = Sequencia(4)
 
-    @RepeatedTest(10)
+    @RepeatedTest(2)
     fun testGerarSequencia(){
-        assertEquals(sequencia.gerarSequencia(6),sequencia.gerarSequencia(6))
+        assertTrue(sequencia.gerarSequencia(2).tamanho ==6)
+        assertTrue(sequencia.valor == 3.5)
     }
 
     @Test
     fun testTamanhoSequencia(){
         val sequencia1 = Sequencia(4)
-        assertEquals(5,sequencia1.tamanho)
+        assertEquals(6,sequencia1.tamanho)
 
         val sequencia2 = Sequencia(7)
         assertEquals(7,sequencia2.tamanho)
 
-        val sequencia3 = Sequencia(15)
-        assertEquals(14,sequencia3.tamanho)
-
+        val sequencia3 = Sequencia(25)
+        assertEquals(15,sequencia3.tamanho)
     }
 
     @Test
@@ -41,16 +41,16 @@ class SequenciaTest {
 
     @Test
     fun testSetValor(){
-        assertEquals(3.5,sequencia.setValor(5))
-        assertEquals(24.5,sequencia.setValor(6))
-        assertEquals(98.0,sequencia.setValor(7))
-        assertEquals(294.0,sequencia.setValor(8))
-        assertEquals(735.0,sequencia.setValor(9))
-        assertEquals(1617.0,sequencia.setValor(10))
-        assertEquals(3234.0,sequencia.setValor(11))
-        assertEquals(6006.0,sequencia.setValor(12))
-        assertEquals(10510.5,sequencia.setValor(13))
-        assertEquals(17517.5,sequencia.setValor(14))
+        assertEquals(3.5,sequencia.setValor(6))
+        assertEquals(24.5,sequencia.setValor(7))
+        assertEquals(98.0,sequencia.setValor(8))
+        assertEquals(294.0,sequencia.setValor(9))
+        assertEquals(735.0,sequencia.setValor(10))
+        assertEquals(1617.0,sequencia.setValor(11))
+        assertEquals(3234.0,sequencia.setValor(12))
+        assertEquals(6006.0,sequencia.setValor(13))
+        assertEquals(10510.5,sequencia.setValor(14))
+        assertEquals(17517.5,sequencia.setValor(15))
     }
 
 }

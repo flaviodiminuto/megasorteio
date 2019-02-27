@@ -16,20 +16,29 @@ class Sequencia(var tamanho: Int) : SequenciaInterface  {
     var dataCriacao = Date()
     var dataAtualizacao = Date()
     val controlaNumero = ControlaNumero()
+    private val LIMITE_INFERIOR = 6
+    private val LIMITE_SUPERIOR = 15
 
     init{
-        tamanho = if(tamanho <= 6)  5 else if(tamanho>=15) 14 else tamanho
+        configuraTamanho()
         atribuiDataCriacao()
         gerarSequencia(tamanho)
         valor = setValor(tamanho)
     }
 
+    private fun configuraTamanho() {
+        tamanho = if (tamanho < LIMITE_INFERIOR)
+            LIMITE_INFERIOR
+        else if (tamanho > LIMITE_SUPERIOR)
+            LIMITE_SUPERIOR else tamanho
+    }
+
     override fun gerarSequencia(tamanho : Int): Sequencia{
+        configuraTamanho()
         numeros = controlaNumero.preencheNumerosSequencia(tamanho)
         ordenaNumerosSequencia(numeros)
         return this
     }
-
 
     override fun ordenaNumerosSequencia(numeros : ArrayList<Int> ): ArrayList<Int>{
         numeros.sort()
@@ -57,15 +66,15 @@ class Sequencia(var tamanho: Int) : SequenciaInterface  {
 
     override fun setValor(tamanhoSequencia : Int) : Double{
         when(tamanhoSequencia){
-            5 ->    return  Preco.SEIS.tamanhoSequencia
-            6 ->    return  Preco.SETE.tamanhoSequencia
-            7 ->    return Preco.OITO.tamanhoSequencia
-            8 ->    return Preco.NOVE.tamanhoSequencia
-            9 ->    return Preco.DEZ.tamanhoSequencia
-            10 ->   return Preco.ONZE.tamanhoSequencia
-            11 ->   return Preco.DOZE.tamanhoSequencia
-            12 ->   return Preco.TREZE.tamanhoSequencia
-            13 ->   return Preco.QUATORZE.tamanhoSequencia
+            6 ->    return Preco.SEIS.tamanhoSequencia
+            7 ->    return Preco.SETE.tamanhoSequencia
+            8 ->    return Preco.OITO.tamanhoSequencia
+            9 ->    return Preco.NOVE.tamanhoSequencia
+            10 ->   return Preco.DEZ.tamanhoSequencia
+            11 ->   return Preco.ONZE.tamanhoSequencia
+            12 ->   return Preco.DOZE.tamanhoSequencia
+            13 ->   return Preco.TREZE.tamanhoSequencia
+            14 ->   return Preco.QUATORZE.tamanhoSequencia
             else -> return Preco.QUINZE.tamanhoSequencia
         }
     }
@@ -77,4 +86,4 @@ class Sequencia(var tamanho: Int) : SequenciaInterface  {
         }
         return retorno.trimEnd()
     }
-    }
+}

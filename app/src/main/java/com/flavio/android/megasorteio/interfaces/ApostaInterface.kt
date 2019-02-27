@@ -9,5 +9,4 @@ interface ApostaInterface{
     fun removerSequencia(sequencia : Sequencia) : Boolean
     fun alterarSequencia(novaSequencia: Sequencia, sequencias : ArrayList<Sequencia>, index : Int)
     fun sequenciasIguais(sequencia1 : Sequencia, sequencia2: Sequencia) : Boolean
-
 }

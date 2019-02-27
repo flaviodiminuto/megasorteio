@@ -7,7 +7,7 @@ class ControlaNumero {
     fun preencheNumerosSequencia( tamanho: Int):ArrayList<Int>{
         var numeros = arrayListOf<Int>()
         var gerado :Int
-        for(numero : Int in 0..tamanho) {
+        for(numero : Int in 0 until tamanho) {
             do {
                 gerado = geraNumero()
             } while (!numeroUnico(numeros, gerado))

@@ -5,7 +5,7 @@ import com.flavio.android.megasorteio.interfaces.ApostaInterface
 class Aposta : ApostaInterface  {
     var idAposta = Long
     var sequencias = ArrayList<Sequencia>()
-    var valor = Double
+    var valor = 0.0
 
     override fun adicionarSequencia(quantidade: Int, tamanho: Int) : Boolean {
         for(item : Int in 1..quantidade){
@@ -30,6 +30,7 @@ class Aposta : ApostaInterface  {
         return sequencias.remove(sequencia)
     }
 
+    /** Conferir se este método está realmente alterando o valor da sequencia*/
     override fun alterarSequencia(novaSequencia: Sequencia, sequencias : ArrayList<Sequencia>, index : Int){
         sequencias[index] = novaSequencia
     }
@@ -41,10 +42,27 @@ class Aposta : ApostaInterface  {
         return false
     }
     fun setValor(){
-        var valor : Double = 0.0
         for (sequencia : Sequencia in sequencias){
-            valor.plus(sequencia.valor)
+           valor  = valor.plus(sequencia.valor)
         }
-        this.valor.apply { valor }
+    }
+
+   fun mostraTodasSequencias() {
+        for (i: Int in 0..30) {
+            sequencias.add(Sequencia(6))
+        }
+        var message = ""
+        for (sequencia: Sequencia in sequencias) message = "$message$sequencia, "
+        message ="[$message]\n"
+        print(message
+                .removeRange(message.length-4,message.length-2))
+    }
+
+    override fun toString(): String {
+        var message = ""
+        for(sequencia : Sequencia in sequencias){
+            message  = "$message\n$sequencia, "
+        }
+       return "[$message]"
     }
 }
