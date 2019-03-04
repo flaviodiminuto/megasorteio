@@ -6,7 +6,13 @@ interface ApostaInterface{
     fun adicionarSequencia(quantidade : Int, tamanho : Int) : Boolean
     fun adicionarSequencia(tamanho: Int) : Boolean
     fun adicionarSequencia(sequencia : Sequencia) : Boolean
+    fun adicionarSequencia(numeros : ArrayList<Int>):Boolean
     fun removerSequencia(sequencia : Sequencia) : Boolean
     fun alterarSequencia(novaSequencia: Sequencia, sequencias : ArrayList<Sequencia>, index : Int)
-    fun sequenciasIguais(sequencia1 : Sequencia, sequencia2: Sequencia) : Boolean
+    fun sequenciaExistente(sequenciaVerificada : Sequencia): Boolean
+    fun numerosContidos(sequenciaVerificada: Sequencia, sequenciaContainer : Sequencia) : Int
+    fun setValor()
+    fun mostraTodasSequencias()
+    override fun toString(): String
+
 }

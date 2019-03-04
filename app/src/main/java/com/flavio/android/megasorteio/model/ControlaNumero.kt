@@ -23,6 +23,4 @@ class ControlaNumero {
     fun numeroUnico(sequencia : List<Int>,numero : Int):Boolean{
         return !sequencia.contains(numero)
     }
-
-
 }

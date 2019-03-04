@@ -23,12 +23,16 @@ class ApostaTeste {
 
     @Test
     fun testAdicionarSequenciaQuantidade(){
+
         Assertions.assertTrue(aposta.sequencias[2].numeros.size == tamanho && aposta.sequencias.size == quantidade)
+        aposta.sequencias.clear()
         Assertions.assertTrue(aposta.adicionarSequencia(1,100))
         Assertions.assertTrue(aposta.adicionarSequencia(3,23))
         Assertions.assertTrue(aposta.adicionarSequencia(3,2))
-        Assertions.assertTrue(aposta.sequencias[9].valor == 3.5 && aposta.sequencias[9].tamanho == 6)
-        Assertions.assertTrue(aposta.sequencias[3].valor == 17517.5 && aposta.sequencias[3].tamanho ==15 )
+        Assertions.assertTrue(aposta.sequencias[4].valor == 3.5 && aposta.sequencias[4].tamanho == 6)
+        aposta.mostraTodasSequencias()
+        Assertions.assertTrue(aposta.sequencias[3].tamanho == 15)
+        Assertions.assertTrue(aposta.sequencias[3].valor == 17517.5)
     }
 
     @Test
@@ -39,8 +43,9 @@ class ApostaTeste {
 
     @Test
     fun testAlterarSequencia(){
-        var sequenciaParaAlterar = aposta.sequencias[2]
-        aposta.alterarSequencia(sequenciaParaAlterar,aposta.sequencias,1)
-        Assertions.assertTrue(aposta.sequenciasIguais(aposta.sequencias[1],aposta.sequencias[2]))
+        var sequenciaParaAlterar = Sequencia()
+        sequenciaParaAlterar.numeros = arrayListOf(1,2,3,4,5,6)
+        aposta.alterarSequencia(sequenciaParaAlterar,aposta.sequencias,0)
+        Assertions.assertTrue(aposta.sequencias.first().numeros == arrayListOf(1,2,3,4,5,6))
     }
 }

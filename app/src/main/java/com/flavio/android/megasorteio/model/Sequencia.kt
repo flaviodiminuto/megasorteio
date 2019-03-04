@@ -7,12 +7,12 @@ import java.util.Date
 
 class Sequencia(var tamanho: Int) : SequenciaInterface  {
 
-    constructor(numerosRecebidos : ArrayList<Int>):this( numerosRecebidos.size){
-        numeros = numerosRecebidos }
+    constructor() : this(6)
 
-    var id = Long
+    constructor(numerosRecebidos : ArrayList<Int>):this( numerosRecebidos.size){ numeros = numerosRecebidos }
+
     var numeros = arrayListOf<Int>()
-    var valor : Double
+    var valor = 0.0
     var dataCriacao = Date()
     var dataAtualizacao = Date()
     val controlaNumero = ControlaNumero()
@@ -23,10 +23,10 @@ class Sequencia(var tamanho: Int) : SequenciaInterface  {
         configuraTamanho()
         atribuiDataCriacao()
         gerarSequencia(tamanho)
-        valor = setValor(tamanho)
+        setValor(tamanho)
     }
 
-    private fun configuraTamanho() {
+    override fun configuraTamanho() {
         tamanho = if (tamanho < LIMITE_INFERIOR)
             LIMITE_INFERIOR
         else if (tamanho > LIMITE_SUPERIOR)
@@ -36,22 +36,16 @@ class Sequencia(var tamanho: Int) : SequenciaInterface  {
     override fun gerarSequencia(tamanho : Int): Sequencia{
         configuraTamanho()
         numeros = controlaNumero.preencheNumerosSequencia(tamanho)
-        ordenaNumerosSequencia(numeros)
+        ordenaNumerosSequencia()
         return this
     }
 
+    override fun ordenaNumerosSequencia(){
+        this.numeros.sort()
+    }
     override fun ordenaNumerosSequencia(numeros : ArrayList<Int> ): ArrayList<Int>{
         numeros.sort()
         return numeros
-    }
-
-    override fun sequenciaUnica(sequencias : ArrayList<Sequencia>, sequencia : Sequencia): Boolean{
-        for(sequenciaVerificada : Sequencia in sequencias) {
-            when (sequencia.numeros) {
-                sequenciaVerificada.numeros -> return false
-            }
-        }
-        return true
     }
 
     override fun atribuiDataCriacao():Date{
@@ -64,26 +58,26 @@ class Sequencia(var tamanho: Int) : SequenciaInterface  {
        return dataAtualizacao
     }
 
-    override fun setValor(tamanhoSequencia : Int) : Double{
+    override fun setValor(tamanhoSequencia : Int){
         when(tamanhoSequencia){
-            6 ->    return Preco.SEIS.tamanhoSequencia
-            7 ->    return Preco.SETE.tamanhoSequencia
-            8 ->    return Preco.OITO.tamanhoSequencia
-            9 ->    return Preco.NOVE.tamanhoSequencia
-            10 ->   return Preco.DEZ.tamanhoSequencia
-            11 ->   return Preco.ONZE.tamanhoSequencia
-            12 ->   return Preco.DOZE.tamanhoSequencia
-            13 ->   return Preco.TREZE.tamanhoSequencia
-            14 ->   return Preco.QUATORZE.tamanhoSequencia
-            else -> return Preco.QUINZE.tamanhoSequencia
+            6 ->    valor = Preco.SEIS.tamanhoSequencia
+            7 ->    valor = Preco.SETE.tamanhoSequencia
+            8 ->    valor = Preco.OITO.tamanhoSequencia
+            9 ->    valor = Preco.NOVE.tamanhoSequencia
+            10 ->   valor = Preco.DEZ.tamanhoSequencia
+            11 ->   valor = Preco.ONZE.tamanhoSequencia
+            12 ->   valor = Preco.DOZE.tamanhoSequencia
+            13 ->   valor = Preco.TREZE.tamanhoSequencia
+            14 ->   valor = Preco.QUATORZE.tamanhoSequencia
+            else -> valor = Preco.QUINZE.tamanhoSequencia
         }
     }
 
     override fun toString(): String {
         var retorno = String()
         for(numero  in numeros){
-            retorno = "$retorno$numero "
+            retorno = "$retorno$numero, "
         }
-        return retorno.trimEnd()
+        return "[${retorno.removeRange(retorno.length-2,retorno.length-0)}]"
     }
 }
