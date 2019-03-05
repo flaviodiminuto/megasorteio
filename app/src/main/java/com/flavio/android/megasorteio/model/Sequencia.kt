@@ -60,16 +60,16 @@ class Sequencia(var tamanho: Int) : SequenciaInterface  {
 
     override fun setValor(tamanhoSequencia : Int){
         when(tamanhoSequencia){
-            6 ->    valor = Preco.SEIS.tamanhoSequencia
-            7 ->    valor = Preco.SETE.tamanhoSequencia
-            8 ->    valor = Preco.OITO.tamanhoSequencia
-            9 ->    valor = Preco.NOVE.tamanhoSequencia
-            10 ->   valor = Preco.DEZ.tamanhoSequencia
-            11 ->   valor = Preco.ONZE.tamanhoSequencia
-            12 ->   valor = Preco.DOZE.tamanhoSequencia
-            13 ->   valor = Preco.TREZE.tamanhoSequencia
-            14 ->   valor = Preco.QUATORZE.tamanhoSequencia
-            else -> valor = Preco.QUINZE.tamanhoSequencia
+            6 ->    valor = TamanhoSequencia.SEIS.preco
+            7 ->    valor = TamanhoSequencia.SETE.preco
+            8 ->    valor = TamanhoSequencia.OITO.preco
+            9 ->    valor = TamanhoSequencia.NOVE.preco
+            10 ->   valor = TamanhoSequencia.DEZ.preco
+            11 ->   valor = TamanhoSequencia.ONZE.preco
+            12 ->   valor = TamanhoSequencia.DOZE.preco
+            13 ->   valor = TamanhoSequencia.TREZE.preco
+            14 ->   valor = TamanhoSequencia.QUATORZE.preco
+            else -> valor = TamanhoSequencia.QUINZE.preco
         }
     }
 

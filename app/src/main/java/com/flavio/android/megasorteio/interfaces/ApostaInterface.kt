@@ -12,7 +12,7 @@ interface ApostaInterface{
     fun sequenciaExistente(sequenciaVerificada : Sequencia): Boolean
     fun numerosContidos(sequenciaVerificada: Sequencia, sequenciaContainer : Sequencia) : Int
     fun setValor()
-    fun mostraTodasSequencias()
+    fun mostraTodasSequencias() : String
     override fun toString(): String
 
 }

@@ -60,9 +60,6 @@ class Aposta : ApostaInterface  {
     }
 
     override fun numerosContidos(sequenciaVerificada: Sequencia, sequenciaContainer: Sequencia): Int {
-        /* VERIFICANDO DIGITOS
-            Não será único
-                o digito da sequencia verificada for menor que o digito na sequencia da aposta sem ser encontrada na sequencia*/
         var ocorrencias = 0
         if(sequenciaVerificada.tamanho > sequenciaContainer.tamanho) return numerosContidos(sequenciaContainer,sequenciaVerificada)
 
@@ -76,22 +73,23 @@ class Aposta : ApostaInterface  {
     }
 
     override fun setValor(){
+        valor = 0.0
         for (sequencia : Sequencia in sequencias){
            valor  = valor.plus(sequencia.valor)
         }
     }
 
-    override fun mostraTodasSequencias() {
+    override fun mostraTodasSequencias()  : String{
         var message = ""
         for (sequencia: Sequencia in sequencias)
             message = "$message$sequencia, "
-        message ="[$message]\n"
-        print(message.removeRange(message.length-4,message.length-2))
+        message ="[$message]"
+        return message.removeRange(message.length-3,message.length-1)
     }
 
     override fun toString(): String {
-        var message = ""
-        for(sequencia : Sequencia in sequencias){ message  = "$message\n$sequencia, "}
-        return "[$message]"
+        var retorno = ""
+        for(sequencia : Sequencia in sequencias){ retorno  = "$retorno$sequencia, "}
+        return "[${retorno.removeRange(retorno.length-2,retorno.length-0)}]"
     }
 }

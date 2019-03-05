@@ -16,31 +16,41 @@ class SorteioTest {
 
     @Test
     fun testValidaSequenciaSorteada(){
-        val numeros = arrayListOf<Int>(1,2,3,4,5,6,7)
-        var sequenciaSorteada = Sequencia(numeros)
-        val numerosInvalidos = arrayListOf<Int>(1,1,2,3,4,5,6)
-        var sequenciaInvalida = Sequencia(numerosInvalidos)
+        val numerosValidos = arrayListOf(1,2,3,4,5,6)
+        val numerosTamanhoInvalido = arrayListOf(1,2,3,4,5,6,7)
+        val numerosDigitosRepetidos = arrayListOf(1,1,2,3,4,5,6)
+        val numerosIntervaloInvalido = arrayListOf(1,2,3,4,5,61)
+        //Sequencia válida
+        sorteio.sequenciaSorteada = Sequencia(numerosValidos)
+        Assertions.assertTrue(sorteio.validaSequenciaSorteada().isEmpty())
 
-        Assertions.assertTrue(sorteio.validaSequenciaSorteada(sequenciaSorteada))
-        Assertions.assertFalse(sorteio.validaSequenciaSorteada(sequenciaInvalida))
+        //Sequencia inválida (Tamanho incorreto)
+        sorteio.sequenciaSorteada = Sequencia(numerosTamanhoInvalido)
+        Assertions.assertTrue(sorteio.validaSequenciaSorteada().contains(1))
+
+        //Sequencia inválida (Digito Repetido)
+        sorteio.sequenciaSorteada = Sequencia(numerosDigitosRepetidos)
+        Assertions.assertTrue(sorteio.validaSequenciaSorteada().contains(2))
+
+        //Sequencia inválida (Digito fora do intervalo correto "1~60")
+        sorteio.sequenciaSorteada = Sequencia(numerosIntervaloInvalido)
+        Assertions.assertTrue(sorteio.validaSequenciaSorteada().contains(3))
+
     }
 
     @Test
     fun testVerificaSorteio(){
         val sequencias = arrayListOf(
-                arrayListOf(1,2,3,4,5,6,7,8),
-                arrayListOf(2,3,4,5,6,7),
-                arrayListOf(1,2,3,4,5,6),
-                arrayListOf(1,2,3,4,5,6),
-                arrayListOf(10,11,12,13,14,15,16,17,18),
-                arrayListOf(20,21,22,23,24,25,26,27,28,29,30)
+                Sequencia(arrayListOf(1,2,3,4,5,6,7,8)),
+                Sequencia(arrayListOf(2,3,4,5,6,7)),
+                Sequencia(arrayListOf(1,2,3,4,5,6)),
+                Sequencia(arrayListOf(1,2,3,4,5,6)),
+                Sequencia(arrayListOf(10,11,12,13,14,15,16,17,18)),
+                Sequencia(arrayListOf(20,21,22,23,24,25,26,27,28,29,30))
         )
-        sorteio.apostas.first().sequencias.clear()
+        val sequenciaSorteada = Sequencia(arrayListOf(1,2,3,4,5,6))
+        sorteio.apostas.first().sequencias =  sequencias
+        sorteio.sequenciaSorteada = sequenciaSorteada
         Assertions.assertTrue(sorteio.verificaSorteio())
-    }
-
-    @Test
-    fun testContabilizaAcertos(){
-
     }
 }
