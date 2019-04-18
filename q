@@ -1,0 +1,88 @@
+[1mdiff --git a/.idea/caches/build_file_checksums.ser b/.idea/caches/build_file_checksums.ser[m
+[1mindex b6189f9..4c4ae04 100644[m
+Binary files a/.idea/caches/build_file_checksums.ser and b/.idea/caches/build_file_checksums.ser differ
+[1mdiff --git a/.idea/modules.xml b/.idea/modules.xml[m
+[1mindex cff2e5a..4ba0602 100644[m
+[1m--- a/.idea/modules.xml[m
+[1m+++ b/.idea/modules.xml[m
+[36m@@ -2,7 +2,7 @@[m
+ <project version="4">[m
+   <component name="ProjectModuleManager">[m
+     <modules>[m
+[31m-      <module fileurl="file://$PROJECT_DIR$/MegaSorteio.iml" filepath="$PROJECT_DIR$/MegaSorteio.iml" />[m
+[32m+[m[32m      <module fileurl="file://$PROJECT_DIR$/.idea/MegaSorteio.iml" filepath="$PROJECT_DIR$/.idea/MegaSorteio.iml" />[m
+       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />[m
+     </modules>[m
+   </component>[m
+[1mdiff --git a/app/src/main/java/com/flavio/android/megasorteio/view/GerarSequencias.kt b/app/src/main/java/com/flavio/android/megasorteio/view/GerarSequencias.kt[m
+[1mindex 294ba30..5cf2638 100644[m
+[1m--- a/app/src/main/java/com/flavio/android/megasorteio/view/GerarSequencias.kt[m
+[1m+++ b/app/src/main/java/com/flavio/android/megasorteio/view/GerarSequencias.kt[m
+[36m@@ -2,67 +2,11 @@[m [mpackage com.flavio.android.megasorteio.view[m
+ [m
+ import android.support.v7.app.AppCompatActivity[m
+ import android.os.Bundle[m
+[31m-import android.view.inputmethod.EditorInfo[m
+[31m-import android.widget.EditText[m
+[31m-import android.widget.Toast[m
+[31m-import com.flavio.android.megasorteio.R[m
+[31m-import com.flavio.android.megasorteio.model.Aposta[m
+[31m-import kotlinx.android.synthetic.main.activity_gerar_sequencias.*[m
+ [m
+ class GerarSequencias : AppCompatActivity() {[m
+[31m-    private var aposta = Aposta()[m
+ [m
+     override fun onCreate(savedInstanceState: Bundle?) {[m
+         super.onCreate(savedInstanceState)[m
+         setContentView(R.layout.activity_gerar_sequencias)[m
+[31m-[m
+[31m-        btnGerarAutomaticoGerarSequencia.setOnClickListener{[m
+[31m-            gerarSequencias()[m
+[31m-            Toast.makeText(this, aposta.toString(), Toast.LENGTH_LONG).show()[m
+[31m-        }[m
+[31m-[m
+[31m-        edtGerar15.setOnEditorActionListener{ v, actionId, event ->[m
+[31m-            if(actionId == EditorInfo.IME_ACTION_DONE){[m
+[31m-                btnGerarAutomaticoGerarSequencia.callOnClick()[m
+[31m-                true[m
+[31m-            } else {[m
+[31m-                false[m
+[31m-            }[m
+[31m-        }[m
+[31m-[m
+[31m-        btnAutomaticoReturn.setOnClickListener{[m
+[31m-            onBackPressed()[m
+[31m-        }[m
+     }[m
+[31m-[m
+[31m-    fun gerarSequencias(): Aposta{[m
+[31m-        var tamanho = 6[m
+[31m-        aposta.sequencias.clear()[m
+[31m-        for(quantidade : Int in lerQuantidades()){[m
+[31m-            this.aposta.adicionarSequencia(quantidade,tamanho)[m
+[31m-            tamanho++[m
+[31m-        }[m
+[31m-        return this.aposta[m
+[31m-    }[m
+[31m-[m
+[31m-    private fun lerQuantidades() : ArrayList<Int> {[m
+[31m-        var quantidades = ArrayList<Int>()[m
+[31m-        quantidades.add( digito(edtGerar6))[m
+[31m-        quantidades.add( digito(edtGerar7))[m
+[31m-        quantidades.add( digito(edtGerar8))[m
+[31m-        quantidades.add( digito(edtGerar9))[m
+[31m-        quantidades.add( digito(edtGerar10))[m
+[31m-        quantidades.add( digito(edtGerar11))[m
+[31m-        quantidades.add( digito(edtGerar12))[m
+[31m-        quantidades.add( digito(edtGerar13))[m
+[31m-        quantidades.add( digito(edtGerar14))[m
+[31m-        quantidades.add( digito(edtGerar15))[m
+[31m-[m
+[31m-        return quantidades[m
+[31m-    }[m
+[31m-[m
+[31m-    fun digito(digito : EditText): Int{[m
+[31m-        return if(digito.text.toString() == "") 0 else digito.text.toString().toInt()[m
+[31m-    }[m
+[31m-[m
+ }[m
