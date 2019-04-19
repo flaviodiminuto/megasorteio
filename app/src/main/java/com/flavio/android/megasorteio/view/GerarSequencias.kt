@@ -21,7 +21,7 @@ class GerarSequencias : AppCompatActivity() {
             Toast.makeText(this, aposta.toString(), Toast.LENGTH_LONG).show()
         }
 
-        edtGerar15.setOnEditorActionListener{ v, actionId, event ->
+        edtGerar15.setOnEditorActionListener{ _, actionId, _ ->
             if(actionId == EditorInfo.IME_ACTION_DONE){
                 btnGerarAutomaticoGerarSequencia.callOnClick()
                 true
@@ -35,7 +35,7 @@ class GerarSequencias : AppCompatActivity() {
         }
     }
 
-    fun gerarSequencias(): Aposta{
+    private fun gerarSequencias(): Aposta{
         var tamanho = 6
         aposta.sequencias.clear()
         for(quantidade : Int in lerQuantidades()){
@@ -46,7 +46,7 @@ class GerarSequencias : AppCompatActivity() {
     }
 
     private fun lerQuantidades() : ArrayList<Int> {
-        var quantidades = ArrayList<Int>()
+        val quantidades = ArrayList<Int>()
         quantidades.add( digito(edtGerar6))
         quantidades.add( digito(edtGerar7))
         quantidades.add( digito(edtGerar8))
@@ -61,7 +61,7 @@ class GerarSequencias : AppCompatActivity() {
         return quantidades
     }
 
-    fun digito(digito : EditText): Int{
+    private fun digito(digito : EditText): Int{
         return if(digito.text.toString() == "") 0 else digito.text.toString().toInt()
     }
 
