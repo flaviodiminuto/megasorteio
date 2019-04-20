@@ -3,7 +3,7 @@ package com.flavio.android.megasorteio.model
 import com.flavio.android.megasorteio.interfaces.ApostaInterface
 
 class Aposta : ApostaInterface  {
-    var idAposta = Long
+    var idAposta: Long = 0
     var sequencias = ArrayList<Sequencia>()
     var valor = 0.0
 

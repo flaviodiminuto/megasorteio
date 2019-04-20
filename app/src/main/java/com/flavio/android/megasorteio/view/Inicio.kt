@@ -13,7 +13,7 @@ class Inicio : AppCompatActivity() {
         setContentView(R.layout.activity_inicio)
 
         btnInicioGerarJogo.setOnClickListener{
-            val intent = Intent(this, GerarSequencias::class.java)
+            val intent = Intent(this, TelaListaApostasGeradas::class.java)
             startActivity(intent)
         }
     }

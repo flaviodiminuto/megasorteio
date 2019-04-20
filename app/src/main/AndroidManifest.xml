@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.ListaApostaGerada"></activity>
+        <activity android:name=".view.TelaListaApostasGeradas"></activity>
+        <activity android:name=".view.Testando" />
+        <activity android:name=".view.ListaApostasGeradas" />
+        <activity android:name=".view.ListaApostaGerada" />
         <activity android:name=".view.GerarSequencias" />
         <activity
             android:name=".view.Inicio"
