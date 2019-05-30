@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.TelaListaApostasGeradas"></activity>
+        <activity android:name=".view.MostrarApostaUnitaria"></activity>
+        <activity android:name=".view.TelaListaApostasGeradas" />
         <activity android:name=".view.Testando" />
         <activity android:name=".view.ListaApostasGeradas" />
         <activity android:name=".view.ListaApostaGerada" />

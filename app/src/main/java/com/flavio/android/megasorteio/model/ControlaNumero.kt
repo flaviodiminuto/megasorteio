@@ -1,8 +1,9 @@
 package com.flavio.android.megasorteio.model
 
+import java.io.Serializable
 import java.util.concurrent.ThreadLocalRandom
 
-class ControlaNumero {
+class ControlaNumero: Serializable {
 
     fun preencheNumerosSequencia( tamanho: Int):ArrayList<Int>{
         var numeros = arrayListOf<Int>()

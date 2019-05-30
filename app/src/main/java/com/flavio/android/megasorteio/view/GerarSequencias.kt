@@ -1,13 +1,14 @@
 package com.flavio.android.megasorteio.view
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
-import android.widget.Toast
 import com.flavio.android.megasorteio.R
 import com.flavio.android.megasorteio.model.Aposta
 import kotlinx.android.synthetic.main.activity_gerar_sequencias.*
+import java.io.Serializable
 
 class GerarSequencias : AppCompatActivity() {
     private var aposta = Aposta()
@@ -18,7 +19,11 @@ class GerarSequencias : AppCompatActivity() {
 
         btnGerarAutomaticoGerarSequencia.setOnClickListener{
             gerarSequencias()
-            Toast.makeText(this, aposta.toString(), Toast.LENGTH_LONG).show()
+            if(!aposta.sequencias.isEmpty()){
+                var intent = Intent(this,MostrarApostaUnitaria::class.java)
+                intent.putExtra("aposta",this.aposta)
+                startActivity(intent)
+            }
         }
 
         edtGerar15.setOnEditorActionListener{ _, actionId, _ ->
@@ -45,6 +50,10 @@ class GerarSequencias : AppCompatActivity() {
         return this.aposta
     }
 
+    override fun onBackPressed() {
+        val intent = Intent(this,Inicio::class.java)
+        startActivity(intent)
+    }
     private fun lerQuantidades() : ArrayList<Int> {
         val quantidades = ArrayList<Int>()
         quantidades.add( digito(edtGerar6))

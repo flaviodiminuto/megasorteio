@@ -1,11 +1,11 @@
 package com.flavio.android.megasorteio.model
 
 import com.flavio.android.megasorteio.interfaces.SequenciaInterface
-import java.util.Calendar
-import java.util.Date
+import java.io.Serializable
+import java.util.*
 
 
-class Sequencia(var tamanho: Int) : SequenciaInterface  {
+class Sequencia(var tamanho: Int) : SequenciaInterface, Serializable {
 
     constructor() : this(6)
 

@@ -1,10 +1,11 @@
 package com.flavio.android.megasorteio.model
 
 import com.flavio.android.megasorteio.interfaces.ApostaInterface
+import java.io.Serializable
 
-class Aposta : ApostaInterface  {
+class Aposta : ApostaInterface , Serializable {
     var idAposta: Long = 0
-    var sequencias = ArrayList<Sequencia>()
+    var sequencias = mutableListOf<Sequencia>()
     var valor = 0.0
 
     override fun adicionarSequencia(quantidade: Int, tamanho: Int) : Boolean {
@@ -90,6 +91,9 @@ class Aposta : ApostaInterface  {
     override fun toString(): String {
         var retorno = ""
         for(sequencia : Sequencia in sequencias){ retorno  = "$retorno$sequencia, "}
-        return "[${retorno.removeRange(retorno.length-2,retorno.length-0)}]"
+        return if(retorno == "")
+            "Indique uma quantidade."
+        else
+            "${retorno.removeRange(retorno.length-2,retorno.length)}"
     }
 }
