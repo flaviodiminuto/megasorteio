@@ -1,5 +1,6 @@
 package com.flavio.android.megasorteio.model
 
+import com.flavio.android.megasorteio.enumeradores.TamanhoSequencia
 import com.flavio.android.megasorteio.interfaces.SequenciaInterface
 import java.io.Serializable
 import java.util.*
@@ -10,7 +11,7 @@ class Sequencia(var tamanho: Int) : SequenciaInterface, Serializable {
     constructor() : this(6)
 
     constructor(numerosRecebidos : ArrayList<Int>):this( numerosRecebidos.size){ numeros = numerosRecebidos }
-    var id_sequencia = 0
+    var id_sequencia : Long = 0L
     var numeros = arrayListOf<Int>()
     var valor = 0.0
     var dataCriacao = Date()

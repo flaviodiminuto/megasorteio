@@ -4,7 +4,7 @@ import com.flavio.android.megasorteio.interfaces.ApostaInterface
 import java.io.Serializable
 
 class Aposta : ApostaInterface , Serializable {
-    var idAposta: Long = 0
+    var idAposta: Long = 0L
     var sequencias = mutableListOf<Sequencia>()
     var valor = 0.0
 

@@ -1,7 +1,7 @@
 package com.flavio.android.megasorteio
 
 import com.flavio.android.megasorteio.model.Aposta
-import com.flavio.android.megasorteio.model.TamanhoSequencia
+import com.flavio.android.megasorteio.enumeradores.TamanhoSequencia
 import com.flavio.android.megasorteio.model.Sequencia
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
@@ -84,10 +84,10 @@ class ApostaTeste {
     fun testSetValor(){
         var aposta2 = Aposta()
         aposta2.adicionarSequencia(10,6)
-        Assertions.assertTrue(aposta2.valor == (10*TamanhoSequencia.SEIS.preco))
+        Assertions.assertTrue(aposta2.valor == (10* TamanhoSequencia.SEIS.preco))
 
         aposta2.adicionarSequencia(15)
-        Assertions.assertTrue(aposta2.valor == (TamanhoSequencia.QUINZE.preco+ 10*TamanhoSequencia.SEIS.preco))
+        Assertions.assertTrue(aposta2.valor == (TamanhoSequencia.QUINZE.preco+ 10* TamanhoSequencia.SEIS.preco))
     }
 
     @Test

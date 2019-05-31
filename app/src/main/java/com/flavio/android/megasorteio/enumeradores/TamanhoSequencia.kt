@@ -1,4 +1,4 @@
-package com.flavio.android.megasorteio.model
+package com.flavio.android.megasorteio.enumeradores
 
 enum class TamanhoSequencia (val preco : Double) {
     SEIS(3.5),

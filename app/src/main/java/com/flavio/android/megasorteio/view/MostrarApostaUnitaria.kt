@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.flavio.android.megasorteio.R
+import com.flavio.android.megasorteio.controller.ControlaAposta
 import com.flavio.android.megasorteio.dao.ApostaDao
 import com.flavio.android.megasorteio.dao.SequenciaDao
 import com.flavio.android.megasorteio.model.Aposta
@@ -19,18 +20,10 @@ class MostrarApostaUnitaria : AppCompatActivity() {
         this.aposta = intent.extras.get("aposta") as Aposta
         Toast.makeText(this, aposta.mostraTodasSequencias(),Toast.LENGTH_SHORT).show()
 
-        ad = ApostaDao(this)
-        aposta.idAposta = ad.save(aposta)
-        if(aposta.idAposta>=0){
-            val sd = SequenciaDao(this)
-            var passou = true
-            for(sequencia : Sequencia in aposta.sequencias){
-                if(sd.save(sequencia,aposta.idAposta.toInt())< 0) passou = false
-            }
-            if(passou) Toast.makeText(this,"Aposta inserida com sucesso!",Toast.LENGTH_LONG).show()
+        var ca = ControlaAposta(this)
+
+            if(ca.save(aposta)) Toast.makeText(this,"Aposta inserida com sucesso!",Toast.LENGTH_LONG).show()
             else Toast.makeText(this,"Falha ao salvar sequencias!",Toast.LENGTH_LONG).show()
-
-        }
-
     }
 }
+
