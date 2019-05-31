@@ -104,7 +104,7 @@ class ApostaTeste {
     @Test
     fun testToSting(){
         var aposta2 = Aposta()
-        val message = "[[1, 2, 3, 4, 5, 6], [2, 3, 4, 5, 6, 7], [1, 1, 2, 3, 4, 5]]"
+        val message = "[1, 2, 3, 4, 5, 6], [2, 3, 4, 5, 6, 7], [1, 1, 2, 3, 4, 5]"
         aposta2.adicionarSequencia(Sequencia(arrayListOf(1,2,3,4,5,6)))
         aposta2.adicionarSequencia(Sequencia(arrayListOf(2,3,4,5,6,7)))
         aposta2.adicionarSequencia(Sequencia(arrayListOf(1,1,2,3,4,5)))

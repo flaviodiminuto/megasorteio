@@ -42,7 +42,7 @@ class Aposta : ApostaInterface , Serializable {
         return sequencias.remove(sequencia)
     }
 
-    override fun alterarSequencia(novaSequencia: Sequencia, sequencias : ArrayList<Sequencia>, index : Int){
+    override fun alterarSequencia(novaSequencia: Sequencia, sequencias : MutableList<Sequencia>, index : Int){
         sequencias[index] = novaSequencia
     }
 

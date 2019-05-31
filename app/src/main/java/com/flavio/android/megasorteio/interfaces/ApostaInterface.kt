@@ -8,7 +8,7 @@ interface ApostaInterface{
     fun adicionarSequencia(sequencia : Sequencia) : Boolean
     fun adicionarSequencia(numeros : ArrayList<Int>):Boolean
     fun removerSequencia(sequencia : Sequencia) : Boolean
-    fun alterarSequencia(novaSequencia: Sequencia, sequencias : ArrayList<Sequencia>, index : Int)
+    fun alterarSequencia(novaSequencia: Sequencia, sequencias : MutableList<Sequencia>, index : Int)
     fun sequenciaExistente(sequenciaVerificada : Sequencia): Boolean
     fun numerosContidos(sequenciaVerificada: Sequencia, sequenciaContainer : Sequencia) : Int
     fun setValor()
