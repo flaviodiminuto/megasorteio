@@ -6,11 +6,11 @@ import android.os.Bundle
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import com.flavio.android.megasorteio.R
+import com.flavio.android.megasorteio.controller.ControlaAposta
 import com.flavio.android.megasorteio.model.Aposta
 import kotlinx.android.synthetic.main.activity_gerar_sequencias.*
-import java.io.Serializable
 
-class GerarSequencias : AppCompatActivity() {
+class GerarAposta : AppCompatActivity() {
     private var aposta = Aposta()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,14 +18,18 @@ class GerarSequencias : AppCompatActivity() {
         setContentView(R.layout.activity_gerar_sequencias)
 
         btnGerarAutomaticoGerarSequencia.setOnClickListener{
-            gerarSequencias()
+            this.aposta = gerarSequencias()
             if(!aposta.sequencias.isEmpty()){
-                var intent = Intent(this,MostrarApostaUnitaria::class.java)
+                var intent = Intent(this,TelaListaApostaUnitaria::class.java)
                 intent.putExtra("aposta",this.aposta)
+               /* var ca = ControlaAposta(this)
+                aposta.idAposta = ca.salvar(this.aposta)
+                var intent = Intent(this,TelaListaApostasTodas::class.java)*/
                 startActivity(intent)
             }
         }
 
+        //Quando o ultimo editText estiver selcionado e clicar no botao OK do teclado
         edtGerar15.setOnEditorActionListener{ _, actionId, _ ->
             if(actionId == EditorInfo.IME_ACTION_DONE){
                 btnGerarAutomaticoGerarSequencia.callOnClick()
@@ -41,13 +45,14 @@ class GerarSequencias : AppCompatActivity() {
     }
 
     private fun gerarSequencias(): Aposta{
+        var aposta = Aposta()
         var tamanho = 6
         aposta.sequencias.clear()
         for(quantidade : Int in lerQuantidades()){
-            this.aposta.adicionarSequencia(quantidade,tamanho)
+            aposta.adicionarSequencia(quantidade,tamanho)
             tamanho++
         }
-        return this.aposta
+        return aposta
     }
 
     override fun onBackPressed() {

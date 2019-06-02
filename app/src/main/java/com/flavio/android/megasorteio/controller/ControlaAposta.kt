@@ -9,19 +9,22 @@ import com.flavio.android.megasorteio.model.Sequencia
 
 class ControlaAposta(val context: Context) {
 
-    fun save(aposta: Aposta) : Boolean{
+    fun salvar(aposta: Aposta) : Long {
         var ad = ApostaDao(context)
         var sd = SequenciaDao(context)
         var asd = ApostaSequenciaDao(context)
 
-        aposta.idAposta = ad.save(aposta)
+        aposta.idAposta = ad.salvar(aposta)
         if(aposta.idAposta >= 0){
             for(sequencia : Sequencia in aposta.sequencias){
                 sequencia.id_sequencia = sd.save(sequencia)
                 asd.save(aposta.idAposta, sequencia.id_sequencia)
             }
         }
-        return true
+        return aposta.idAposta
     }
-
+    fun listaTodosSemSequencias(): MutableList<Aposta> {
+        var ad = ApostaDao(context)
+        return ad.listarTodosSemSequencia()
+    }
 }

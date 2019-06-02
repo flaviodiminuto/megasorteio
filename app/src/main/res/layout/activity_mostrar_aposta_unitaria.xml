@@ -2,8 +2,65 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.MostrarApostaUnitaria">
+    android:background="@color/background"
+    android:orientation="vertical"
+    tools:context=".view.TelaListaApostaUnitaria">
+
+    <TextView
+        android:id="@+id/mostra_aposta_texto_aposta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="Aposta"
+        android:textColor="@color/texto_cor"
+        android:textSize="@dimen/texto_grande"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/mostra_aposta_unitaria_recycler"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_conversion_absoluteHeight="34dp"
+        tools:layout_conversion_absoluteWidth="411dp" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/mostra_aposta_unitaria_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/mostra_aposta_texto_salvar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mostra_aposta_texto_aposta"
+        tools:layout_conversion_absoluteHeight="549dp"
+        tools:layout_conversion_absoluteWidth="411dp">
+
+    </android.support.v7.widget.RecyclerView>
+
+    <TextView
+        android:id="@+id/mostra_aposta_texto_salvar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="Salvar aposta"
+        app:layout_constraintBottom_toTopOf="@+id/mostrar_aposta_btn_salvar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="@color/texto_cor"
+        android:textSize="@dimen/texto_normal"/>
+
+    <ImageButton
+        android:id="@+id/mostrar_aposta_btn_salvar"
+        android:layout_width="160dp"
+        android:layout_height="70dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        tools:layout_conversion_absoluteHeight="19dp"
+        tools:layout_conversion_absoluteWidth="24dp"
+        android:background="@drawable/btn_salvar_branco"/>
 
 </android.support.constraint.ConstraintLayout>

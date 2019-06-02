@@ -23,7 +23,8 @@ class Banco(context: Context) : SQLiteOpenHelper(context, db_name,null,version) 
     private fun createApostaTable(db: SQLiteDatabase?) {
         val sql = "CREATE TABLE IF NOT EXISTS ${Campos.APOSTA_TABLE.nome} " +
                 "(${Campos.APOSTA_ID.nome} INTEGER PRIMARY KEY AUTOINCREMENT," +
-                " ${Campos.APOSTA_VALOR.nome} REAL)"
+                " ${Campos.APOSTA_VALOR.nome} REAL," +
+                " ${Campos.APOSTA_QUANTIDADE_SEQUENCIAS.nome} INTEGER)"
         db?.execSQL(sql)
     }
     private fun createSequenciaTable(db: SQLiteDatabase?){

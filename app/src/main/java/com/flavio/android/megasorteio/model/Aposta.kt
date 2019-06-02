@@ -6,7 +6,8 @@ import java.io.Serializable
 class Aposta : ApostaInterface , Serializable {
     var idAposta: Long = 0L
     var sequencias = mutableListOf<Sequencia>()
-    var valor = 0.0
+    var quantidadeSequencias : Long = 0L
+    var valor : Double = 0.0
 
     override fun adicionarSequencia(quantidade: Int, tamanho: Int) : Boolean {
         var sequencia = Sequencia(tamanho)
@@ -14,6 +15,7 @@ class Aposta : ApostaInterface , Serializable {
             while(sequenciaExistente(sequencia)){
                sequencia = Sequencia(tamanho)
             }
+            quantidadeSequencias++
             sequencias.add(sequencia)
         }
         if(!sequencias.isEmpty()) {
@@ -92,7 +94,7 @@ class Aposta : ApostaInterface , Serializable {
         var retorno = ""
         for(sequencia : Sequencia in sequencias){ retorno  = "$retorno$sequencia, "}
         return if(retorno == "")
-            "Indique uma quantidade."
+            "Aposta vazia."
         else
             "${retorno.removeRange(retorno.length-2,retorno.length)}"
     }

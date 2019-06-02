@@ -5,6 +5,7 @@ enum class Campos(internal val nome: String) {
     APOSTA_TABLE("aposta"),
     APOSTA_ID ("id_aposta"),
     APOSTA_VALOR ("valor"),
+    APOSTA_QUANTIDADE_SEQUENCIAS("quantidade_sequencia"),
 
     //Tabela sequencia
     SEQUENCIA_TABLE("sequencia"),

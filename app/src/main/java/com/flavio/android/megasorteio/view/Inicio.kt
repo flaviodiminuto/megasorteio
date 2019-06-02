@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.flavio.android.megasorteio.R
+import com.flavio.android.megasorteio.adapter.ListaApostasTodasAdapter
 import kotlinx.android.synthetic.main.activity_inicio.*
 
 class Inicio : AppCompatActivity() {
@@ -13,8 +14,10 @@ class Inicio : AppCompatActivity() {
         setContentView(R.layout.activity_inicio)
 
         btnInicioGerarJogo.setOnClickListener{
-            val intent = Intent(this, GerarSequencias::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, GerarAposta::class.java))
+        }
+        btnInicioVerificarSorteio.setOnClickListener{
+            startActivity(Intent(this,TelaListaApostasTodas::class.java))
         }
     }
 

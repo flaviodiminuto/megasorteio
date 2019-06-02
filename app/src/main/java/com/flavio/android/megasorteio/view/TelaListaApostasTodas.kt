@@ -1,25 +1,28 @@
 package com.flavio.android.megasorteio.view
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.widget.Toast
 import com.flavio.android.megasorteio.R
-import com.flavio.android.megasorteio.adapter.ListaApostaAdapter
+import com.flavio.android.megasorteio.adapter.ListaApostasTodasAdapter
+import com.flavio.android.megasorteio.controller.ControlaAposta
 import com.flavio.android.megasorteio.model.Aposta
 
-class TelaListaApostasGeradas : AppCompatActivity() {
+class TelaListaApostasTodas : AppCompatActivity() {
 
-    private lateinit var apostas : ArrayList<Aposta>
+    private lateinit var apostas : MutableList<Aposta>
     private lateinit var recyclerview : RecyclerView
     private lateinit var layout : LinearLayoutManager
+    private lateinit var ca : ControlaAposta
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tela_lista_apostas_geradas)
 
-        apostas = gerarApostas()
+        ca = ControlaAposta(this)
+        apostas = ca.listaTodosSemSequencias()
         listaApostas()
     }
 
@@ -28,7 +31,7 @@ class TelaListaApostasGeradas : AppCompatActivity() {
         layout = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         recyclerview.setHasFixedSize(true)
         recyclerview.layoutManager = layout
-        recyclerview.adapter = ListaApostaAdapter(apostas)
+        recyclerview.adapter = ListaApostasTodasAdapter(apostas)
     }
 
     private fun gerarApostas(): ArrayList<Aposta> {
@@ -41,4 +44,6 @@ class TelaListaApostasGeradas : AppCompatActivity() {
         }
         return apostas
     }
+
+    override fun onBackPressed() = startActivity(Intent(this,Inicio::class.java))
 }

@@ -13,7 +13,7 @@ class Sequencia(var tamanho: Int) : SequenciaInterface, Serializable {
     constructor(numerosRecebidos : ArrayList<Int>):this( numerosRecebidos.size){ numeros = numerosRecebidos }
     var id_sequencia : Long = 0L
     var numeros = arrayListOf<Int>()
-    var valor = 0.0
+    var valor : Double = 0.0
     var dataCriacao = Date()
     var dataAtualizacao = Date()
     val controlaNumero = ControlaNumero()
