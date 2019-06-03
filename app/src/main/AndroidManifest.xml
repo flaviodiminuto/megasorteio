@@ -9,11 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.TelaListaApostaUnitaria"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".view.TelaListaApostasTodas"
+        <activity android:name=".view.TelaEditarSequencia"></activity>
+        <activity
+            android:name=".view.TelaListaApostaUnitaria"
             android:screenOrientation="portrait" />
-        <activity android:name=".view.GerarAposta"
+        <activity
+            android:name=".view.TelaListaApostasTodas"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.GerarAposta"
             android:screenOrientation="portrait" />
         <activity
             android:name=".view.Inicio"

@@ -7,7 +7,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import com.flavio.android.megasorteio.R
 import com.flavio.android.megasorteio.adapter.ListaApostasTodasAdapter
-import com.flavio.android.megasorteio.controller.ControlaAposta
+import com.flavio.android.megasorteio.controller.Controller
 import com.flavio.android.megasorteio.model.Aposta
 
 class TelaListaApostasTodas : AppCompatActivity() {
@@ -15,14 +15,14 @@ class TelaListaApostasTodas : AppCompatActivity() {
     private lateinit var apostas : MutableList<Aposta>
     private lateinit var recyclerview : RecyclerView
     private lateinit var layout : LinearLayoutManager
-    private lateinit var ca : ControlaAposta
+    private lateinit var ca : Controller
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tela_lista_apostas_geradas)
 
-        ca = ControlaAposta(this)
-        apostas = ca.listaTodosSemSequencias()
+        ca = Controller(this)
+        apostas = ca.listarApostas()
         listaApostas()
     }
 

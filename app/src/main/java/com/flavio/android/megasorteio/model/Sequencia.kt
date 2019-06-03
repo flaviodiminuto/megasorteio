@@ -10,9 +10,9 @@ class Sequencia(var tamanho: Int) : SequenciaInterface, Serializable {
 
     constructor() : this(6)
 
-    constructor(numerosRecebidos : ArrayList<Int>):this( numerosRecebidos.size){ numeros = numerosRecebidos }
-    var id_sequencia : Long = 0L
-    var numeros = arrayListOf<Int>()
+    constructor(numerosRecebidos : MutableList<Int>):this( numerosRecebidos.size){ numeros = numerosRecebidos }
+    var idSequencia : Long = 0L
+    var numeros = mutableListOf<Int>()
     var valor : Double = 0.0
     var dataCriacao = Date()
     var dataAtualizacao = Date()

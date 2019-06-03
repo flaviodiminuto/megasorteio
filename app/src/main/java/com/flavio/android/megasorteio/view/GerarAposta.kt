@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import com.flavio.android.megasorteio.R
-import com.flavio.android.megasorteio.controller.ControlaAposta
 import com.flavio.android.megasorteio.model.Aposta
 import kotlinx.android.synthetic.main.activity_gerar_sequencias.*
 
@@ -22,9 +21,7 @@ class GerarAposta : AppCompatActivity() {
             if(!aposta.sequencias.isEmpty()){
                 var intent = Intent(this,TelaListaApostaUnitaria::class.java)
                 intent.putExtra("aposta",this.aposta)
-               /* var ca = ControlaAposta(this)
-                aposta.idAposta = ca.salvar(this.aposta)
-                var intent = Intent(this,TelaListaApostasTodas::class.java)*/
+                intent.putExtra("action","salvar")
                 startActivity(intent)
             }
         }

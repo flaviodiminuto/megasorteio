@@ -74,7 +74,7 @@
 
             <EditText
                 android:id="@+id/edtGerar6"
-                android:layout_width="100dp"
+                android:layout_width="70dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="5dp"
@@ -107,7 +107,7 @@
 
             <EditText
                 android:id="@+id/edtGerar7"
-                android:layout_width="100dp"
+                android:layout_width="70dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="5dp"
@@ -141,7 +141,7 @@
 
             <EditText
                 android:id="@+id/edtGerar8"
-                android:layout_width="100dp"
+                android:layout_width="70dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="5dp"
@@ -174,7 +174,7 @@
 
             <EditText
                 android:id="@+id/edtGerar9"
-                android:layout_width="100dp"
+                android:layout_width="70dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="5dp"
@@ -207,7 +207,7 @@
 
             <EditText
                 android:id="@+id/edtGerar10"
-                android:layout_width="100dp"
+                android:layout_width="70dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="5dp"
@@ -240,7 +240,7 @@
 
             <EditText
                 android:id="@+id/edtGerar11"
-                android:layout_width="100dp"
+                android:layout_width="70dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="5dp"
@@ -273,7 +273,7 @@
 
             <EditText
                 android:id="@+id/edtGerar12"
-                android:layout_width="100dp"
+                android:layout_width="70dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="5dp"
@@ -306,7 +306,7 @@
 
             <EditText
                 android:id="@+id/edtGerar13"
-                android:layout_width="100dp"
+                android:layout_width="70dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="5dp"
@@ -339,7 +339,7 @@
 
             <EditText
                 android:id="@+id/edtGerar14"
-                android:layout_width="100dp"
+                android:layout_width="70dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="5dp"
@@ -372,7 +372,7 @@
 
             <EditText
                 android:id="@+id/edtGerar15"
-                android:layout_width="100dp"
+                android:layout_width="70dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="5dp"

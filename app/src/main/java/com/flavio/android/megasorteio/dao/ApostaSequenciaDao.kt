@@ -2,28 +2,60 @@ package com.flavio.android.megasorteio.dao
 
 import android.content.ContentValues
 import android.content.Context
+import android.database.Cursor
+import android.database.SQLException
 import com.flavio.android.megasorteio.database.Banco
 import com.flavio.android.megasorteio.enumeradores.Campos
 import com.flavio.android.megasorteio.model.Aposta
 import com.flavio.android.megasorteio.model.Sequencia
 
-class ApostaSequenciaDao (context : Context){
+class ApostaSequenciaDao (private val context : Context){
     private val banco = Banco(context)
 
-    fun save(aposta : Long, sequencia : Long): Long{
-        var cv = ContentValues()
-        cv.putNull(Campos.APOSTA_SEQUENCIA_ID.nome)
-        cv.put(Campos.APOSTA_SEQUENCIA_SEQUENCIA.nome, sequencia)
-        cv.put(Campos.APOSTA_SEQUENCIA_APOSTA.nome, aposta)
+    fun saveApostaSequencia(aposta : Aposta): Long {
+        aposta.idAposta = ApostaDao(context).salvar(aposta)
+        var sd = SequenciaDao(context)
+        for(sequencia : Sequencia in aposta.sequencias){
+            sequencia.idSequencia = sd.salvarSequencia(sequencia)
+            var cv = ContentValues()
+            cv.putNull(Campos.APOSTA_SEQUENCIA_ID.nome)
+            cv.put(Campos.APOSTA_SEQUENCIA_SEQUENCIA.nome, sequencia.idSequencia)
+            cv.put(Campos.APOSTA_SEQUENCIA_APOSTA.nome, aposta.idAposta)
 
-        return banco.use().insert(Campos.APOSTA_SEQUENCIA_TABLE.nome, null, cv)
+            banco.use().insert(Campos.APOSTA_SEQUENCIA_TABLE.nome, null, cv)
+        }
+        return aposta.idAposta
     }
 
-    fun save(aposta : Aposta){
-        for(sequencia : Sequencia in aposta.sequencias){
-            save(aposta.idAposta, sequencia.id_sequencia)
+    fun consultarApostaSequencia(id : Long): Aposta {
+        var aposta = Aposta()
+        var sql = "SELECT a.*, s.* " +
+                " FROM ${Campos.APOSTA_SEQUENCIA_TABLE.nome} apsq " +
+                " INNER JOIN ${Campos.APOSTA_TABLE.nome} a " +
+                " ON a.${Campos.APOSTA_ID.nome}=apsq.${Campos.APOSTA_SEQUENCIA_APOSTA.nome} " +
+                " INNER JOIN ${Campos.SEQUENCIA_TABLE.nome} s " +
+                " ON s.${Campos.SEQUENCIA_ID.nome}=apsq.${Campos.APOSTA_SEQUENCIA_SEQUENCIA.nome} " +
+                " WHERE apsq.${Campos.APOSTA_SEQUENCIA_APOSTA.nome}=$id"
+        var cursor : Cursor? = null
+        return try {
+            cursor = banco.use().rawQuery(sql, null)
+            if(cursor!!.isBeforeFirst) {
+                var ad = ApostaDao(context)  // para reaproveitar o metodo de preenchimento
+                var sd = SequenciaDao(context)  // para reaproveitar o metodo de preenchimento
+                cursor.moveToFirst()
+                aposta = ad.preencheCamposAposta(cursor)
+                do {
+                    aposta.sequencias.add( sd.preencheCamposSequencia(cursor))
+                }while (cursor.moveToNext())
+                aposta
+            }else
+                Aposta()
+        }catch (e : SQLException){
+            Aposta()
         }
     }
 
+    fun atualizarApostaSequencia(aposta: Aposta){
 
+    }
 }

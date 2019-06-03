@@ -14,6 +14,8 @@ class Banco(context: Context) : SQLiteOpenHelper(context, db_name,null,version) 
         createApostaTable(db)
         createSequenciaTable(db)
         createApostaSequenciaTable(db)
+        println("TABELAS CRIADAS")
+        println("sucesso")
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
@@ -31,6 +33,7 @@ class Banco(context: Context) : SQLiteOpenHelper(context, db_name,null,version) 
         val sql = "CREATE TABLE IF NOT EXISTS sequencia " +
                 "(${Campos.SEQUENCIA_ID.nome} INTEGER PRIMARY KEY AUTOINCREMENT," +
                 " ${Campos.SEQUENCIA_VALOR.nome} REAL  DEFAULT 0," +
+                " ${Campos.SEQUENCIA_TAMANHO.nome} INTEGER DEFAULT 6," +
                 " ${Campos.SEQUENCIA_DATA_CADASTRO.nome} TEXT ," +
                 " ${Campos.SEQUENCIA_DATA_ATUALIZACAO.nome} TEXT, " +
                 " ${Campos.SEQUENCIA_N1.nome} INTEGER , " +
