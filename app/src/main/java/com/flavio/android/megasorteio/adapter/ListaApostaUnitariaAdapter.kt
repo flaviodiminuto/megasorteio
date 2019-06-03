@@ -8,11 +8,12 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.flavio.android.megasorteio.R
 import com.flavio.android.megasorteio.extension.formataParaMoedaBrasileira
+import com.flavio.android.megasorteio.model.Aposta
 import com.flavio.android.megasorteio.model.Sequencia
 import com.flavio.android.megasorteio.view.TelaEditarSequencia
 import kotlinx.android.synthetic.main.card_sequencia.view.*
 
-class ListaApostaUnitariaAdapter (private val sequencias: MutableList<Sequencia>, private val apostaId : Long ) :
+class ListaApostaUnitariaAdapter (private val sequencias: MutableList<Sequencia>, private val aposta : Aposta ) :
         RecyclerView.Adapter<ListaApostaUnitariaAdapter.ListaApostaUnitariaViewHolder>(){
 
     class ListaApostaUnitariaViewHolder ( val view: View ) : RecyclerView.ViewHolder(view)
@@ -55,7 +56,12 @@ class ListaApostaUnitariaAdapter (private val sequencias: MutableList<Sequencia>
         //Acao ao clicar em cima do card de uma sequencia
         holder.view.card_sequencia_editar.setOnClickListener{
             var intent = Intent(holder.view.context, TelaEditarSequencia::class.java)
-            intent.putExtra("sequencia", sequencias[position])
+            intent.putExtra("aposta", aposta)
+            when{
+                aposta.idAposta > 0L -> intent.putExtra("action", "aposta_editar")
+                else -> intent.putExtra("action", "aposta_nova")
+            }
+            intent.putExtra("indice",position)
             holder.view.context.startActivity(intent)
         }
     }

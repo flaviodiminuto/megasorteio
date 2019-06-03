@@ -82,7 +82,8 @@ class SequenciaDao(context: Context) {
         }
         return cv
     }
-    fun atualizarSequencia(sequencia: Sequencia){
-
+    fun atualizarSequencia(sequencia: Sequencia): Long {
+        var cv = preencheCV(sequencia)
+        return banco.use().update(Campos.SEQUENCIA_TABLE.nome,cv," ${Campos.SEQUENCIA_ID.nome}=${sequencia.idSequencia} ", null).toLong()
     }
 }

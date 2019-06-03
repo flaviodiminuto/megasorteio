@@ -23,11 +23,14 @@ class TelaListaApostaUnitaria : AppCompatActivity() {
         this.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         try {
             this.aposta = intent.extras.get("aposta") as Aposta
-            mostra_aposta_texto_aposta.text = "Aposta ${aposta.idAposta}"
             this.act = intent.extras.get("action") as String
             mostra_aposta_unitaria_recycler.setHasFixedSize(true)
             mostra_aposta_unitaria_recycler.layoutManager = this.layoutManager
-            mostra_aposta_unitaria_recycler.adapter = ListaApostaUnitariaAdapter(aposta.sequencias, aposta.idAposta)
+            mostra_aposta_unitaria_recycler.adapter = ListaApostaUnitariaAdapter(aposta.sequencias, aposta)
+            when(act){
+                "aposta_editar" -> mostra_aposta_texto_aposta.text = "Aposta ${aposta.idAposta}"
+                "aposta_nova" -> mostra_aposta_texto_aposta.text = "Aposta Nova"
+            }
         }catch (e: Exception){
             var intent = Intent(this, TelaListaApostasTodas::class.java)
             startActivity(intent)
@@ -51,5 +54,7 @@ class TelaListaApostaUnitaria : AppCompatActivity() {
 
 
     private fun salvarAposta() = Controller(this).salvarAposta(this.aposta)
+
+    override fun onBackPressed() = startActivity(Intent(this,Inicio::class.java))
 }
 

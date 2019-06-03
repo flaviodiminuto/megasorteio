@@ -10,7 +10,7 @@
     tools:context=".view.TelaEditarSequencia">
 
     <EditText
-        android:id="@+id/editar_sequencia_n16"
+        android:id="@+id/editar_sequencia_quantidade"
         android:layout_width="70dp"
         android:layout_height="60dp"
         android:layout_marginHorizontal="5dp"
@@ -38,288 +38,295 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="14dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="293dp"
         android:layout_weight="1"
         android:text="Editar Sequencia"
         android:textColor="@color/texto_cor"
         android:textSize="@dimen/texto_grande"
-        app:layout_constraintBottom_toTopOf="@+id/editar_sequencia_btn_gerar_automatico"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.031"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout2"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_height="0dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:background="@color/colorPrimaryDark"
-        android:orientation="vertical"
-        android:padding="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.120000005">
+        app:layout_constraintBottom_toTopOf="@+id/editar_sequencia_btn_salvar"
+        app:layout_constraintTop_toBottomOf="@+id/editar_sequencia_texto_aposta"
+        tools:layout_editor_absoluteX="10dp"
+        android:background="@color/colorPrimaryDark">
 
         <LinearLayout
-            android:id="@+id/editar_sequencia_campos1"
+            android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/colorPrimaryDark"
+            android:orientation="vertical"
+            android:padding="10dp"
+            app:layout_constraintBottom_toTopOf="@+id/editar_sequencia_btn_salvar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.473"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editar_sequencia_texto_aposta"
+            app:layout_constraintVertical_bias="0.0">
 
-            <EditText
-                android:id="@+id/editar_sequencia_n1"
-                android:layout_width="30dp"
-                android:layout_height="50dp"
-                android:layout_marginHorizontal="5dp"
-                android:layout_weight="1"
-                android:background="@drawable/bordas_arredondadas"
-                android:gravity="center"
-                android:hint="00"
-                android:inputType="number"
-                android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/texto_grande"
-                android:maxLength="2" />
+            <LinearLayout
+                android:id="@+id/editar_sequencia_campos1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-            <EditText
-                android:id="@+id/editar_sequencia_n2"
-                android:layout_width="30dp"
-                android:layout_height="50dp"
-                android:layout_marginHorizontal="5dp"
-                android:layout_weight="1"
-                android:background="@drawable/bordas_arredondadas"
-                android:gravity="center"
-                android:hint="00"
-                android:inputType="number"
-                android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/texto_grande"
-                android:maxLength="2" />
+                <EditText
+                    android:id="@+id/editar_sequencia_n1"
+                    android:layout_width="30dp"
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bordas_arredondadas"
+                    android:gravity="center"
+                    android:hint="00"
+                    android:inputType="number"
+                    android:maxLength="2"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/texto_grande" />
 
-            <EditText
-                android:id="@+id/editar_sequencia_n3"
-                android:layout_width="30dp"
-                android:layout_height="50dp"
-                android:layout_marginHorizontal="5dp"
-                android:layout_weight="1"
-                android:background="@drawable/bordas_arredondadas"
-                android:gravity="center"
-                android:hint="00"
-                android:inputType="number"
-                android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/texto_grande"
-                android:maxLength="2" />
+                <EditText
+                    android:id="@+id/editar_sequencia_n2"
+                    android:layout_width="30dp"
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bordas_arredondadas"
+                    android:gravity="center"
+                    android:hint="00"
+                    android:inputType="number"
+                    android:maxLength="2"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/texto_grande" />
 
-            <EditText
-                android:id="@+id/editar_sequencia_n4"
-                android:layout_width="30dp"
-                android:layout_height="50dp"
-                android:layout_marginHorizontal="5dp"
-                android:layout_weight="1"
-                android:background="@drawable/bordas_arredondadas"
-                android:gravity="center"
-                android:hint="00"
-                android:inputType="number"
-                android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/texto_grande"
-                android:maxLength="2" />
+                <EditText
+                    android:id="@+id/editar_sequencia_n3"
+                    android:layout_width="30dp"
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bordas_arredondadas"
+                    android:gravity="center"
+                    android:hint="00"
+                    android:inputType="number"
+                    android:maxLength="2"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/texto_grande" />
 
-            <EditText
-                android:id="@+id/editar_sequencia_n5"
-                android:layout_width="30dp"
-                android:layout_height="50dp"
-                android:layout_marginHorizontal="5dp"
-                android:layout_weight="1"
-                android:background="@drawable/bordas_arredondadas"
+                <EditText
+                    android:id="@+id/editar_sequencia_n4"
+                    android:layout_width="30dp"
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bordas_arredondadas"
+                    android:gravity="center"
+                    android:hint="00"
+                    android:inputType="number"
+                    android:maxLength="2"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/texto_grande" />
+
+                <EditText
+                    android:id="@+id/editar_sequencia_n5"
+                    android:layout_width="30dp"
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bordas_arredondadas"
+                    android:gravity="center"
+                    android:hint="00"
+                    android:inputType="number"
+                    android:maxLength="2"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/texto_grande" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/editar_sequencia_campos2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:gravity="center"
-                android:hint="00"
-                android:inputType="number"
-                android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/texto_grande"
-                android:maxLength="2" />
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/editar_sequencia_n6"
+                    android:layout_width="30dp"
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bordas_arredondadas"
+                    android:gravity="center"
+                    android:hint="00"
+                    android:inputType="number"
+                    android:maxLength="2"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/texto_grande" />
+
+                <EditText
+                    android:id="@+id/editar_sequencia_n7"
+                    android:layout_width="30dp"
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bordas_arredondadas"
+                    android:gravity="center"
+                    android:hint="00"
+                    android:inputType="number"
+                    android:maxLength="2"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/texto_grande" />
+
+                <EditText
+                    android:id="@+id/editar_sequencia_n8"
+                    android:layout_width="30dp"
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bordas_arredondadas"
+                    android:gravity="center"
+                    android:hint="00"
+                    android:inputType="number"
+                    android:maxLength="2"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/texto_grande" />
+
+                <EditText
+                    android:id="@+id/editar_sequencia_n9"
+                    android:layout_width="30dp"
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bordas_arredondadas"
+                    android:gravity="center"
+                    android:hint="00"
+                    android:inputType="number"
+                    android:maxLength="2"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/texto_grande" />
+
+                <EditText
+                    android:id="@+id/editar_sequencia_n10"
+                    android:layout_width="30dp"
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bordas_arredondadas"
+                    android:gravity="center"
+                    android:hint="00"
+                    android:inputType="number"
+                    android:maxLength="2"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/texto_grande" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/editar_sequencia_campos3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/editar_sequencia_n11"
+                    android:layout_width="30dp"
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bordas_arredondadas"
+                    android:gravity="center"
+                    android:hint="00"
+                    android:inputType="number"
+                    android:maxLength="2"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/texto_grande" />
+
+                <EditText
+                    android:id="@+id/editar_sequencia_n12"
+                    android:layout_width="30dp"
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bordas_arredondadas"
+                    android:gravity="center"
+                    android:hint="00"
+                    android:inputType="number"
+                    android:maxLength="2"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/texto_grande" />
+
+                <EditText
+                    android:id="@+id/editar_sequencia_n13"
+                    android:layout_width="30dp"
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bordas_arredondadas"
+                    android:gravity="center"
+                    android:hint="00"
+                    android:inputType="number"
+                    android:maxLength="2"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/texto_grande" />
+
+                <EditText
+                    android:id="@+id/editar_sequencia_n14"
+                    android:layout_width="30dp"
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bordas_arredondadas"
+                    android:gravity="center"
+                    android:hint="00"
+                    android:inputType="number"
+                    android:maxLength="2"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/texto_grande" />
+
+                <EditText
+                    android:id="@+id/editar_sequencia_n15"
+                    android:layout_width="30dp"
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bordas_arredondadas"
+                    android:gravity="center"
+                    android:hint="00"
+                    android:inputType="number"
+                    android:maxLength="2"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/texto_grande" />
+
+            </LinearLayout>
 
         </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/editar_sequencia_campos2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <EditText
-                android:id="@+id/editar_sequencia_n6"
-                android:layout_width="30dp"
-                android:layout_height="50dp"
-                android:layout_marginHorizontal="5dp"
-                android:layout_weight="1"
-                android:background="@drawable/bordas_arredondadas"
-                android:gravity="center"
-                android:hint="00"
-                android:inputType="number"
-                android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/texto_grande"
-                android:maxLength="2" />
-
-            <EditText
-                android:id="@+id/editar_sequencia_n7"
-                android:layout_width="30dp"
-                android:layout_height="50dp"
-                android:layout_marginHorizontal="5dp"
-                android:layout_weight="1"
-                android:background="@drawable/bordas_arredondadas"
-                android:gravity="center"
-                android:hint="00"
-                android:inputType="number"
-                android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/texto_grande"
-                android:maxLength="2" />
-
-            <EditText
-                android:id="@+id/editar_sequencia_n8"
-                android:layout_width="30dp"
-                android:layout_height="50dp"
-                android:layout_marginHorizontal="5dp"
-                android:layout_weight="1"
-                android:background="@drawable/bordas_arredondadas"
-                android:gravity="center"
-                android:hint="00"
-                android:inputType="number"
-                android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/texto_grande"
-                android:maxLength="2" />
-
-            <EditText
-                android:id="@+id/editar_sequencia_n9"
-                android:layout_width="30dp"
-                android:layout_height="50dp"
-                android:layout_marginHorizontal="5dp"
-                android:layout_weight="1"
-                android:background="@drawable/bordas_arredondadas"
-                android:gravity="center"
-                android:hint="00"
-                android:inputType="number"
-                android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/texto_grande"
-                android:maxLength="2" />
-
-            <EditText
-                android:id="@+id/editar_sequencia_n10"
-                android:layout_width="30dp"
-                android:layout_height="50dp"
-                android:layout_marginHorizontal="5dp"
-                android:layout_weight="1"
-                android:background="@drawable/bordas_arredondadas"
-                android:gravity="center"
-                android:hint="00"
-                android:inputType="number"
-                android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/texto_grande"
-                android:maxLength="2" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/editar_sequencia_campos3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <EditText
-                android:id="@+id/editar_sequencia_n11"
-                android:layout_width="30dp"
-                android:layout_height="50dp"
-                android:layout_marginHorizontal="5dp"
-                android:layout_weight="1"
-                android:background="@drawable/bordas_arredondadas"
-                android:gravity="center"
-                android:hint="00"
-                android:inputType="number"
-                android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/texto_grande"
-                android:maxLength="2" />
-
-            <EditText
-                android:id="@+id/editar_sequencia_n12"
-                android:layout_width="30dp"
-                android:layout_height="50dp"
-                android:layout_marginHorizontal="5dp"
-                android:layout_weight="1"
-                android:background="@drawable/bordas_arredondadas"
-                android:gravity="center"
-                android:hint="00"
-                android:inputType="number"
-                android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/texto_grande"
-                android:maxLength="2" />
-
-            <EditText
-                android:id="@+id/editar_sequencia_n13"
-                android:layout_width="30dp"
-                android:layout_height="50dp"
-                android:layout_marginHorizontal="5dp"
-                android:layout_weight="1"
-                android:background="@drawable/bordas_arredondadas"
-                android:gravity="center"
-                android:hint="00"
-                android:inputType="number"
-                android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/texto_grande"
-                android:maxLength="2" />
-
-            <EditText
-                android:id="@+id/editar_sequencia_n14"
-                android:layout_width="30dp"
-                android:layout_height="50dp"
-                android:layout_marginHorizontal="5dp"
-                android:layout_weight="1"
-                android:background="@drawable/bordas_arredondadas"
-                android:gravity="center"
-                android:hint="00"
-                android:inputType="number"
-                android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/texto_grande"
-                android:maxLength="2" />
-
-            <EditText
-                android:id="@+id/editar_sequencia_n15"
-                android:layout_width="30dp"
-                android:layout_height="50dp"
-                android:layout_marginHorizontal="5dp"
-                android:layout_weight="1"
-                android:background="@drawable/bordas_arredondadas"
-                android:gravity="center"
-                android:hint="00"
-                android:inputType="number"
-                android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/texto_grande"
-                android:maxLength="2" />
-
-        </LinearLayout>
-
-    </LinearLayout>
+    </ScrollView>
 
     <ImageView
         android:id="@+id/editar_sequencia_btn_gerar_automatico"
         android:layout_width="150dp"
         android:layout_height="70dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="28dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.767"
+        app:layout_constraintHorizontal_bias="0.763"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.972"
         app:srcCompat="@drawable/btn_gerar_branco" />
 
     <ImageView
@@ -327,15 +334,12 @@
         android:layout_width="150dp"
         android:layout_height="70dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="128dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.746"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-        app:layout_constraintVertical_bias="0.005"
         app:srcCompat="@drawable/btn_salvar_branco" />
 
     <TextView
@@ -358,9 +362,9 @@
         android:text="Quantidade de números"
         android:textColor="@color/texto_cor"
         app:layout_constraintBottom_toBottomOf="@+id/editar_sequencia_texto_gerar"
-        app:layout_constraintEnd_toEndOf="@+id/editar_sequencia_n16"
+        app:layout_constraintEnd_toEndOf="@+id/editar_sequencia_quantidade"
         app:layout_constraintHorizontal_bias="0.567"
-        app:layout_constraintStart_toStartOf="@+id/editar_sequencia_n16"
+        app:layout_constraintStart_toStartOf="@+id/editar_sequencia_quantidade"
         app:layout_constraintTop_toTopOf="@+id/editar_sequencia_texto_gerar" />
 
     <TextView
