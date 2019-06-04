@@ -26,7 +26,7 @@ class SequenciaDao(context: Context) {
     fun consultarSequencia(id : Int): Sequencia {
         var sql = "SELECT * FROM ${Campos.SEQUENCIA_TABLE.nome} " +
                 "WHERE ${Campos.SEQUENCIA_ID.nome}=$id "
-        var cursor : Cursor? = null
+        var cursor : Cursor?
         return try {
             cursor = banco.use().rawQuery(sql, null)
             if(cursor!!.moveToFirst())
@@ -73,11 +73,11 @@ class SequenciaDao(context: Context) {
         //hora, minuto, segundos
         cv.put(Campos.SEQUENCIA_DATA_CADASTRO.nome, sequencia.dataCriacao.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime().format(formater))
         cv.put(Campos.SEQUENCIA_DATA_ATUALIZACAO.nome,LocalDateTime.now().format(formater))
-        for(i : Int in 1 .. 15){
-            if(i<=sequencia.tamanho){
-                cv.put("n$i",sequencia.numeros[i-1])
+        for(i : Int in 0 .. 14){
+            if(i<sequencia.tamanho){
+                cv.put("n${i+1}",sequencia.numeros[i])
             }else{
-                cv.putNull("n$i")
+                cv.putNull("n${i+1}")
             }
         }
         return cv

@@ -18,8 +18,8 @@ class TelaEditarSequencia : AppCompatActivity() {
 
     lateinit var sequencia : Sequencia
     lateinit var aposta : Aposta
-    var indice : Int = 0
-    var act = ""
+    private var indice : Int = 0
+    private var act = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_editar_sequencia)
@@ -57,28 +57,27 @@ class TelaEditarSequencia : AppCompatActivity() {
         editar_sequencia_btn_salvar.setOnClickListener {
             sequencia.numeros = lerCampos(campos)
             sequencia.ordenaNumerosSequencia()
+            sequencia.tamanho = sequencia.numeros.size
+            sequencia.setValor(sequencia.numeros.size)
+            aposta.sequencias[indice]= sequencia
+            aposta.setValor()
+            Controller(this).atualizarAposta(aposta)
+            Controller(this).atualizarSequencia(sequencia)
+            var intent = Intent(this, TelaListaApostaUnitaria::class.java)
             when (act) {
-                "aposta_nova" -> {
-
-                    var intent = Intent(this, TelaListaApostaUnitaria::class.java)
+                "aposta_nova" ->
                     intent.putExtra("action", "aposta_nova")
-                    intent . putExtra ("aposta", aposta)
-                    startActivity(intent)
-                }
                 "aposta_editar" ->{
-                    //ATUALIZAR APOSTA NO BANCO
-                    Controller(this).atualizarSequencia(sequencia)
-
-                    var intent = Intent(this, TelaListaApostaUnitaria::class.java)
-                    intent.putExtra("action", "aposta_nova")
-                    intent . putExtra ("aposta", aposta)
-                    startActivity(intent)
+                    intent.putExtra("action", "aposta_editada")
                 }
             }
+            intent . putExtra ("aposta", aposta)
+            startActivity(intent)
         }
 
         editar_sequencia_btn_gerar_automatico.setOnClickListener{
             sequencia.numeros = gerarAutomatico()
+            sequencia.ordenaNumerosSequencia()
             preencheCampos(campos)
         }
     }

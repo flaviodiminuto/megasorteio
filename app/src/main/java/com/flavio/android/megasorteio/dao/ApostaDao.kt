@@ -12,15 +12,20 @@ class ApostaDao(context: Context)  {
     private  val banco = Banco(context)
 
     fun salvar(aposta : Aposta): Long{
+        var cv = preencheCV(aposta)
+        return banco.use().insert(Campos.APOSTA_TABLE.nome, null, cv)
+    }
+
+    private fun preencheCV(aposta: Aposta): ContentValues {
         var cv = ContentValues()
-        if(aposta.idAposta<=0)
+        if (aposta.idAposta <= 0)
             cv.putNull(Campos.APOSTA_ID.nome)
         else
-            cv.put(Campos.APOSTA_ID.nome,aposta.idAposta)
+            cv.put(Campos.APOSTA_ID.nome, aposta.idAposta)
 
         cv.put(Campos.APOSTA_VALOR.nome, aposta.valor)
         cv.put(Campos.APOSTA_QUANTIDADE_SEQUENCIAS.nome, aposta.quantidadeSequencias)
-        return banco.use().insert(Campos.APOSTA_TABLE.nome, null, cv)
+        return cv
     }
 
     fun listarTodasApostas(): MutableList<Aposta> {
@@ -61,5 +66,10 @@ class ApostaDao(context: Context)  {
         aposta.quantidadeSequencias = cursor.getInt(cursor.getColumnIndex(Campos.APOSTA_QUANTIDADE_SEQUENCIAS.nome)).toLong()
         aposta.sequencias = mutableListOf()
         return aposta
+    }
+    fun atualizaAposta(aposta:Aposta): Long {
+        var cv = preencheCV(aposta)
+        var retorno =  banco.use().update(Campos.APOSTA_TABLE.nome, cv, " ${Campos.APOSTA_ID.nome}=${aposta.idAposta}",null).toLong()
+        return retorno
     }
 }

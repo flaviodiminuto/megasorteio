@@ -23,6 +23,6 @@ class Controller(val context: Context) {
         return ad.consultarAposta(id)
     }
     fun pesquisarApostaComSequencia(id : Long) = ApostaSequenciaDao(context).consultarApostaSequencia(id)
-
+    fun atualizarAposta(aposta: Aposta) = ApostaDao(context).atualizaAposta(aposta)
     fun atualizarSequencia(sequencia: Sequencia) = SequenciaDao(context).atualizarSequencia(sequencia)
 }

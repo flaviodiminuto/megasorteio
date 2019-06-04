@@ -14,7 +14,7 @@ class ControlaNumero: Serializable {
             } while (!numeroUnico(numeros, gerado))
             numeros.add(gerado)
         }
-        return numeros;
+        return numeros
     }
 
     fun geraNumero():Int{

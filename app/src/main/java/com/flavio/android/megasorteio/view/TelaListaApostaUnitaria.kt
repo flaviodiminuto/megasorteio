@@ -27,8 +27,16 @@ class TelaListaApostaUnitaria : AppCompatActivity() {
             mostra_aposta_unitaria_recycler.setHasFixedSize(true)
             mostra_aposta_unitaria_recycler.layoutManager = this.layoutManager
             mostra_aposta_unitaria_recycler.adapter = ListaApostaUnitariaAdapter(aposta.sequencias, aposta)
-            when(act){
-                "aposta_editar" -> mostra_aposta_texto_aposta.text = "Aposta ${aposta.idAposta}"
+            when(act) {
+                "aposta_editar" -> {
+                    mostra_aposta_texto_aposta.text = "Aposta ${aposta.idAposta}"
+                    semSalvar()
+                }
+                "aposta_editada" -> {
+                    mostra_aposta_texto_aposta.text = "Aposta ${aposta.idAposta}"
+                    semSalvar()
+                    Toast.makeText(this,"Aposta atualizada",Toast.LENGTH_LONG).show()
+                }
                 "aposta_nova" -> mostra_aposta_texto_aposta.text = "Aposta Nova"
             }
         }catch (e: Exception){
@@ -36,25 +44,22 @@ class TelaListaApostaUnitaria : AppCompatActivity() {
             startActivity(intent)
         }
 
-        when(act) {
-            "exibir" -> {
-                mostra_aposta_texto_salvar.visibility = View.GONE
-                mostrar_aposta_btn_salvar.visibility = View.GONE
-            }
-        }
         mostrar_aposta_btn_salvar.setOnClickListener{
-            if(salvarAposta()>0){
-                var intent = Intent(this,TelaListaApostasTodas::class.java)
-                startActivity(intent)
-            }else{
-                Toast.makeText(this, "Não foi possível salvarAposta Aposta ", Toast.LENGTH_LONG).show()
+            var intent  = Intent(this, TelaListaApostasTodas::class.java)
+            when(act){
+                "aposta_nova"-> {
+                        Controller(this).salvarAposta(this.aposta)
+                        startActivity(intent)
+                    }
+                }
             }
         }
+
+
+    private fun semSalvar() {
+        mostrar_aposta_btn_salvar.visibility = View.GONE
+        mostra_aposta_texto_salvar.visibility = View.GONE
     }
-
-
-    private fun salvarAposta() = Controller(this).salvarAposta(this.aposta)
-
-    override fun onBackPressed() = startActivity(Intent(this,Inicio::class.java))
+    override fun onBackPressed() = startActivity(Intent(this,TelaListaApostasTodas::class.java))
 }
 

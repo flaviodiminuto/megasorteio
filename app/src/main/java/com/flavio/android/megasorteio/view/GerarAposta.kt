@@ -21,7 +21,7 @@ class GerarAposta : AppCompatActivity() {
             if(!aposta.sequencias.isEmpty()){
                 var intent = Intent(this,TelaListaApostaUnitaria::class.java)
                 intent.putExtra("aposta",this.aposta)
-                intent.putExtra("action","salvar")
+                intent.putExtra("action","aposta_nova")
                 startActivity(intent)
             }
         }
