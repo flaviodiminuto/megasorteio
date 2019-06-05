@@ -1,7 +1,10 @@
 package com.flavio.android.megasorteio.view
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.os.VibrationEffect
+import android.os.Vibrator
 import android.support.v7.app.AppCompatActivity
 import android.text.InputFilter
 import android.widget.EditText
@@ -20,9 +23,11 @@ class TelaEditarSequencia : AppCompatActivity() {
     lateinit var aposta : Aposta
     private var indice : Int = 0
     private var act = ""
+    lateinit var vibe : Vibrator
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_editar_sequencia)
+        vibe = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
 
         aposta = intent.extras.get("aposta") as Aposta
         indice = intent.extras.get("indice") as Int
@@ -55,6 +60,7 @@ class TelaEditarSequencia : AppCompatActivity() {
         preencheCampos(campos)
 
         editar_sequencia_btn_salvar.setOnClickListener {
+            vibe.vibrate(VibrationEffect.createOneShot(10,150))
             sequencia.numeros = lerCampos(campos)
             sequencia.ordenaNumerosSequencia()
             sequencia.tamanho = sequencia.numeros.size
@@ -76,6 +82,7 @@ class TelaEditarSequencia : AppCompatActivity() {
         }
 
         editar_sequencia_btn_gerar_automatico.setOnClickListener{
+            vibe.vibrate(VibrationEffect.createOneShot(10,150))
             sequencia.numeros = gerarAutomatico()
             sequencia.ordenaNumerosSequencia()
             preencheCampos(campos)
@@ -113,5 +120,8 @@ class TelaEditarSequencia : AppCompatActivity() {
         return ControlaNumero().preencheNumerosSequencia(quantidade)
     }
 
-
+    override fun onBackPressed() {
+        vibe.vibrate(VibrationEffect.createOneShot(10,150))
+        super.onBackPressed()
+    }
 }

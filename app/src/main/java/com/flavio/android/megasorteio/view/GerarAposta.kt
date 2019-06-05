@@ -1,8 +1,11 @@
 package com.flavio.android.megasorteio.view
 
+import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.os.VibrationEffect
+import android.os.Vibrator
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import com.flavio.android.megasorteio.R
@@ -11,12 +14,15 @@ import kotlinx.android.synthetic.main.activity_gerar_sequencias.*
 
 class GerarAposta : AppCompatActivity() {
     private var aposta = Aposta()
+    lateinit var vibe : Vibrator
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_gerar_sequencias)
+        vibe = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
 
         btnGerarAutomaticoGerarSequencia.setOnClickListener{
+            vibe.vibrate(VibrationEffect.createOneShot(10,150))
             this.aposta = gerarSequencias()
             if(!aposta.sequencias.isEmpty()){
                 var intent = Intent(this,TelaListaApostaUnitaria::class.java)
@@ -28,6 +34,7 @@ class GerarAposta : AppCompatActivity() {
 
         //Quando o ultimo editText estiver selcionado e clicar no botao OK do teclado
         edtGerar15.setOnEditorActionListener{ _, actionId, _ ->
+            vibe.vibrate(VibrationEffect.createOneShot(10,150))
             if(actionId == EditorInfo.IME_ACTION_DONE){
                 btnGerarAutomaticoGerarSequencia.callOnClick()
                 true
@@ -37,6 +44,7 @@ class GerarAposta : AppCompatActivity() {
         }
 
         btnAutomaticoReturn.setOnClickListener{
+            vibe.vibrate(VibrationEffect.createOneShot(10,150))
             onBackPressed()
         }
     }
@@ -53,6 +61,7 @@ class GerarAposta : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
+        vibe.vibrate(VibrationEffect.createOneShot(10,150))
         val intent = Intent(this,Inicio::class.java)
         startActivity(intent)
     }

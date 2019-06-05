@@ -28,7 +28,8 @@
         android:id="@+id/mostra_aposta_unitaria_recycler"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/mostra_aposta_texto_salvar"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/mostra_aposta_texto_selecionar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mostra_aposta_texto_aposta"
@@ -42,26 +43,79 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
         android:text="Salvar aposta"
-        app:layout_constraintBottom_toTopOf="@+id/mostrar_aposta_btn_salvar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         android:textColor="@color/texto_cor"
-        android:textSize="@dimen/texto_normal"/>
+        android:textSize="@dimen/texto_pequeno"
+        app:layout_constraintBottom_toBottomOf="@+id/mostra_aposta_texto_selecionar"
+        app:layout_constraintEnd_toEndOf="@+id/mostrar_aposta_btn_salvar"
+        app:layout_constraintStart_toStartOf="@+id/mostrar_aposta_btn_salvar"
+        app:layout_constraintTop_toTopOf="@+id/mostra_aposta_texto_selecionar" />
+
+    <TextView
+        android:id="@+id/mostra_aposta_texto_qtd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:text="Número"
+        android:textColor="@color/texto_cor"
+        android:textSize="@dimen/texto_pequeno"
+        app:layout_constraintBottom_toBottomOf="@+id/mostra_aposta_texto_selecionar"
+        app:layout_constraintEnd_toEndOf="@+id/mostra_aposta_edt_selecionar"
+        app:layout_constraintStart_toStartOf="@+id/mostra_aposta_edt_selecionar"
+        app:layout_constraintTop_toTopOf="@+id/mostra_aposta_texto_selecionar"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageButton
         android:id="@+id/mostrar_aposta_btn_salvar"
-        android:layout_width="160dp"
-        android:layout_height="70dp"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/btn_salvar_branco"
+        app:layout_constraintBottom_toBottomOf="@+id/mostra_aposta_btn_selecionar_sequencia"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.448"
+        app:layout_constraintStart_toEndOf="@+id/mostra_aposta_btn_selecionar_sequencia"
+        app:layout_constraintTop_toTopOf="@+id/mostra_aposta_btn_selecionar_sequencia"
+        tools:layout_conversion_absoluteHeight="19dp"
+        tools:layout_conversion_absoluteWidth="24dp" />
+
+    <TextView
+        android:id="@+id/mostra_aposta_texto_selecionar"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="Clique em uma sequencia ou \nindique o número da sequencia  aqui"
+        android:textColor="@color/texto_cor"
+        android:textSize="@dimen/texto_pequeno"
+        app:layout_constraintBottom_toTopOf="@+id/mostra_aposta_btn_selecionar_sequencia"
+        app:layout_constraintEnd_toEndOf="@+id/mostra_aposta_btn_selecionar_sequencia"
+        app:layout_constraintHorizontal_bias="0.266"
+        app:layout_constraintStart_toStartOf="@+id/mostra_aposta_btn_selecionar_sequencia" />
+
+    <EditText
+        android:id="@+id/mostra_aposta_edt_selecionar"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/bordas_arredondadas"
+        android:gravity="center"
+        android:hint="00"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="@+id/mostra_aposta_btn_selecionar_sequencia"
+        app:layout_constraintEnd_toStartOf="@+id/mostra_aposta_btn_selecionar_sequencia"
+        app:layout_constraintTop_toTopOf="@+id/mostra_aposta_btn_selecionar_sequencia" />
+
+    <ImageView
+        android:id="@+id/mostra_aposta_btn_selecionar_sequencia"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.289"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        tools:layout_conversion_absoluteHeight="19dp"
-        tools:layout_conversion_absoluteWidth="24dp"
-        android:background="@drawable/btn_salvar_branco"/>
-
+        app:srcCompat="@drawable/btn_verificar_branco" />
 </android.support.constraint.ConstraintLayout>

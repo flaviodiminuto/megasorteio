@@ -1,6 +1,9 @@
 package com.flavio.android.megasorteio.adapter
 
+import android.content.Context
 import android.content.Intent
+import android.os.VibrationEffect
+import android.os.Vibrator
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -16,11 +19,13 @@ import kotlinx.android.synthetic.main.card_sequencia.view.*
 class ListaApostaUnitariaAdapter (private val sequencias: MutableList<Sequencia>, private val aposta : Aposta ) :
         RecyclerView.Adapter<ListaApostaUnitariaAdapter.ListaApostaUnitariaViewHolder>(){
 
+    lateinit var vibe : Vibrator
     class ListaApostaUnitariaViewHolder ( val view: View ) : RecyclerView.ViewHolder(view)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListaApostaUnitariaAdapter.ListaApostaUnitariaViewHolder {
         val view = LayoutInflater.from(parent.context)
                 .inflate(R.layout.card_sequencia, parent,false) as View
+        vibe = parent.context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
         return ListaApostaUnitariaViewHolder(view)
     }
 
@@ -28,8 +33,8 @@ class ListaApostaUnitariaAdapter (private val sequencias: MutableList<Sequencia>
     override fun onBindViewHolder(holder: ListaApostaUnitariaViewHolder, position: Int) {
         //Preenchendo os campos do card_sequencia
         when(sequencias[position].idSequencia){
-            0L ->  holder.view.card_sequencia_texto.text = "Sequencia ${sequencias.indexOf(sequencias[position])+1}"
-            else -> holder.view.card_sequencia_texto.text = "Sequencia ${sequencias[position].idSequencia}"
+            0L ->  holder.view.card_sequencia_texto.text = "Sequencia $position"
+            else -> holder.view.card_sequencia_texto.text = "Sequencia $position"
         }
         holder.view.card_sequencia_valor.text = "Valor: ${sequencias[position].valor.formataParaMoedaBrasileira()}"
 
@@ -55,6 +60,7 @@ class ListaApostaUnitariaAdapter (private val sequencias: MutableList<Sequencia>
 
         //Acao ao clicar em cima do card de uma sequencia
         holder.view.card_sequencia_editar.setOnClickListener{
+            vibe.vibrate(VibrationEffect.createOneShot(10,150))
             var intent = Intent(holder.view.context, TelaEditarSequencia::class.java)
             intent.putExtra("aposta", aposta)
             when{

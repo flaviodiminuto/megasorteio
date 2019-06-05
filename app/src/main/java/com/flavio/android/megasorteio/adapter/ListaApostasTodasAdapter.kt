@@ -1,6 +1,9 @@
 package com.flavio.android.megasorteio.adapter
 
+import android.content.Context
 import android.content.Intent
+import android.os.VibrationEffect
+import android.os.Vibrator
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -16,11 +19,13 @@ import kotlinx.android.synthetic.main.card_aposta.view.*
 class ListaApostasTodasAdapter(private val apostas : MutableList<Aposta>) :
         RecyclerView.Adapter<ListaApostasTodasAdapter.ListaApostaViewHolder>(){
 
+    lateinit var vibe : Vibrator
     class ListaApostaViewHolder (val view : View) : RecyclerView.ViewHolder (view)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListaApostasTodasAdapter.ListaApostaViewHolder {
         val view = LayoutInflater.from(parent.context)
                 .inflate(R.layout.card_aposta,parent,false) as View
+        vibe = parent.context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
         return ListaApostaViewHolder(view)
     }
 
@@ -30,8 +35,9 @@ class ListaApostasTodasAdapter(private val apostas : MutableList<Aposta>) :
         var valor = holder.view.card_aposta_Valor
         var aposta = apostas[position]
 
-        preencheCampos(id, aposta, quantidade, valor)
+        preencheCampos(id, aposta, quantidade, valor,position)
         holder.view.card_aposta_visualizar.setOnClickListener {
+            vibe.vibrate(VibrationEffect.createOneShot(10,150))
             var controller = Controller(holder.view.context)
             aposta = controller.pesquisarApostaComSequencia(aposta.idAposta)
             var intent = Intent(holder.view.context, TelaListaApostaUnitaria::class.java)
@@ -41,8 +47,8 @@ class ListaApostasTodasAdapter(private val apostas : MutableList<Aposta>) :
         }
     }
 
-    private fun preencheCampos(id: TextView, aposta: Aposta, quantidade: TextView, valor: TextView) {
-        id.text = "Aposta: ${aposta.idAposta}"
+    private fun preencheCampos(id: TextView, aposta: Aposta, quantidade: TextView, valor: TextView,position: Int) {
+        id.text = "Aposta: $position"
         quantidade.text = "Quantidade de sequencias: ${aposta.quantidadeSequencias}"
         valor.text = "Valor da aposta:  ${aposta.valor.formataParaMoedaBrasileira()}"
     }

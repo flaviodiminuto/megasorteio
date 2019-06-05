@@ -11,11 +11,10 @@
 
     <EditText
         android:id="@+id/editar_sequencia_quantidade"
-        android:layout_width="70dp"
-        android:layout_height="60dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_marginHorizontal="5dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="12dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:layout_weight="1"
         android:background="@drawable/bordas_arredondadas"
@@ -25,11 +24,10 @@
         android:maxLength="2"
         android:textColor="@color/colorPrimary"
         android:textSize="@dimen/texto_grande"
-        app:layout_constraintBottom_toTopOf="@+id/editar_sequencia_texto_gerar"
+        app:layout_constraintBottom_toBottomOf="@+id/editar_sequencia_btn_gerar_automatico"
         app:layout_constraintEnd_toStartOf="@+id/editar_sequencia_btn_gerar_automatico"
-        app:layout_constraintHorizontal_bias="0.792"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/editar_sequencia_btn_gerar_automatico" />
+        app:layout_constraintTop_toTopOf="@+id/editar_sequencia_btn_gerar_automatico"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/editar_sequencia_texto_aposta"
@@ -48,14 +46,15 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/editar_sequencia_btn_salvar"
+        android:background="@color/colorPrimaryDark"
+        app:layout_constraintBottom_toTopOf="@+id/editar_sequencia_texto_gerar"
         app:layout_constraintTop_toBottomOf="@+id/editar_sequencia_texto_aposta"
-        tools:layout_editor_absoluteX="10dp"
-        android:background="@color/colorPrimaryDark">
+        tools:layout_editor_absoluteX="10dp">
 
         <LinearLayout
             android:id="@+id/linearLayout2"
@@ -322,10 +321,9 @@
         android:layout_height="70dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="28dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.763"
+        app:layout_constraintHorizontal_bias="0.253"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/btn_gerar_branco" />
 
@@ -333,13 +331,10 @@
         android:id="@+id/editar_sequencia_btn_salvar"
         android:layout_width="150dp"
         android:layout_height="70dp"
-        android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="128dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/editar_sequencia_btn_gerar_automatico"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.746"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/editar_sequencia_btn_gerar_automatico"
         app:srcCompat="@drawable/btn_salvar_branco" />
 
     <TextView
@@ -347,23 +342,24 @@
         android:layout_width="wrap_content"
         android:layout_height="17dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:text="Gerar automatico"
         android:textColor="@color/texto_cor"
+        android:textSize="@dimen/texto_pequeno"
+        app:layout_constraintBottom_toTopOf="@+id/editar_sequencia_btn_gerar_automatico"
         app:layout_constraintEnd_toEndOf="@+id/editar_sequencia_btn_gerar_automatico"
-        app:layout_constraintHorizontal_bias="0.451"
-        app:layout_constraintStart_toStartOf="@+id/editar_sequencia_btn_gerar_automatico"
-        app:layout_constraintTop_toBottomOf="@+id/editar_sequencia_btn_gerar_automatico" />
+        app:layout_constraintHorizontal_bias="0.461"
+        app:layout_constraintStart_toStartOf="@+id/editar_sequencia_btn_gerar_automatico" />
 
     <TextView
         android:id="@+id/editar_sequencia_texto_quantidade"
         android:layout_width="wrap_content"
         android:layout_height="17dp"
-        android:text="Quantidade de números"
+        android:text="Quantidade"
         android:textColor="@color/texto_cor"
+        android:textSize="@dimen/texto_pequeno"
         app:layout_constraintBottom_toBottomOf="@+id/editar_sequencia_texto_gerar"
         app:layout_constraintEnd_toEndOf="@+id/editar_sequencia_quantidade"
-        app:layout_constraintHorizontal_bias="0.567"
         app:layout_constraintStart_toStartOf="@+id/editar_sequencia_quantidade"
         app:layout_constraintTop_toTopOf="@+id/editar_sequencia_texto_gerar" />
 
@@ -371,9 +367,13 @@
         android:id="@+id/editar_sequencia_texto_salvar"
         android:layout_width="wrap_content"
         android:layout_height="17dp"
+        android:layout_marginEnd="8dp"
         android:text="Salvar"
         android:textColor="@color/texto_cor"
-        app:layout_constraintEnd_toEndOf="@+id/editar_sequencia_btn_salvar"
+        android:textSize="@dimen/texto_pequeno"
+        app:layout_constraintBottom_toBottomOf="@+id/editar_sequencia_texto_gerar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.466"
         app:layout_constraintStart_toStartOf="@+id/editar_sequencia_btn_salvar"
-        app:layout_constraintTop_toBottomOf="@+id/editar_sequencia_btn_salvar" />
+        app:layout_constraintTop_toTopOf="@+id/editar_sequencia_texto_gerar" />
 </android.support.constraint.ConstraintLayout>

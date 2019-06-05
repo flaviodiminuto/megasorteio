@@ -22,9 +22,51 @@
         android:id="@+id/tela_lista_apostas_geradas_lista"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/mostra_aposta_texto_selecionar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tela_lista_apostas_geradas_titulo" />
+
+    <TextView
+        android:id="@+id/mostra_aposta_texto_selecionar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="8dp"
+        android:text="Clique em uma aposta ou indique o número da aposta  aqui"
+        android:textColor="@color/texto_cor"
+        android:textSize="@dimen/texto_pequeno"
+        app:layout_constraintBottom_toTopOf="@+id/mostra_aposta_btn_selecionar_sequencia"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/mostra_aposta_edt_selecionar"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/bordas_arredondadas"
+        android:inputType="number"
+        android:gravity="center"
+        android:hint="00"
+        app:layout_constraintBottom_toBottomOf="@+id/mostra_aposta_btn_selecionar_sequencia"
+        app:layout_constraintEnd_toStartOf="@+id/mostra_aposta_btn_selecionar_sequencia"
+        app:layout_constraintTop_toTopOf="@+id/mostra_aposta_btn_selecionar_sequencia" />
+
+    <ImageView
+        android:id="@+id/mostra_aposta_btn_selecionar_sequencia"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/btn_verificar_branco" />
+
+
 </android.support.constraint.ConstraintLayout>
