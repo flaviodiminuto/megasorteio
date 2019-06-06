@@ -27,5 +27,11 @@ class Inicio : AppCompatActivity() {
         }
     }
 
+    override fun onBackPressed() {
+        finishAffinity()
+        System.exit(0)
+
+    }
+
 
 }
