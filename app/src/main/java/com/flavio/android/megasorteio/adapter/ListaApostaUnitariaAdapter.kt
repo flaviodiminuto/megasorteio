@@ -9,11 +9,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import com.flavio.android.megasorteio.R
+import com.flavio.android.megasorteio.controller.Controller
 import com.flavio.android.megasorteio.extension.formataParaMoedaBrasileira
 import com.flavio.android.megasorteio.model.Aposta
 import com.flavio.android.megasorteio.model.Sequencia
 import com.flavio.android.megasorteio.view.TelaEditarSequencia
+import com.flavio.android.megasorteio.view.TelaListaApostasTodas
 import kotlinx.android.synthetic.main.card_sequencia.view.*
 
 class ListaApostaUnitariaAdapter (private val sequencias: MutableList<Sequencia>, private val aposta : Aposta ) :
@@ -69,6 +72,22 @@ class ListaApostaUnitariaAdapter (private val sequencias: MutableList<Sequencia>
             }
             intent.putExtra("indice",position)
             holder.view.context.startActivity(intent)
+        }
+        holder.view.card_sequencia_deletar_icon.setOnClickListener{
+            vibe.vibrate(VibrationEffect.createOneShot(10,150))
+            var controller = Controller(holder.view.context)
+            controller.deletarSequencia(sequencias[position])
+            sequencias.removeAt(position)
+            aposta.quantidadeSequencias=sequencias.size.toLong()
+            aposta.setValor()
+            notifyItemRemoved(position)
+            Toast.makeText(holder.view.context,"Sequencia deletada",Toast.LENGTH_LONG).show()
+            if(sequencias.size==0) {
+                controller.deletarAposta(aposta)
+                holder.view.context.startActivity(Intent(holder.view.context,TelaListaApostasTodas::class.java))
+            }else{
+                controller.atualizarAposta(aposta)
+            }
         }
     }
 

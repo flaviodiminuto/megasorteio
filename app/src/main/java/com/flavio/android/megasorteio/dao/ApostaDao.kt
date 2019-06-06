@@ -72,4 +72,8 @@ class ApostaDao(context: Context)  {
         var retorno =  banco.use().update(Campos.APOSTA_TABLE.nome, cv, " ${Campos.APOSTA_ID.nome}=${aposta.idAposta}",null).toLong()
         return retorno
     }
+
+    fun deletarAposta(aposta: Aposta): Int {
+        return banco.use().delete(Campos.APOSTA_TABLE.nome," ${Campos.APOSTA_ID.nome}=${aposta.idAposta} ",null )
+    }
 }

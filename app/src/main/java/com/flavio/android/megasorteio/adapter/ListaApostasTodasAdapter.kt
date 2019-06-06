@@ -9,12 +9,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import com.flavio.android.megasorteio.R
 import com.flavio.android.megasorteio.controller.Controller
 import com.flavio.android.megasorteio.extension.formataParaMoedaBrasileira
 import com.flavio.android.megasorteio.model.Aposta
 import com.flavio.android.megasorteio.view.TelaListaApostaUnitaria
 import kotlinx.android.synthetic.main.card_aposta.view.*
+import java.lang.Exception
 
 class ListaApostasTodasAdapter(private val apostas : MutableList<Aposta>) :
         RecyclerView.Adapter<ListaApostasTodasAdapter.ListaApostaViewHolder>(){
@@ -44,6 +46,14 @@ class ListaApostasTodasAdapter(private val apostas : MutableList<Aposta>) :
             intent.putExtra("aposta", aposta)
             intent.putExtra("action","aposta_editar")
             holder.view.context.startActivity(intent)
+        }
+        holder.view.card_aposta_deletar_icon.setOnClickListener{
+            vibe.vibrate(VibrationEffect.createOneShot(10,150))
+            var controller = Controller(holder.view.context)
+            controller.deletarApostaSequencia(aposta)
+            apostas.remove(aposta)
+            notifyItemRemoved(position)
+            Toast.makeText(holder.view.context,"Aposta deletada",Toast.LENGTH_LONG).show()
         }
     }
 

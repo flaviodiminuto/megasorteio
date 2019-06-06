@@ -55,7 +55,11 @@ class ApostaSequenciaDao (private val context : Context){
         }
     }
 
-    fun atualizarApostaSequencia(aposta: Aposta){
-
+    fun deletarApostaSequencia(aposta: Aposta){
+        var where = " ${Campos.SEQUENCIA_ID.nome} in (" +
+                " SELECT ${Campos.APOSTA_SEQUENCIA_SEQUENCIA.nome} FROM ${Campos.APOSTA_SEQUENCIA_TABLE.nome} " +
+                " WHERE ${Campos.APOSTA_SEQUENCIA_APOSTA.nome}=${aposta.idAposta})"
+        banco.use().delete(Campos.SEQUENCIA_TABLE.nome,where,null)
+        banco.use().delete(Campos.APOSTA_TABLE.nome, " ${Campos.APOSTA_ID.nome}=${aposta.idAposta} ", null)
     }
 }

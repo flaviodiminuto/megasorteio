@@ -25,4 +25,7 @@ class Controller(val context: Context) {
     fun pesquisarApostaComSequencia(id : Long) = ApostaSequenciaDao(context).consultarApostaSequencia(id)
     fun atualizarAposta(aposta: Aposta) = ApostaDao(context).atualizaAposta(aposta)
     fun atualizarSequencia(sequencia: Sequencia) = SequenciaDao(context).atualizarSequencia(sequencia)
+    fun deletarAposta(aposta: Aposta) = ApostaDao(context).deletarAposta(aposta)
+    fun deletarSequencia(sequencia: Sequencia) = SequenciaDao(context).deletarSequencia(sequencia)
+    fun deletarApostaSequencia(aposta: Aposta) = ApostaSequenciaDao(context).deletarApostaSequencia(aposta)
 }

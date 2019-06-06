@@ -86,4 +86,7 @@ class SequenciaDao(context: Context) {
         var cv = preencheCV(sequencia)
         return banco.use().update(Campos.SEQUENCIA_TABLE.nome,cv," ${Campos.SEQUENCIA_ID.nome}=${sequencia.idSequencia} ", null).toLong()
     }
+    fun deletarSequencia(sequencia : Sequencia): Int {
+        return banco.use().delete( Campos.SEQUENCIA_TABLE.nome, " ${Campos.SEQUENCIA_ID.nome}=${sequencia.idSequencia} ",null)
+    }
 }
