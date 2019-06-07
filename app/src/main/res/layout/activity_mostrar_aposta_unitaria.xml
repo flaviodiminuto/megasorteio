@@ -48,8 +48,7 @@
         android:textSize="@dimen/texto_pequeno"
         app:layout_constraintBottom_toBottomOf="@+id/mostra_aposta_texto_selecionar"
         app:layout_constraintEnd_toEndOf="@+id/mostrar_aposta_btn_salvar"
-        app:layout_constraintStart_toStartOf="@+id/mostrar_aposta_btn_salvar"
-        app:layout_constraintTop_toTopOf="@+id/mostra_aposta_texto_selecionar" />
+        app:layout_constraintStart_toStartOf="@+id/mostrar_aposta_btn_salvar" />
 
     <TextView
         android:id="@+id/mostra_aposta_texto_qtd"
@@ -61,9 +60,7 @@
         android:textSize="@dimen/texto_pequeno"
         app:layout_constraintBottom_toBottomOf="@+id/mostra_aposta_texto_selecionar"
         app:layout_constraintEnd_toEndOf="@+id/mostra_aposta_edt_selecionar"
-        app:layout_constraintStart_toStartOf="@+id/mostra_aposta_edt_selecionar"
-        app:layout_constraintTop_toTopOf="@+id/mostra_aposta_texto_selecionar"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintStart_toStartOf="@+id/mostra_aposta_edt_selecionar" />
 
     <ImageButton
         android:id="@+id/mostrar_aposta_btn_salvar"
@@ -71,7 +68,6 @@
         android:layout_height="60dp"
         android:layout_marginStart="8dp"
         android:background="@drawable/btn_salvar_branco"
-        app:layout_constraintBottom_toBottomOf="@+id/mostra_aposta_btn_selecionar_sequencia"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.448"
         app:layout_constraintStart_toEndOf="@+id/mostra_aposta_btn_selecionar_sequencia"
@@ -102,7 +98,6 @@
         android:gravity="center"
         android:hint="00"
         android:inputType="number"
-        app:layout_constraintBottom_toBottomOf="@+id/mostra_aposta_btn_selecionar_sequencia"
         app:layout_constraintEnd_toStartOf="@+id/mostra_aposta_btn_selecionar_sequencia"
         app:layout_constraintTop_toTopOf="@+id/mostra_aposta_btn_selecionar_sequencia" />
 

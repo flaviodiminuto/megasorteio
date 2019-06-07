@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
+    tools:context=".view.TelaVerificarSorteio"
+    android:padding="10dp">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/background">
+
+        <LinearLayout
+            android:id="@+id/verificar_sorteio_edt_numero_sorteio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="30dp">
+
+            <TextView
+                android:id="@+id/verificar_sorteio_texto_sorteio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="70dp"
+                android:text="Sorteio"
+                android:textColor="@color/texto_cor"
+                android:textSize="@dimen/texto_normal" />
+
+            <EditText
+                android:id="@+id/editText"
+                android:layout_width="200dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bordas_arredondadas"
+                android:ems="10"
+                android:inputType="number"
+                android:paddingHorizontal="10dp"/>
+
+            <TextView
+                android:id="@+id/verificar_sorteio_numeros_sortados"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:text="Números sorteados"
+                android:textColor="@color/texto_cor"
+                android:textSize="@dimen/texto_normal" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/verificar_sorteio_n1"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bordas_arredondadas"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:hint="00"
+                    android:inputType="number" />
+
+                <EditText
+                    android:id="@+id/verificar_sorteio_n2"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bordas_arredondadas"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:hint="00"
+                    android:inputType="number" />
+
+                <EditText
+                    android:id="@+id/verificar_sorteio_n3"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bordas_arredondadas"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:hint="00"
+                    android:inputType="number" />
+
+                <EditText
+                    android:id="@+id/verificar_sorteio_n4"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bordas_arredondadas"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:hint="00"
+                    android:inputType="number" />
+
+                <EditText
+                    android:id="@+id/verificar_sorteio_n5"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bordas_arredondadas"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:hint="00"
+                    android:inputType="number" />
+
+                <EditText
+                    android:id="@+id/verificar_sorteio_n6"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bordas_arredondadas"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:hint="00"
+                    android:inputType="number" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/verificar_sorteio_texto_verificar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="80dp"
+                android:gravity="center"
+                android:text="Números sorteados"
+                android:textColor="@color/texto_cor"
+                android:textSize="@dimen/texto_normal" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="170dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                app:srcCompat="@drawable/btn_verificar_branco" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</android.support.constraint.ConstraintLayout>

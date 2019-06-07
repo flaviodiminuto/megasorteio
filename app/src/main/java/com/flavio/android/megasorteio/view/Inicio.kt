@@ -21,9 +21,13 @@ class Inicio : AppCompatActivity() {
             vibe.vibrate(VibrationEffect.createOneShot(10,150))
             startActivity(Intent(this, GerarAposta::class.java))
         }
-        btnInicioVerificarSorteio.setOnClickListener{
+        btnInicioVerificarApostas.setOnClickListener{
             vibe.vibrate(VibrationEffect.createOneShot(10,150))
             startActivity(Intent(this,TelaListaApostasTodas::class.java))
+        }
+        btnInicioVerificarSorteio.setOnClickListener{
+            vibe.vibrate(VibrationEffect.createOneShot(10,150))
+            startActivity(Intent(this,TelaVerificarSorteio::class.java))
         }
     }
 

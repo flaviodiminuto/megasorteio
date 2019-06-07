@@ -16,7 +16,6 @@ import com.flavio.android.megasorteio.extension.formataParaMoedaBrasileira
 import com.flavio.android.megasorteio.model.Aposta
 import com.flavio.android.megasorteio.view.TelaListaApostaUnitaria
 import kotlinx.android.synthetic.main.card_aposta.view.*
-import java.lang.Exception
 
 class ListaApostasTodasAdapter(private val apostas : MutableList<Aposta>) :
         RecyclerView.Adapter<ListaApostasTodasAdapter.ListaApostaViewHolder>(){
