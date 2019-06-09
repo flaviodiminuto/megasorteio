@@ -10,6 +10,7 @@ import android.os.Vibrator
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.text.InputFilter
+import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import com.flavio.android.megasorteio.R
 import com.flavio.android.megasorteio.adapter.ListaApostasTodasAdapter
@@ -17,6 +18,7 @@ import com.flavio.android.megasorteio.controller.Controller
 import com.flavio.android.megasorteio.extension.InputFilterMinMax
 import com.flavio.android.megasorteio.model.Aposta
 import kotlinx.android.synthetic.main.activity_tela_lista_apostas_geradas.*
+import kotlinx.android.synthetic.main.activity_tela_verificar_sorteio.*
 
 class TelaListaApostasTodas : AppCompatActivity() {
 
@@ -36,25 +38,34 @@ class TelaListaApostasTodas : AppCompatActivity() {
         listaApostas()
         mostra_aposta_btn_selecionar_sequencia.setOnClickListener{
             vibe.vibrate(VibrationEffect.createOneShot(10,150))
-        var numero: Long
-        if(mostra_aposta_edt_selecionar.text.toString()!=""){
-            numero = mostra_aposta_edt_selecionar.text.toString().toLong()
-            try{
-                var aposta : Aposta = ca.pesquisarApostaComSequencia(numero)
-                if( aposta.idAposta>0){
-                    var intent = Intent(this,TelaListaApostaUnitaria::class.java)
-                    intent.putExtra("aposta", aposta)
-                    intent.putExtra("action","aposta_editar")
-                    startActivity(intent)
+            var numero: Long
+            if(mostra_aposta_edt_selecionar.text.toString()!=""){
+                numero = mostra_aposta_edt_selecionar.text.toString().toLong()
+                try{
+                    var aposta : Aposta = ca.pesquisarApostaComSequencia(numero)
+                    if( aposta.idAposta>0){
+                        var intent = Intent(this,TelaListaApostaUnitaria::class.java)
+                        intent.putExtra("aposta", aposta)
+                        intent.putExtra("action","aposta_editar")
+                        startActivity(intent)
+                    }
+                }catch (e : CursorIndexOutOfBoundsException){
+                    mostra_aposta_edt_selecionar.setText("")
+                    Toast.makeText(this, "Número de aposta não encontrado",Toast.LENGTH_LONG).show()
                 }
-            }catch (e : CursorIndexOutOfBoundsException){
-                mostra_aposta_edt_selecionar.setText("")
-                Toast.makeText(this, "Número de aposta não encontrado",Toast.LENGTH_LONG).show()
+            }else{
+                Toast.makeText(this, "Informe o numero da aposta",Toast.LENGTH_LONG).show()
             }
-        }else{
-            Toast.makeText(this, "Informe o numero da aposta",Toast.LENGTH_LONG).show()
         }
-    }
+        mostra_aposta_edt_selecionar.setOnEditorActionListener{ _, actionId, _ ->
+            vibe.vibrate(VibrationEffect.createOneShot(10,150))
+            if(actionId == EditorInfo.IME_ACTION_DONE){
+                mostra_aposta_btn_selecionar_sequencia.callOnClick()
+                true
+            } else {
+                false
+            }
+        }
 }
 
 private fun listaApostas() {

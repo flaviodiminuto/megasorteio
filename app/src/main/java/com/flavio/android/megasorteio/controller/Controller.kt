@@ -28,4 +28,5 @@ class Controller(val context: Context) {
     fun deletarAposta(aposta: Aposta) = ApostaDao(context).deletarAposta(aposta)
     fun deletarSequencia(sequencia: Sequencia) = SequenciaDao(context).deletarSequencia(sequencia)
     fun deletarApostaSequencia(aposta: Aposta) = ApostaSequenciaDao(context).deletarApostaSequencia(aposta)
+    fun verificarSorteio(numeros : MutableList<Int>) = ApostaSequenciaDao(context).verificarSorteio(numeros)
 }

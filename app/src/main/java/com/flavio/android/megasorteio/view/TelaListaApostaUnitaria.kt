@@ -8,12 +8,14 @@ import android.os.Vibrator
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import com.flavio.android.megasorteio.R
 import com.flavio.android.megasorteio.adapter.ListaApostaUnitariaAdapter
 import com.flavio.android.megasorteio.controller.Controller
 import com.flavio.android.megasorteio.model.Aposta
 import kotlinx.android.synthetic.main.activity_mostrar_aposta_unitaria.*
+import kotlinx.android.synthetic.main.activity_tela_verificar_sorteio.*
 
 class TelaListaApostaUnitaria : AppCompatActivity() {
     lateinit var aposta : Aposta
@@ -80,6 +82,15 @@ class TelaListaApostaUnitaria : AppCompatActivity() {
                     mostra_aposta_edt_selecionar.setText("")
                     Toast.makeText(this, "Número de sequencia não encontrado",Toast.LENGTH_LONG).show()
                 }
+        }
+        mostra_aposta_edt_selecionar.setOnEditorActionListener{ _, actionId, _ ->
+            vibe.vibrate(VibrationEffect.createOneShot(10,150))
+            if(actionId == EditorInfo.IME_ACTION_DONE){
+                mostra_aposta_btn_selecionar_sequencia.callOnClick()
+                true
+            } else {
+                false
+            }
         }
     }
     override fun onBackPressed() {

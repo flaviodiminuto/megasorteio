@@ -14,8 +14,6 @@ class Banco(context: Context) : SQLiteOpenHelper(context, db_name,null,version) 
         createApostaTable(db)
         createSequenciaTable(db)
         createApostaSequenciaTable(db)
-        println("TABELAS CRIADAS")
-        println("sucesso")
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
@@ -36,21 +34,7 @@ class Banco(context: Context) : SQLiteOpenHelper(context, db_name,null,version) 
                 " ${Campos.SEQUENCIA_TAMANHO.nome} INTEGER DEFAULT 6," +
                 " ${Campos.SEQUENCIA_DATA_CADASTRO.nome} TEXT ," +
                 " ${Campos.SEQUENCIA_DATA_ATUALIZACAO.nome} TEXT, " +
-                " ${Campos.SEQUENCIA_N1.nome} INTEGER , " +
-                " ${Campos.SEQUENCIA_N2.nome} INTEGER , " +
-                " ${Campos.SEQUENCIA_N3.nome} INTEGER , " +
-                " ${Campos.SEQUENCIA_N4.nome} INTEGER , " +
-                " ${Campos.SEQUENCIA_N5.nome} INTEGER , " +
-                " ${Campos.SEQUENCIA_N6.nome} INTEGER , " +
-                " ${Campos.SEQUENCIA_N7.nome} INTEGER , " +
-                " ${Campos.SEQUENCIA_N8.nome} INTEGER , " +
-                " ${Campos.SEQUENCIA_N9.nome} INTEGER , " +
-                " ${Campos.SEQUENCIA_N10.nome} INTEGER , " +
-                " ${Campos.SEQUENCIA_N11.nome} INTEGER , " +
-                " ${Campos.SEQUENCIA_N12.nome} INTEGER , " +
-                " ${Campos.SEQUENCIA_N13.nome} INTEGER , " +
-                " ${Campos.SEQUENCIA_N14.nome} INTEGER , " +
-                " ${Campos.SEQUENCIA_N15.nome} INTEGER ) "
+                " ${Campos.SEQUENCIA_NUMEROS.nome} TEXT ) "
         db?.execSQL(sql)
     }
 

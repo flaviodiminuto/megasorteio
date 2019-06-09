@@ -92,7 +92,9 @@
                     android:inputType="number"
                     android:maxLength="2"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="@dimen/texto_grande" />
+                    android:textSize="@dimen/texto_grande"
+                    android:imeOptions="actionNext"
+                    android:nextFocusDown="@id/editar_sequencia_n2"/>
 
                 <EditText
                     android:id="@+id/editar_sequencia_n2"
@@ -106,7 +108,9 @@
                     android:inputType="number"
                     android:maxLength="2"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="@dimen/texto_grande" />
+                    android:textSize="@dimen/texto_grande"
+                    android:imeOptions="actionNext"
+                    android:nextFocusDown="@id/editar_sequencia_n3" />
 
                 <EditText
                     android:id="@+id/editar_sequencia_n3"
@@ -120,7 +124,9 @@
                     android:inputType="number"
                     android:maxLength="2"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="@dimen/texto_grande" />
+                    android:textSize="@dimen/texto_grande"
+                    android:imeOptions="actionNext"
+                    android:nextFocusDown="@id/editar_sequencia_n4"/>
 
                 <EditText
                     android:id="@+id/editar_sequencia_n4"
@@ -134,7 +140,9 @@
                     android:inputType="number"
                     android:maxLength="2"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="@dimen/texto_grande" />
+                    android:textSize="@dimen/texto_grande"
+                    android:imeOptions="actionNext"
+                    android:nextFocusDown="@id/editar_sequencia_n5"/>
 
                 <EditText
                     android:id="@+id/editar_sequencia_n5"
@@ -148,7 +156,9 @@
                     android:inputType="number"
                     android:maxLength="2"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="@dimen/texto_grande" />
+                    android:textSize="@dimen/texto_grande"
+                    android:imeOptions="actionNext"
+                    android:nextFocusDown="@id/editar_sequencia_n6"/>
 
             </LinearLayout>
 
@@ -172,7 +182,9 @@
                     android:inputType="number"
                     android:maxLength="2"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="@dimen/texto_grande" />
+                    android:textSize="@dimen/texto_grande"
+                    android:imeOptions="actionNext"
+                    android:nextFocusDown="@id/editar_sequencia_n7"/>
 
                 <EditText
                     android:id="@+id/editar_sequencia_n7"
@@ -186,7 +198,9 @@
                     android:inputType="number"
                     android:maxLength="2"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="@dimen/texto_grande" />
+                    android:textSize="@dimen/texto_grande"
+                    android:imeOptions="actionNext"
+                    android:nextFocusDown="@id/editar_sequencia_n8"/>
 
                 <EditText
                     android:id="@+id/editar_sequencia_n8"
@@ -200,7 +214,9 @@
                     android:inputType="number"
                     android:maxLength="2"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="@dimen/texto_grande" />
+                    android:textSize="@dimen/texto_grande"
+                    android:imeOptions="actionNext"
+                    android:nextFocusDown="@id/editar_sequencia_n9" />
 
                 <EditText
                     android:id="@+id/editar_sequencia_n9"
@@ -214,7 +230,9 @@
                     android:inputType="number"
                     android:maxLength="2"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="@dimen/texto_grande" />
+                    android:textSize="@dimen/texto_grande"
+                    android:imeOptions="actionNext"
+                    android:nextFocusDown="@id/editar_sequencia_n10"/>
 
                 <EditText
                     android:id="@+id/editar_sequencia_n10"
@@ -228,7 +246,9 @@
                     android:inputType="number"
                     android:maxLength="2"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="@dimen/texto_grande" />
+                    android:textSize="@dimen/texto_grande"
+                    android:imeOptions="actionNext"
+                    android:nextFocusDown="@id/editar_sequencia_n11"/>
 
             </LinearLayout>
 
@@ -252,7 +272,9 @@
                     android:inputType="number"
                     android:maxLength="2"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="@dimen/texto_grande" />
+                    android:textSize="@dimen/texto_grande"
+                    android:imeOptions="actionNext"
+                    android:nextFocusDown="@id/editar_sequencia_n12" />
 
                 <EditText
                     android:id="@+id/editar_sequencia_n12"
@@ -266,7 +288,9 @@
                     android:inputType="number"
                     android:maxLength="2"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="@dimen/texto_grande" />
+                    android:textSize="@dimen/texto_grande"
+                    android:imeOptions="actionNext"
+                    android:nextFocusDown="@id/editar_sequencia_n13"/>
 
                 <EditText
                     android:id="@+id/editar_sequencia_n13"
@@ -280,7 +304,9 @@
                     android:inputType="number"
                     android:maxLength="2"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="@dimen/texto_grande" />
+                    android:textSize="@dimen/texto_grande"
+                    android:imeOptions="actionNext"
+                    android:nextFocusDown="@id/editar_sequencia_n14"/>
 
                 <EditText
                     android:id="@+id/editar_sequencia_n14"
@@ -294,7 +320,9 @@
                     android:inputType="number"
                     android:maxLength="2"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="@dimen/texto_grande" />
+                    android:textSize="@dimen/texto_grande"
+                    android:imeOptions="actionNext"
+                    android:nextFocusDown="@id/editar_sequencia_n15"/>
 
                 <EditText
                     android:id="@+id/editar_sequencia_n15"
@@ -308,7 +336,8 @@
                     android:inputType="number"
                     android:maxLength="2"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="@dimen/texto_grande" />
+                    android:textSize="@dimen/texto_grande"
+                    android:imeOptions="actionDone"/>
 
             </LinearLayout>
 

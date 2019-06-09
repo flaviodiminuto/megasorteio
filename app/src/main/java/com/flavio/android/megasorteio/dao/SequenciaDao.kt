@@ -7,8 +7,6 @@ import android.database.SQLException
 import com.flavio.android.megasorteio.database.Banco
 import com.flavio.android.megasorteio.enumeradores.Campos
 import com.flavio.android.megasorteio.model.Sequencia
-import java.time.Instant
-import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
@@ -44,7 +42,7 @@ class SequenciaDao(context: Context) {
         sequencia.tamanho = cursor.getInt(cursor.getColumnIndex(Campos.SEQUENCIA_TAMANHO.nome))
         sequencia.dataCriacao = stringParaData(cursor.getString(cursor.getColumnIndex(Campos.SEQUENCIA_DATA_CADASTRO.nome)))
         sequencia.dataAtualizacao = stringParaData(cursor.getString(cursor.getColumnIndex(Campos.SEQUENCIA_DATA_ATUALIZACAO.nome)))
-        sequencia.numeros = preencheNumeros(cursor, sequencia.tamanho)
+        sequencia.numeros = preencheNumeros(cursor)
         return sequencia
     }
     private fun stringParaData(dataString : String): Date {
@@ -53,12 +51,14 @@ class SequenciaDao(context: Context) {
         var instant = localDateTime.atZone(ZoneId.systemDefault()).toInstant()
         return Date.from(instant)
     }
-    private fun preencheNumeros(cursor: Cursor,tamanho : Int): MutableList<Int>{
-        var numeros = mutableListOf<Int>()
-        for(i in  1 .. tamanho){
-            numeros.add(cursor.getInt(cursor.getColumnIndex("n$i")))
+    private fun preencheNumeros(cursor: Cursor): MutableList<Int>{
+        var numerosStr  = cursor.getString(cursor.getColumnIndex(Campos.SEQUENCIA_NUMEROS.nome))
+        var retorno = mutableListOf<Int>()
+        var numerosSeparados = numerosStr.substring(1,numerosStr.length-1).split("|")
+        for (num in numerosSeparados){
+            retorno.add(num.toInt())
         }
-        return numeros
+        return retorno
     }
     private fun  preencheCV(sequencia : Sequencia): ContentValues{
         var cv = ContentValues()
@@ -69,17 +69,13 @@ class SequenciaDao(context: Context) {
 
         cv.put(Campos.SEQUENCIA_VALOR.nome, sequencia.valor)
         cv.put(Campos.SEQUENCIA_TAMANHO.nome, sequencia.tamanho)
-        //ano,mes, dia
-        //hora, minuto, segundos
         cv.put(Campos.SEQUENCIA_DATA_CADASTRO.nome, sequencia.dataCriacao.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime().format(formater))
         cv.put(Campos.SEQUENCIA_DATA_ATUALIZACAO.nome,LocalDateTime.now().format(formater))
-        for(i : Int in 0 .. 14){
-            if(i<sequencia.tamanho){
-                cv.put("n${i+1}",sequencia.numeros[i])
-            }else{
-                cv.putNull("n${i+1}")
-            }
+        var numeros = "|"
+        for(numero  in sequencia.numeros){
+            numeros += "$numero|"
         }
+        cv.put(Campos.SEQUENCIA_NUMEROS.nome,numeros)
         return cv
     }
     fun atualizarSequencia(sequencia: Sequencia): Long {

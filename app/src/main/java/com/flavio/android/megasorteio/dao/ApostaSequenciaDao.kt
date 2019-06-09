@@ -62,4 +62,41 @@ class ApostaSequenciaDao (private val context : Context){
         banco.use().delete(Campos.SEQUENCIA_TABLE.nome,where,null)
         banco.use().delete(Campos.APOSTA_TABLE.nome, " ${Campos.APOSTA_ID.nome}=${aposta.idAposta} ", null)
     }
+    fun verificarSorteio(numeros : MutableList<Int>): MutableList<Aposta> {
+        var apostas = mutableListOf<Aposta>()
+        var where  = getWhereNumeros(numeros)
+        var sql = "SELECT a.*, s.* " +
+                " FROM ${Campos.APOSTA_SEQUENCIA_TABLE.nome} apsq " +
+                " INNER JOIN ${Campos.APOSTA_TABLE.nome} a " +
+                " ON a.${Campos.APOSTA_ID.nome}=apsq.${Campos.APOSTA_SEQUENCIA_APOSTA.nome} " +
+                " INNER JOIN ${Campos.SEQUENCIA_TABLE.nome} s " +
+                " ON s.${Campos.SEQUENCIA_ID.nome}=apsq.${Campos.APOSTA_SEQUENCIA_SEQUENCIA.nome} " +
+                " WHERE $where "
+        var cursor : Cursor? = null
+        return try {
+            cursor = banco.use().rawQuery(sql, null)
+            if(cursor!!.isBeforeFirst) {
+                var ad = ApostaDao(context)  // para reaproveitar o metodo de preenchimento
+                var sd = SequenciaDao(context)  // para reaproveitar o metodo de preenchimento
+                while(cursor.moveToNext()) {
+                    var aposta = ad.preencheCamposAposta(cursor)
+                    do {
+                        aposta.sequencias.add(sd.preencheCamposSequencia(cursor))
+                    } while (cursor.moveToNext())
+                    apostas.add(aposta)
+                }
+                return apostas
+            }else
+                mutableListOf()
+        }catch (e : SQLException){
+            mutableListOf()
+        }
+    }
+    fun getWhereNumeros(numeros: MutableList<Int>): String {
+        var where = ""
+        for(numero in numeros) {
+            where += " ${Campos.SEQUENCIA_NUMEROS.nome} LIKE '%|$numero|%' AND"
+        }
+        return where.substring(0,where.length-4)
+    }
 }

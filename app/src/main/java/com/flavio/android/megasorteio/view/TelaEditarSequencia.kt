@@ -7,6 +7,7 @@ import android.os.VibrationEffect
 import android.os.Vibrator
 import android.support.v7.app.AppCompatActivity
 import android.text.InputFilter
+import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import android.widget.Toast
 import com.flavio.android.megasorteio.R
@@ -16,6 +17,7 @@ import com.flavio.android.megasorteio.model.Aposta
 import com.flavio.android.megasorteio.model.ControlaNumero
 import com.flavio.android.megasorteio.model.Sequencia
 import kotlinx.android.synthetic.main.activity_editar_sequencia.*
+import kotlinx.android.synthetic.main.activity_tela_verificar_sorteio.*
 
 class TelaEditarSequencia : AppCompatActivity() {
 
@@ -86,6 +88,24 @@ class TelaEditarSequencia : AppCompatActivity() {
             sequencia.numeros = gerarAutomatico()
             sequencia.ordenaNumerosSequencia()
             preencheCampos(campos)
+        }
+        editar_sequencia_quantidade.setOnEditorActionListener{ _, actionId, _ ->
+            vibe.vibrate(VibrationEffect.createOneShot(10,150))
+            if(actionId == EditorInfo.IME_ACTION_DONE){
+                editar_sequencia_btn_gerar_automatico.callOnClick()
+                true
+            } else {
+                false
+            }
+        }
+        editar_sequencia_n15.setOnEditorActionListener{ _, actionId, _ ->
+            vibe.vibrate(VibrationEffect.createOneShot(10,150))
+            if(actionId == EditorInfo.IME_ACTION_DONE){
+                editar_sequencia_btn_salvar.callOnClick()
+                true
+            } else {
+                false
+            }
         }
     }
 

@@ -22,7 +22,7 @@
         android:background="@color/background">
 
         <LinearLayout
-            android:id="@+id/verificar_sorteio_edt_numero_sorteio"
+            android:id="@+id/verificar_sorteio_linear_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -38,14 +38,14 @@
                 android:textSize="@dimen/texto_normal" />
 
             <EditText
-                android:id="@+id/editText"
+                android:id="@+id/verificar_sorteio_edt_numero_sorteio"
                 android:layout_width="200dp"
                 android:layout_height="30dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/bordas_arredondadas"
                 android:ems="10"
                 android:inputType="number"
-                android:paddingHorizontal="10dp"/>
+                android:paddingHorizontal="10dp" />
 
             <TextView
                 android:id="@+id/verificar_sorteio_numeros_sortados"
@@ -72,7 +72,8 @@
                     android:ems="10"
                     android:gravity="center"
                     android:hint="00"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    android:imeOptions="actionNext"/>
 
                 <EditText
                     android:id="@+id/verificar_sorteio_n2"
@@ -84,7 +85,8 @@
                     android:ems="10"
                     android:gravity="center"
                     android:hint="00"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    android:imeOptions="actionNext" />
 
                 <EditText
                     android:id="@+id/verificar_sorteio_n3"
@@ -96,7 +98,8 @@
                     android:ems="10"
                     android:gravity="center"
                     android:hint="00"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    android:imeOptions="actionNext" />
 
                 <EditText
                     android:id="@+id/verificar_sorteio_n4"
@@ -108,7 +111,8 @@
                     android:ems="10"
                     android:gravity="center"
                     android:hint="00"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    android:imeOptions="actionNext" />
 
                 <EditText
                     android:id="@+id/verificar_sorteio_n5"
@@ -120,7 +124,8 @@
                     android:ems="10"
                     android:gravity="center"
                     android:hint="00"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    android:imeOptions="actionNext" />
 
                 <EditText
                     android:id="@+id/verificar_sorteio_n6"
@@ -132,7 +137,8 @@
                     android:ems="10"
                     android:gravity="center"
                     android:hint="00"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    android:imeOptions="actionDone"/>
             </LinearLayout>
 
             <TextView
@@ -146,7 +152,7 @@
                 android:textSize="@dimen/texto_normal" />
 
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/verificar_sorteio_btn_verificar"
                 android:layout_width="170dp"
                 android:layout_height="60dp"
                 android:layout_gravity="center"
