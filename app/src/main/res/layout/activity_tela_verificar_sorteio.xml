@@ -142,10 +142,49 @@
             </LinearLayout>
 
             <TextView
+                android:id="@+id/verificar_sorteio_texto_acertos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Acertos"
+                android:textColor="@color/texto_cor"
+                android:textSize="@dimen/texto_normal" />
+
+            <TextView
+                android:id="@+id/verificar_sorteio_quadra"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Quadra"
+                android:padding="10dp"
+                android:textColor="@color/texto_cor"
+                android:background="@drawable/bordas_arredondadas_escuras"/>
+
+            <TextView
+                android:id="@+id/verificar_sorteio_quina"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Quina"
+                android:padding="10dp"
+                android:textColor="@color/texto_cor"
+                android:background="@drawable/bordas_arredondadas_escuras"/>
+
+            <TextView
+                android:id="@+id/verificar_sorteio_sena"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Sena"
+                android:padding="10dp"
+                android:textColor="@color/texto_cor"
+                android:background="@drawable/bordas_arredondadas_escuras"/>
+
+            <TextView
                 android:id="@+id/verificar_sorteio_texto_verificar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="80dp"
+                android:layout_marginTop="50dp"
                 android:gravity="center"
                 android:text="Números sorteados"
                 android:textColor="@color/texto_cor"
@@ -158,6 +197,8 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
                 app:srcCompat="@drawable/btn_verificar_branco" />
+
+
 
         </LinearLayout>
     </ScrollView>

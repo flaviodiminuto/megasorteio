@@ -16,7 +16,6 @@ import com.flavio.android.megasorteio.extension.InputFilterMinMax
 import com.flavio.android.megasorteio.model.Aposta
 import com.flavio.android.megasorteio.model.Sequencia
 import kotlinx.android.synthetic.main.activity_tela_verificar_sorteio.*
-import kotlinx.android.synthetic.main.card_sequencia.*
 
 @Suppress("DEPRECATION")
 class TelaVerificarSorteio : AppCompatActivity() {
@@ -42,19 +41,31 @@ class TelaVerificarSorteio : AppCompatActivity() {
         verificar_sorteio_n6 )
         configuraCampos()
         verificar_sorteio_btn_verificar.setOnClickListener{
+            var repetidosNosCampos = false
             verificar_sorteio_n1.requestFocus()
             this.numeros = lerNumeros()
-            if(this.numeros.size==6){
-                verificarAcertos(this.numeros)
-                Toast.makeText(this, "0: ${acertos[0]}\n" +
-                        "1: ${acertos[1]}\n" +
-                        "2: ${acertos[2]}\n" +
-                        "3: ${acertos[3]}\n" +
-                        "4: ${acertos[4]}\n" +
-                        "5: ${acertos[5]}\n" +
-                        "6: ${acertos[6]}", Toast.LENGTH_LONG).show()
-            }else{
-                Toast.makeText(this, "Preencha os seis números do sorteio", Toast.LENGTH_LONG).show()
+            for(i  in 0 until  numeros.size){
+                for(j in i until numeros.size)
+                    if(j!=i && numeros[i]==numeros[j]) repetidosNosCampos = true
+                if(repetidosNosCampos) break
+            }
+            when {
+                verificar_sorteio_edt_numero_sorteio.text.toString()=="" -> Toast.makeText(this, "Informe o número do Sorteio", Toast.LENGTH_LONG).show()
+                repetidosNosCampos -> Toast.makeText(this, "Números repetidos", Toast.LENGTH_LONG).show()
+                this.numeros.size==6 -> {
+                    verificarAcertos(this.numeros)
+                    verificar_sorteio_quadra.text = "Quadra:\t${acertos[4]}"
+                    verificar_sorteio_quina.text = "Quadra:\t${acertos[5]}"
+                    verificar_sorteio_sena.text = "Quadra:\t${acertos[6]}"
+                    /*Toast.makeText(this, "0: ${acertos[0]}\n" +
+                            "1: ${acertos[1]}\n" +
+                            "2: ${acertos[2]}\n" +
+                            "3: ${acertos[3]}\n" +
+                            "4: ${acertos[4]}\n" +
+                            "5: ${acertos[5]}\n" +
+                            "6: ${acertos[6]}", Toast.LENGTH_LONG).show()*/
+                }
+                else -> Toast.makeText(this, "Preencha os seis números do sorteio", Toast.LENGTH_LONG).show()
             }
         }
         verificar_sorteio_n6.setOnEditorActionListener{ _, actionId, _ ->
@@ -123,7 +134,7 @@ class TelaVerificarSorteio : AppCompatActivity() {
     private fun acendeCampo(campo: EditText, acende : Boolean) {
         if(acende) {
             campo.setTextColor(Color.GREEN)
-            campo.background = resources.getDrawable(R.drawable.circulo_numero)
+            campo.background = resources.getDrawable(R.drawable.bordas_arredondadas_escuras)
         }else{
             campo.setTextColor(resources.getColor(R.color.colorPrimaryDark))
             campo.background = resources.getDrawable(R.drawable.bordas_arredondadas)
