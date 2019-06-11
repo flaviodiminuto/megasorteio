@@ -1,6 +1,7 @@
 package com.flavio.android.megasorteio.view
 
 import android.content.Context
+import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.VibrationEffect
@@ -13,18 +14,25 @@ import com.flavio.android.megasorteio.R
 import com.flavio.android.megasorteio.controller.Controller
 import com.flavio.android.megasorteio.extension.InputFilterMinMax
 import com.flavio.android.megasorteio.model.Aposta
-import kotlinx.android.synthetic.main.activity_gerar_sequencias.*
+import com.flavio.android.megasorteio.model.Sequencia
 import kotlinx.android.synthetic.main.activity_tela_verificar_sorteio.*
+import kotlinx.android.synthetic.main.card_sequencia.*
 
+@Suppress("DEPRECATION")
 class TelaVerificarSorteio : AppCompatActivity() {
     lateinit var aposta : Aposta
     lateinit var campos : ArrayList<EditText>
     lateinit var numeros : MutableList<Int>
     lateinit var vibe : Vibrator
+    lateinit var maiorSequenciaAcertada : MutableList<Int>
+    //7 possibilidades de quantidades de acertos (0,1,2,3,quadra,quina ou sena) cada sequencia incrementa em uma quantidade de acerto
+    private var acertos =  limpaAcertos()
     override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_tela_verificar_sorteio)
         vibe = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+        aposta = intent.extras.get("aposta") as Aposta
+        aposta = Controller(this).pesquisarApostaComSequencia(aposta.idAposta)
         this.campos = arrayListOf(
         verificar_sorteio_n1,
         verificar_sorteio_n2,
@@ -34,9 +42,17 @@ class TelaVerificarSorteio : AppCompatActivity() {
         verificar_sorteio_n6 )
         configuraCampos()
         verificar_sorteio_btn_verificar.setOnClickListener{
+            verificar_sorteio_n1.requestFocus()
             this.numeros = lerNumeros()
             if(this.numeros.size==6){
-                verificarSorteio()
+                verificarAcertos(this.numeros)
+                Toast.makeText(this, "0: ${acertos[0]}\n" +
+                        "1: ${acertos[1]}\n" +
+                        "2: ${acertos[2]}\n" +
+                        "3: ${acertos[3]}\n" +
+                        "4: ${acertos[4]}\n" +
+                        "5: ${acertos[5]}\n" +
+                        "6: ${acertos[6]}", Toast.LENGTH_LONG).show()
             }else{
                 Toast.makeText(this, "Preencha os seis números do sorteio", Toast.LENGTH_LONG).show()
             }
@@ -50,7 +66,7 @@ class TelaVerificarSorteio : AppCompatActivity() {
                 false
             }
         }
-    }
+    }  //Fim do onCreate
     fun lerNumeros(): MutableList<Int> {
         var numeros = mutableListOf<Int>()
         for(campo in this.campos){
@@ -63,9 +79,62 @@ class TelaVerificarSorteio : AppCompatActivity() {
         for(campo in this.campos){
             campo.filters = arrayOf<InputFilter>(InputFilterMinMax(1,60))
         }
+        verificar_sorteio_n1.setOnFocusChangeListener { _, _ ->
+            apagaCampos()
+        }
     }
+
+    /**
+     * Por hora a consulta do banco não será utilizada diretamente para verificar os acertos e assim
+     * não serão verificados todas as apostas do banco neste momento pois não solucionei como solicitar
+     * somente as sequencias onde ocorrem 4,5 ou 6 acertos.
+     */
     private fun verificarSorteio() {
         var apostas = Controller(this).verificarSorteio(this.numeros)
         println(apostas)
     }
+
+    private fun verificarAcertos(numeros : MutableList<Int>){
+        apagaCampos()
+        this.acertos  = limpaAcertos()
+        var maiorQuantidade: Int = 0
+        for(sequencia in aposta.sequencias){
+            var camposContidos = aposta.numerosContidos(sequencia, Sequencia(numeros))
+            if (camposContidos.size>0) {
+                if(camposContidos.size>maiorQuantidade){
+                    maiorQuantidade=camposContidos.size
+                    maiorSequenciaAcertada = camposContidos
+                }
+            acertos[camposContidos.size]++
+            }
+        }
+        acendeCamposSorteados(maiorSequenciaAcertada)
+    }
+
+    private fun acendeCamposSorteados(camposContidos: MutableList<Int>) {
+        for (j: Int in 0 until camposContidos.size) {
+            for (i: Int in 0 until this.campos.size)
+                if (campos[i].text.toString().toInt() == camposContidos[j]) {
+                    acendeCampo(campos[i],true)
+                }
+        }
+    }
+
+    private fun acendeCampo(campo: EditText, acende : Boolean) {
+        if(acende) {
+            campo.setTextColor(Color.GREEN)
+            campo.background = resources.getDrawable(R.drawable.circulo_numero)
+        }else{
+            campo.setTextColor(resources.getColor(R.color.colorPrimaryDark))
+            campo.background = resources.getDrawable(R.drawable.bordas_arredondadas)
+        }
+    }
+    private fun apagaCampos(){
+        for(campo in campos){
+            acendeCampo(campo,false)
+        }
+    }
+
+    fun limpaAcertos() = mutableListOf<Int>(0,0,0,0,0,0,0)
 }
+

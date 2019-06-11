@@ -53,7 +53,7 @@ class Sorteio : SorteioInterface {
         if(validaSequenciaSorteada().isEmpty()){
             for (aposta : Aposta in apostas){
                 for(sequencia : Sequencia in aposta.sequencias){
-                    when(aposta.numerosContidos(sequenciaSorteada,sequencia)){
+                    when(aposta.quantosNumerosContidos(sequenciaSorteada,sequencia)){
                         0 -> quantidadeAcertos[0]++
                         1 -> quantidadeAcertos[1]++
                         2 -> quantidadeAcertos[2]++

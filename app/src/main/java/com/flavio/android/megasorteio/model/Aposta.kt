@@ -55,16 +55,16 @@ class Aposta : ApostaInterface , Serializable {
                  a sequencia estará contida se todos os digitos da sequencia de tamanho menor ou igual estiver totalmente contida na sequencia maior*/
         sequenciaVerificada.ordenaNumerosSequencia()
         for(sequencia : Sequencia in sequencias){
-            if(sequenciaVerificada.tamanho == numerosContidos(sequenciaVerificada,sequencia)) {
+            if(sequenciaVerificada.tamanho == quantosNumerosContidos(sequenciaVerificada,sequencia)) {
                 return true
             }
         }
         return false
     }
 
-    override fun numerosContidos(sequenciaVerificada: Sequencia, sequenciaContainer: Sequencia): Int {
+    override fun quantosNumerosContidos(sequenciaVerificada: Sequencia, sequenciaContainer: Sequencia): Int {
         var ocorrencias = 0
-        if(sequenciaVerificada.tamanho > sequenciaContainer.tamanho) return numerosContidos(sequenciaContainer,sequenciaVerificada)
+        if(sequenciaVerificada.tamanho > sequenciaContainer.tamanho) return quantosNumerosContidos(sequenciaContainer,sequenciaVerificada)
 
         for(digitoVerificado : Int in sequenciaVerificada.numeros){
             for(digitoContainer : Int in sequenciaContainer.numeros){
@@ -74,7 +74,18 @@ class Aposta : ApostaInterface , Serializable {
         }
         return ocorrencias
     }
+    fun numerosContidos(sequenciaVerificada: Sequencia, sequenciaContainer: Sequencia): MutableList<Int> {
+        var numerosContidos = mutableListOf<Int>()
+        if(sequenciaVerificada.tamanho > sequenciaContainer.tamanho) return numerosContidos(sequenciaContainer,sequenciaVerificada)
 
+        for(digitoVerificado : Int in sequenciaVerificada.numeros){
+            for(digitoContainer : Int in sequenciaContainer.numeros){
+                if(digitoVerificado>digitoContainer) continue
+                else if(digitoVerificado==digitoContainer) numerosContidos.add(digitoVerificado)
+            }
+        }
+        return numerosContidos
+    }
     override fun setValor(){
         valor = 0.0
         for (sequencia : Sequencia in sequencias){

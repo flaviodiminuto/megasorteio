@@ -76,8 +76,8 @@ class ApostaTeste {
         aposta2.adicionarSequencia(Sequencia(arrayListOf(2,3,4,5,6,7)))
         aposta2.adicionarSequencia(Sequencia(arrayListOf(1,1,2,3,4,5)))
 
-        Assertions.assertTrue(aposta2.numerosContidos(Sequencia(arrayListOf(1,2,3,4,5,6)),aposta2.sequencias[0])==6)
-        Assertions.assertFalse(aposta2.numerosContidos(Sequencia(arrayListOf(1,2,3,4,5,6)),aposta2.sequencias[1])==6)
+        Assertions.assertTrue(aposta2.quantosNumerosContidos(Sequencia(arrayListOf(1,2,3,4,5,6)),aposta2.sequencias[0])==6)
+        Assertions.assertFalse(aposta2.quantosNumerosContidos(Sequencia(arrayListOf(1,2,3,4,5,6)),aposta2.sequencias[1])==6)
     }
 
     @Test

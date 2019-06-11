@@ -18,10 +18,7 @@ class Controller(val context: Context) {
     fun lsitarApostasComSequencias(){
         //TODO --
     }
-    fun pesquisarAposta(id : Long): Aposta {
-        var ad = ApostaDao(context)
-        return ad.consultarAposta(id)
-    }
+    fun pesquisarAposta(id : Long): Aposta  = ApostaDao(context).consultarAposta(id)
     fun pesquisarApostaComSequencia(id : Long) = ApostaSequenciaDao(context).consultarApostaSequencia(id)
     fun atualizarAposta(aposta: Aposta) = ApostaDao(context).atualizaAposta(aposta)
     fun atualizarSequencia(sequencia: Sequencia) = SequenciaDao(context).atualizarSequencia(sequencia)

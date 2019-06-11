@@ -15,6 +15,7 @@ import com.flavio.android.megasorteio.controller.Controller
 import com.flavio.android.megasorteio.extension.formataParaMoedaBrasileira
 import com.flavio.android.megasorteio.model.Aposta
 import com.flavio.android.megasorteio.view.TelaListaApostaUnitaria
+import com.flavio.android.megasorteio.view.TelaVerificarSorteio
 import kotlinx.android.synthetic.main.card_aposta.view.*
 
 class ListaApostasTodasAdapter(private val apostas : MutableList<Aposta>) :
@@ -53,6 +54,12 @@ class ListaApostasTodasAdapter(private val apostas : MutableList<Aposta>) :
             apostas.remove(aposta)
             notifyItemRemoved(position)
             Toast.makeText(holder.view.context,"Aposta deletada",Toast.LENGTH_LONG).show()
+        }
+        holder.view.card_aposta_btn_verificar_aposta.setOnClickListener{
+            vibe.vibrate(VibrationEffect.createOneShot(10,150))
+            var intent = Intent(holder.view.context,TelaVerificarSorteio::class.java)
+            intent.putExtra("aposta",apostas[position])
+            holder.view.context.startActivity(intent)
         }
     }
 
