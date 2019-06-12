@@ -25,10 +25,6 @@ class Inicio : AppCompatActivity() {
             vibe.vibrate(VibrationEffect.createOneShot(10,150))
             startActivity(Intent(this,TelaListaApostasTodas::class.java))
         }
-        btnInicioVerificarSorteio.setOnClickListener{
-            vibe.vibrate(VibrationEffect.createOneShot(10,150))
-            startActivity(Intent(this,TelaVerificarSorteio::class.java))
-        }
     }
 
     override fun onBackPressed() {
