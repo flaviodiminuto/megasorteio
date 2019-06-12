@@ -55,8 +55,8 @@ class TelaVerificarSorteio : AppCompatActivity() {
                 this.numeros.size==6 -> {
                     verificarAcertos(this.numeros)
                     verificar_sorteio_quadra.text = "Quadra:\t${acertos[4]}"
-                    verificar_sorteio_quina.text = "Quadra:\t${acertos[5]}"
-                    verificar_sorteio_sena.text = "Quadra:\t${acertos[6]}"
+                    verificar_sorteio_quina.text = "Quina:\t${acertos[5]}"
+                    verificar_sorteio_sena.text = "Sena:\t${acertos[6]}"
                     /*Toast.makeText(this, "0: ${acertos[0]}\n" +
                             "1: ${acertos[1]}\n" +
                             "2: ${acertos[2]}\n" +
@@ -133,9 +133,11 @@ class TelaVerificarSorteio : AppCompatActivity() {
 
     private fun acendeCampo(campo: EditText, acende : Boolean) {
         if(acende) {
+            verificar_sorteio_texto_acertos.setTextColor(Color.GREEN)
             campo.setTextColor(Color.GREEN)
             campo.background = resources.getDrawable(R.drawable.bordas_arredondadas_escuras)
         }else{
+            verificar_sorteio_texto_acertos.setTextColor(resources.getColor(R.color.texto_cor))
             campo.setTextColor(resources.getColor(R.color.colorPrimaryDark))
             campo.background = resources.getDrawable(R.drawable.bordas_arredondadas)
         }
