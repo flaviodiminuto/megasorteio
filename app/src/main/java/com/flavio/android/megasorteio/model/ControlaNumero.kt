@@ -24,4 +24,12 @@ class ControlaNumero: Serializable {
     fun numeroUnico(sequencia : List<Int>,numero : Int):Boolean{
         return !sequencia.contains(numero)
     }
+
+    fun numerosToMyString(sequencia: MutableList<Int>): String {
+        var numeros = "|"
+        for (numero in sequencia) {
+            numeros += "$numero|"
+        }
+        return numeros
+    }
 }

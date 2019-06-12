@@ -19,6 +19,7 @@ import com.flavio.android.megasorteio.extension.InputFilterMinMax
 import com.flavio.android.megasorteio.model.Aposta
 import kotlinx.android.synthetic.main.activity_tela_lista_apostas_geradas.*
 import kotlinx.android.synthetic.main.activity_tela_verificar_sorteio.*
+import java.lang.Exception
 
 class TelaListaApostasTodas : AppCompatActivity() {
 
@@ -38,18 +39,18 @@ class TelaListaApostasTodas : AppCompatActivity() {
         listaApostas()
         mostra_aposta_btn_selecionar_sequencia.setOnClickListener{
             vibe.vibrate(VibrationEffect.createOneShot(10,150))
-            var numero: Long
+            var numero: Int
             if(mostra_aposta_edt_selecionar.text.toString()!=""){
-                numero = mostra_aposta_edt_selecionar.text.toString().toLong()
+                numero = mostra_aposta_edt_selecionar.text.toString().toInt()
                 try{
-                    var aposta : Aposta = ca.pesquisarApostaComSequencia(numero)
+                    var aposta : Aposta = ca.pesquisarApostaComSequencia(apostas[numero].idAposta)
                     if( aposta.idAposta>0){
                         var intent = Intent(this,TelaListaApostaUnitaria::class.java)
                         intent.putExtra("aposta", aposta)
                         intent.putExtra("action","aposta_editar")
                         startActivity(intent)
                     }
-                }catch (e : CursorIndexOutOfBoundsException){
+                }catch (e : Exception){
                     mostra_aposta_edt_selecionar.setText("")
                     Toast.makeText(this, "Número de aposta não encontrado",Toast.LENGTH_LONG).show()
                 }

@@ -6,6 +6,7 @@ import android.database.Cursor
 import android.database.SQLException
 import com.flavio.android.megasorteio.database.Banco
 import com.flavio.android.megasorteio.enumeradores.Campos
+import com.flavio.android.megasorteio.model.ControlaNumero
 import com.flavio.android.megasorteio.model.Sequencia
 import java.time.LocalDateTime
 import java.time.ZoneId
@@ -16,6 +17,7 @@ private val formater = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
 
 class SequenciaDao(context: Context) {
     private val banco = Banco(context)
+    private val controlaNumeros = ControlaNumero()
 
     fun salvarSequencia(sequencia: Sequencia):Long{
         val cv = preencheCV(sequencia)
@@ -71,13 +73,11 @@ class SequenciaDao(context: Context) {
         cv.put(Campos.SEQUENCIA_TAMANHO.nome, sequencia.tamanho)
         cv.put(Campos.SEQUENCIA_DATA_CADASTRO.nome, sequencia.dataCriacao.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime().format(formater))
         cv.put(Campos.SEQUENCIA_DATA_ATUALIZACAO.nome,LocalDateTime.now().format(formater))
-        var numeros = "|"
-        for(numero  in sequencia.numeros){
-            numeros += "$numero|"
-        }
+        var numeros = this.controlaNumeros.numerosToMyString(sequencia.numeros)
         cv.put(Campos.SEQUENCIA_NUMEROS.nome,numeros)
         return cv
     }
+
     fun atualizarSequencia(sequencia: Sequencia): Long {
         var cv = preencheCV(sequencia)
         return banco.use().update(Campos.SEQUENCIA_TABLE.nome,cv," ${Campos.SEQUENCIA_ID.nome}=${sequencia.idSequencia} ", null).toLong()
