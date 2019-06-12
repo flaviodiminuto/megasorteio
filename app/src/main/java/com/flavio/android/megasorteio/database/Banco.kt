@@ -14,6 +14,7 @@ class Banco(context: Context) : SQLiteOpenHelper(context, db_name,null,version) 
         createApostaTable(db)
         createSequenciaTable(db)
         createApostaSequenciaTable(db)
+        createSorteioAposta(db)
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
@@ -45,6 +46,22 @@ class Banco(context: Context) : SQLiteOpenHelper(context, db_name,null,version) 
                 " ${Campos.APOSTA_SEQUENCIA_SEQUENCIA.nome} INTEGER, " +
                 " FOREIGN KEY(${Campos.APOSTA_SEQUENCIA_APOSTA.nome}) REFERENCES ${Campos.APOSTA_TABLE.nome}(${Campos.APOSTA_ID.nome}) ON DELETE CASCADE ON UPDATE CASCADE," +
                 " FOREIGN KEY(${Campos.APOSTA_SEQUENCIA_SEQUENCIA.nome}) REFERENCES ${Campos.SEQUENCIA_TABLE.nome}(${Campos.SEQUENCIA_ID.nome}) ON DELETE CASCADE ON UPDATE CASCADE )"
+        db?.execSQL(sql)
+    }
+
+    private fun createSorteioAposta(db: SQLiteDatabase?){
+        val sql = " CREATE TABLE IF NOT EXISTS ${Campos.SORTEIO_TABLE.nome} " +
+                "( ${Campos.SORTEIO_ID.nome} INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                " ${Campos.SORTEIO_APOSTA_ID.nome} INTEGER, " +
+                " ${Campos.SORTEIO_NUMERO_SORTEIO.nome} INTEGER, " +
+                " ${Campos.SORTEIO_DATA_VERIFICACAO.nome} TEXT, " +
+                " ${Campos.SORTEIO_QTD_QUADRA.nome} INTEGER, " +
+                " ${Campos.SORTEIO_QTD_QUINA.nome} INTEGER, " +
+                " ${Campos.SORTEIO_QTD_SENA.nome} INTEGER, " +
+                " ${Campos.SORTEIO_MAIOR_QTD_ACERTOS.nome} INTEGER," +
+                " ${Campos.SORTEIO_NUMEROS_ACERTADOS.nome} TEXT, " +
+                " ${Campos.SORTEIO_NUMEROS_SORTEADOS.nome} TEXT, " +
+                " FOREIGN KEY(${Campos.SORTEIO_APOSTA_ID.nome}) REFERENCES ${Campos.APOSTA_TABLE.nome}(${Campos.APOSTA_ID.nome}) ON DELETE CASCADE ON UPDATE CASCADE ) "
         db?.execSQL(sql)
     }
 
