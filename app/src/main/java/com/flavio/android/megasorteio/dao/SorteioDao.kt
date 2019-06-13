@@ -12,13 +12,17 @@ class SorteioDao(context : Context) {
     private val banco = Banco(context)
     private val controlaNumeros = ControlaNumero()
 
+    fun atualizar(sorteio: SorteioDTO): Long {
+        return banco.use().update(Campos.SORTEIO_TABLE.nome, preencheCV(sorteio)," ${Campos.SORTEIO_ID.nome}=${sorteio.idSorteio} ",null).toLong()
+    }
+
     fun salvar(sorteio : SorteioDTO): Long {
         return banco.use().insert(Campos.SORTEIO_TABLE.nome, null, preencheCV(sorteio))
     }
 
     private fun preencheCV(sorteio: SorteioDTO): ContentValues {
         var cv = ContentValues()
-        cv.putNull(Campos.SORTEIO_ID.nome)
+        if(sorteio.idSorteio==null)cv.putNull(Campos.SORTEIO_ID.nome) else cv.put(Campos.SORTEIO_ID.nome,sorteio.idSorteio)
         cv.put(Campos.SORTEIO_APOSTA_ID.nome, sorteio.idAposta)
         cv.put(Campos.SORTEIO_NUMERO_SORTEIO.nome, sorteio.numeroSorteio)
         cv.put(Campos.SORTEIO_DATA_VERIFICACAO.nome, sorteio.dataVerificacaoSorteio.toMyString())

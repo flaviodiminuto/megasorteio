@@ -31,6 +31,7 @@ enum class Campos(internal val nome: String) {
     SORTEIO_QTD_QUADRA("sorteio_quantidade_quadra"),
     SORTEIO_QTD_QUINA("sorteio_quantidade_quina"),
     SORTEIO_QTD_SENA("sorteio_quantidade_sena"),
+    SORTEIO_SEQUENCIA_COM_MAIS_ACERTOS("sequencia_com_mais_acertos"),
     SORTEIO_MAIOR_QTD_ACERTOS("sorteio_maior_quantidade_acertos"),
     SORTEIO_NUMEROS_SORTEADOS("sorteio_numeros_sorteados"),
     SORTEIO_NUMEROS_ACERTADOS("sorteio_numeros_acertados");

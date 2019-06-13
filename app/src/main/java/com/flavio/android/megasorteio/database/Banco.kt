@@ -58,10 +58,12 @@ class Banco(context: Context) : SQLiteOpenHelper(context, db_name,null,version) 
                 " ${Campos.SORTEIO_QTD_QUADRA.nome} INTEGER, " +
                 " ${Campos.SORTEIO_QTD_QUINA.nome} INTEGER, " +
                 " ${Campos.SORTEIO_QTD_SENA.nome} INTEGER, " +
+                " ${Campos.SORTEIO_SEQUENCIA_COM_MAIS_ACERTOS.nome} INTEGER, "
                 " ${Campos.SORTEIO_MAIOR_QTD_ACERTOS.nome} INTEGER," +
                 " ${Campos.SORTEIO_NUMEROS_ACERTADOS.nome} TEXT, " +
                 " ${Campos.SORTEIO_NUMEROS_SORTEADOS.nome} TEXT, " +
-                " FOREIGN KEY(${Campos.SORTEIO_APOSTA_ID.nome}) REFERENCES ${Campos.APOSTA_TABLE.nome}(${Campos.APOSTA_ID.nome}) ON DELETE CASCADE ON UPDATE CASCADE ) "
+                " FOREIGN KEY(${Campos.SORTEIO_APOSTA_ID.nome}) REFERENCES ${Campos.APOSTA_TABLE.nome}(${Campos.APOSTA_ID.nome}) ON DELETE CASCADE ON UPDATE CASCADE +\n" +
+                " FOREIGN KEY(${Campos.SORTEIO_SEQUENCIA_COM_MAIS_ACERTOS.nome}) REFERENCES ${Campos.SEQUENCIA_TABLE.nome}(${Campos.SEQUENCIA_ID.nome}) ON DELETE CASCADE ON UPDATE CASCADE ) "
         db?.execSQL(sql)
     }
 

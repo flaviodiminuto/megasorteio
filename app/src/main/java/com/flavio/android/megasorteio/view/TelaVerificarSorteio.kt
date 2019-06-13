@@ -15,7 +15,9 @@ import com.flavio.android.megasorteio.controller.Controller
 import com.flavio.android.megasorteio.extension.InputFilterMinMax
 import com.flavio.android.megasorteio.model.Aposta
 import com.flavio.android.megasorteio.model.Sequencia
+import com.flavio.android.megasorteio.model.SorteioDTO
 import kotlinx.android.synthetic.main.activity_tela_verificar_sorteio.*
+import java.time.LocalDateTime
 
 @Suppress("DEPRECATION")
 class TelaVerificarSorteio : AppCompatActivity() {
@@ -24,8 +26,10 @@ class TelaVerificarSorteio : AppCompatActivity() {
     lateinit var numeros : MutableList<Int>
     lateinit var vibe : Vibrator
     lateinit var maiorSequenciaAcertada : MutableList<Int>
+    private var sorteio = SorteioDTO()
     //7 possibilidades de quantidades de acertos (0,1,2,3,quadra,quina ou sena) cada sequencia incrementa em uma quantidade de acerto
     private var acertos =  limpaAcertos()
+
     override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_tela_verificar_sorteio)
@@ -53,7 +57,8 @@ class TelaVerificarSorteio : AppCompatActivity() {
                 verificar_sorteio_edt_numero_sorteio.text.toString()=="" -> Toast.makeText(this, "Informe o número do Sorteio", Toast.LENGTH_LONG).show()
                 repetidosNosCampos -> Toast.makeText(this, "Números repetidos", Toast.LENGTH_LONG).show()
                 this.numeros.size==6 -> {
-                    verificarAcertos(this.numeros)
+                    this.maiorSequenciaAcertada = verificarAcertos(this.numeros)
+                    acendeCamposSorteados(maiorSequenciaAcertada)
                     verificar_sorteio_quadra.text = "Quadra:\t${acertos[4]}"
                     verificar_sorteio_quina.text = "Quina:\t${acertos[5]}"
                     verificar_sorteio_sena.text = "Sena:\t${acertos[6]}"
@@ -64,6 +69,7 @@ class TelaVerificarSorteio : AppCompatActivity() {
                             "4: ${acertos[4]}\n" +
                             "5: ${acertos[5]}\n" +
                             "6: ${acertos[6]}", Toast.LENGTH_LONG).show()*/
+                    salvarOuAtualizarSorteio()
                 }
                 else -> Toast.makeText(this, "Preencha os seis números do sorteio", Toast.LENGTH_LONG).show()
             }
@@ -78,6 +84,19 @@ class TelaVerificarSorteio : AppCompatActivity() {
             }
         }
     }  //Fim do onCreate
+
+    private fun salvarOuAtualizarSorteio() {
+        this.sorteio.numerosAcertados = this.maiorSequenciaAcertada
+        this.sorteio.numerosSorteados = this.numeros
+        this.sorteio.dataVerificacaoSorteio = LocalDateTime.now()
+        this.sorteio.idAposta = this.aposta.idAposta
+        this.sorteio.quadra  = acertos[4]
+        this.sorteio.quina  = acertos[5]
+        this.sorteio.sena  = acertos[6]
+        this.sorteio.numeroSorteio = verificar_sorteio_edt_numero_sorteio.text.toString().toLong()
+        Controller(this).atualizarOuSalvarSorteio(this.sorteio)
+    }
+
     fun lerNumeros(): MutableList<Int> {
         var numeros = mutableListOf<Int>()
         for(campo in this.campos){
@@ -105,7 +124,8 @@ class TelaVerificarSorteio : AppCompatActivity() {
         println(apostas)
     }
 
-    private fun verificarAcertos(numeros : MutableList<Int>){
+    private fun verificarAcertos(numeros : MutableList<Int>): MutableList<Int> {
+        var maiorSequenciaAcertada = mutableListOf<Int>()
         apagaCampos()
         this.acertos  = limpaAcertos()
         var maiorQuantidade: Int = 0
@@ -115,11 +135,12 @@ class TelaVerificarSorteio : AppCompatActivity() {
                 if(camposContidos.size>maiorQuantidade){
                     maiorQuantidade=camposContidos.size
                     maiorSequenciaAcertada = camposContidos
+                    sorteio.idSequenciaComMaisAcertos = sequencia.idSequencia
                 }
             acertos[camposContidos.size]++
             }
         }
-        acendeCamposSorteados(maiorSequenciaAcertada)
+        return maiorSequenciaAcertada
     }
 
     private fun acendeCamposSorteados(camposContidos: MutableList<Int>) {
