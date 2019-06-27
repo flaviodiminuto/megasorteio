@@ -17,6 +17,7 @@ class Sequencia(var tamanho: Int) : SequenciaInterface, Serializable {
     var dataCriacao = Date()
     var dataAtualizacao = Date()
     val controlaNumero = ControlaNumero()
+    var fixa : Int = 0  // 0=false -  1=true
     private val LIMITE_INFERIOR = 6
     private val LIMITE_SUPERIOR = 15
 

@@ -15,6 +15,7 @@ enum class Campos(internal val nome: String) {
     SEQUENCIA_DATA_CADASTRO("data_cadastro"),
     SEQUENCIA_DATA_ATUALIZACAO("data_atualizacao"),
     SEQUENCIA_NUMEROS("numeros"),
+    SEQUENCIA_FIXA("fixa"),
 
     //Tabela aposta_sequenica
     APOSTA_SEQUENCIA_TABLE("aposta_sequencia"),

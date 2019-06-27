@@ -45,6 +45,7 @@ class SequenciaDao(context: Context) {
         sequencia.dataCriacao = stringParaData(cursor.getString(cursor.getColumnIndex(Campos.SEQUENCIA_DATA_CADASTRO.nome)))
         sequencia.dataAtualizacao = stringParaData(cursor.getString(cursor.getColumnIndex(Campos.SEQUENCIA_DATA_ATUALIZACAO.nome)))
         sequencia.numeros = preencheNumeros(cursor)
+        sequencia.fixa = cursor.getInt(cursor.getColumnIndex(Campos.SEQUENCIA_FIXA.nome))
         return sequencia
     }
     private fun stringParaData(dataString : String): Date {
@@ -75,6 +76,7 @@ class SequenciaDao(context: Context) {
         cv.put(Campos.SEQUENCIA_DATA_ATUALIZACAO.nome,LocalDateTime.now().format(formater))
         var numeros = this.controlaNumeros.numerosToMyString(sequencia.numeros)
         cv.put(Campos.SEQUENCIA_NUMEROS.nome,numeros)
+        cv.put(Campos.SEQUENCIA_FIXA.nome, sequencia.fixa)
         return cv
     }
 

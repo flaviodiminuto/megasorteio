@@ -95,7 +95,10 @@ class TelaListaApostaUnitaria : AppCompatActivity() {
     }
     override fun onBackPressed() {
         vibe.vibrate(VibrationEffect.createOneShot(10,150))
-        startActivity(Intent(this,TelaListaApostasTodas::class.java))
+        when(act){
+            "aposta_nova"-> startActivity(Intent(this,GerarAposta::class.java))
+            else -> startActivity(Intent(this,TelaListaApostasTodas::class.java))
+        }
     }
 }
 

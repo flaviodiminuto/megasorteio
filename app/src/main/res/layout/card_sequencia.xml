@@ -258,6 +258,13 @@
                     android:textSize="@dimen/texto_normal" />
 
                 <ImageView
+                    android:id="@+id/card_sequencia_btn_fixar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@android:drawable/ic_menu_mylocation" />
+
+                <ImageView
                     android:id="@+id/card_sequencia_deletar_icon"
                     android:layout_width="10dp"
                     android:layout_height="50dp"
