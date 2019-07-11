@@ -56,31 +56,26 @@ class TelaEditarSequencia : AppCompatActivity() {
             campo.filters = arrayOf<InputFilter>(InputFilterMinMax(1,60))
         }
         editar_sequencia_quantidade.filters = arrayOf<InputFilter>(InputFilterMinMax(1,15))
-
-        //Eu sei que não é uma solução segura mas para este projeto é viável
-        //a convesao de Long para Int neste for (mesmo assim, NÃO RECOMENDO fazê-lo)
-        preencheCampos(campos)
+        if("adicionar_sequencia" != act)preencheCampos(campos)
 
         editar_sequencia_btn_salvar.setOnClickListener {
-            
-            sequencia.numeros = lerCampos(campos)
-            sequencia.ordenaNumerosSequencia()
-            sequencia.tamanho = sequencia.numeros.size
-            sequencia.setValor(sequencia.numeros.size)
-            aposta.sequencias[indice]= sequencia
-            aposta.setValor()
-            Controller(this).atualizarAposta(aposta)
-            Controller(this).atualizarSequencia(sequencia)
-            var intent = Intent(this, TelaListaApostaUnitaria::class.java)
-            when (act) {
-                "aposta_nova" ->
-                    intent.putExtra("action", "aposta_nova")
-                "aposta_editar" ->{
-                    intent.putExtra("action", "aposta_editada")
+
+            adicionaSequenciaNaAposta(campos)
+            if(aposta.sequencias[indice].tamanho>=6){
+                Controller(this).atualizarAposta(aposta)
+                Controller(this).atualizarSequencia(sequencia)
+                var intent = Intent(this, TelaListaApostaUnitaria::class.java)
+                when (act) {
+                    "aposta_nova","adicionar_sequencia" ->
+                        intent.putExtra("action", "aposta_nova")
+                    "aposta_editar" ->{
+                        intent.putExtra("action", "aposta_editada")
+                    }
                 }
-            }
-            intent . putExtra ("aposta", aposta)
-            startActivity(intent)
+                intent . putExtra ("aposta", aposta)
+                startActivity(intent)
+            }else Toast.makeText(this, "Informe ao menos 6 números",Toast.LENGTH_LONG).show()
+
         }
 
         editar_sequencia_btn_gerar_automatico.setOnClickListener{
@@ -107,6 +102,15 @@ class TelaEditarSequencia : AppCompatActivity() {
                 false
             }
         }
+    }
+
+    private fun adicionaSequenciaNaAposta(campos: List<EditText>) {
+        sequencia.numeros = lerCampos(campos)
+        sequencia.ordenaNumerosSequencia()
+        sequencia.tamanho = sequencia.numeros.size
+        sequencia.setValor(sequencia.numeros.size)
+        aposta.sequencias[indice] = sequencia
+        aposta.setValor()
     }
 
     private fun preencheCampos(campos: List<EditText>) {
