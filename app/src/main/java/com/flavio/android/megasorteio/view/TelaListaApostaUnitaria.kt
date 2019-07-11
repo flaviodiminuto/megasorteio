@@ -50,7 +50,7 @@ class TelaListaApostaUnitaria : AppCompatActivity() {
         }
 
         mostrar_aposta_btn_salvar.setOnClickListener{
-            vibe.vibrate(VibrationEffect.createOneShot(10,150))
+            
             Toast.makeText(this,"Salvando aposta!", Toast.LENGTH_LONG).show()
             var intent  = Intent(this, TelaListaApostasTodas::class.java)
             when(act){
@@ -62,7 +62,7 @@ class TelaListaApostaUnitaria : AppCompatActivity() {
                 }
             }
         mostra_aposta_btn_selecionar_sequencia.setOnClickListener {
-            vibe.vibrate(VibrationEffect.createOneShot(10,150))
+            
             var numerostr =mostra_aposta_edt_selecionar.text.toString()
                     if(numerostr=="")
                 Toast.makeText(this,"Informe o número de uma sequencia",Toast.LENGTH_LONG).show()
@@ -84,7 +84,7 @@ class TelaListaApostaUnitaria : AppCompatActivity() {
                 }
         }
         mostra_aposta_edt_selecionar.setOnEditorActionListener{ _, actionId, _ ->
-            vibe.vibrate(VibrationEffect.createOneShot(10,150))
+            
             if(actionId == EditorInfo.IME_ACTION_DONE){
                 mostra_aposta_btn_selecionar_sequencia.callOnClick()
                 true
@@ -94,7 +94,7 @@ class TelaListaApostaUnitaria : AppCompatActivity() {
         }
     }
     override fun onBackPressed() {
-        vibe.vibrate(VibrationEffect.createOneShot(10,150))
+        
         when(act){
             "aposta_nova"-> startActivity(Intent(this,GerarAposta::class.java))
             else -> startActivity(Intent(this,TelaListaApostasTodas::class.java))

@@ -63,7 +63,7 @@ class ListaApostaUnitariaAdapter (private val sequencias: MutableList<Sequencia>
 
         //Acao ao clicar em cima do card de uma sequencia
         holder.view.card_sequencia_editar.setOnClickListener{
-            vibe.vibrate(VibrationEffect.createOneShot(10,150))
+            
             var intent = Intent(holder.view.context, TelaEditarSequencia::class.java)
             intent.putExtra("aposta", aposta)
             when{
@@ -74,7 +74,7 @@ class ListaApostaUnitariaAdapter (private val sequencias: MutableList<Sequencia>
             holder.view.context.startActivity(intent)
         }
         holder.view.card_sequencia_deletar_icon.setOnClickListener{
-            vibe.vibrate(VibrationEffect.createOneShot(10,150))
+            
             var controller = Controller(holder.view.context)
             controller.deletarSequencia(sequencias[position])
             sequencias.removeAt(position)

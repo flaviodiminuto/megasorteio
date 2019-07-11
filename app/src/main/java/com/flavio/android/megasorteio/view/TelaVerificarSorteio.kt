@@ -75,7 +75,7 @@ class TelaVerificarSorteio : AppCompatActivity() {
             }
         }
         verificar_sorteio_n6.setOnEditorActionListener{ _, actionId, _ ->
-            vibe.vibrate(VibrationEffect.createOneShot(10,150))
+            
             if(actionId == EditorInfo.IME_ACTION_DONE){
                 verificar_sorteio_btn_verificar.callOnClick()
                 true

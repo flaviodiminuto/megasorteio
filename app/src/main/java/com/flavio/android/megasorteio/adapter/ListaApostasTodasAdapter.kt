@@ -39,7 +39,7 @@ class ListaApostasTodasAdapter(private val apostas : MutableList<Aposta>) :
 
         preencheCampos(id, aposta, quantidade, valor,position)
         holder.view.card_aposta_visualizar.setOnClickListener {
-            vibe.vibrate(VibrationEffect.createOneShot(10,150))
+            
             var controller = Controller(holder.view.context)
             aposta = controller.pesquisarApostaComSequencia(aposta.idAposta)
             var intent = Intent(holder.view.context, TelaListaApostaUnitaria::class.java)
@@ -48,7 +48,7 @@ class ListaApostasTodasAdapter(private val apostas : MutableList<Aposta>) :
             holder.view.context.startActivity(intent)
         }
         holder.view.card_aposta_deletar_icon.setOnClickListener{
-            vibe.vibrate(VibrationEffect.createOneShot(10,150))
+            
             var controller = Controller(holder.view.context)
             controller.deletarApostaSequencia(aposta)
             apostas.remove(aposta)
@@ -56,7 +56,7 @@ class ListaApostasTodasAdapter(private val apostas : MutableList<Aposta>) :
             Toast.makeText(holder.view.context,"Aposta deletada",Toast.LENGTH_LONG).show()
         }
         holder.view.card_aposta_btn_verificar_aposta.setOnClickListener{
-            vibe.vibrate(VibrationEffect.createOneShot(10,150))
+            
             var intent = Intent(holder.view.context,TelaVerificarSorteio::class.java)
             intent.putExtra("aposta",apostas[position])
             holder.view.context.startActivity(intent)

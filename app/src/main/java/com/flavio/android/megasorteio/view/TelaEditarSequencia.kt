@@ -62,7 +62,7 @@ class TelaEditarSequencia : AppCompatActivity() {
         preencheCampos(campos)
 
         editar_sequencia_btn_salvar.setOnClickListener {
-            vibe.vibrate(VibrationEffect.createOneShot(10,150))
+            
             sequencia.numeros = lerCampos(campos)
             sequencia.ordenaNumerosSequencia()
             sequencia.tamanho = sequencia.numeros.size
@@ -84,13 +84,13 @@ class TelaEditarSequencia : AppCompatActivity() {
         }
 
         editar_sequencia_btn_gerar_automatico.setOnClickListener{
-            vibe.vibrate(VibrationEffect.createOneShot(10,150))
+            
             sequencia.numeros = gerarAutomatico()
             sequencia.ordenaNumerosSequencia()
             preencheCampos(campos)
         }
         editar_sequencia_quantidade.setOnEditorActionListener{ _, actionId, _ ->
-            vibe.vibrate(VibrationEffect.createOneShot(10,150))
+            
             if(actionId == EditorInfo.IME_ACTION_DONE){
                 editar_sequencia_btn_gerar_automatico.callOnClick()
                 true
@@ -99,7 +99,7 @@ class TelaEditarSequencia : AppCompatActivity() {
             }
         }
         editar_sequencia_n15.setOnEditorActionListener{ _, actionId, _ ->
-            vibe.vibrate(VibrationEffect.createOneShot(10,150))
+            
             if(actionId == EditorInfo.IME_ACTION_DONE){
                 editar_sequencia_btn_salvar.callOnClick()
                 true
@@ -141,7 +141,7 @@ class TelaEditarSequencia : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        vibe.vibrate(VibrationEffect.createOneShot(10,150))
+        
         super.onBackPressed()
     }
 }

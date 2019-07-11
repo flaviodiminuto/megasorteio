@@ -38,7 +38,7 @@ class TelaListaApostasTodas : AppCompatActivity() {
         apostas = ca.listarApostas()
         listaApostas()
         mostra_aposta_btn_selecionar_sequencia.setOnClickListener{
-            vibe.vibrate(VibrationEffect.createOneShot(10,150))
+            
             var numero: Int
             if(mostra_aposta_edt_selecionar.text.toString()!=""){
                 numero = mostra_aposta_edt_selecionar.text.toString().toInt()
@@ -59,7 +59,7 @@ class TelaListaApostasTodas : AppCompatActivity() {
             }
         }
         mostra_aposta_edt_selecionar.setOnEditorActionListener{ _, actionId, _ ->
-            vibe.vibrate(VibrationEffect.createOneShot(10,150))
+            
             if(actionId == EditorInfo.IME_ACTION_DONE){
                 mostra_aposta_btn_selecionar_sequencia.callOnClick()
                 true
@@ -89,7 +89,7 @@ private fun gerarApostas(): ArrayList<Aposta> {
 }
 
     override fun onBackPressed(){
-        vibe.vibrate(VibrationEffect.createOneShot(10,150))
+        
         startActivity(Intent(this,Inicio::class.java))
     }
 }

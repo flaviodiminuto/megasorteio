@@ -18,11 +18,10 @@ class Inicio : AppCompatActivity() {
         vibe = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
 
         btnInicioGerarJogo.setOnClickListener{
-            vibe.vibrate(VibrationEffect.createOneShot(10,150))
+            
             startActivity(Intent(this, GerarAposta::class.java))
         }
         btnInicioVerificarApostas.setOnClickListener{
-            vibe.vibrate(VibrationEffect.createOneShot(10,150))
             startActivity(Intent(this,TelaListaApostasTodas::class.java))
         }
     }
