@@ -34,7 +34,7 @@ class TelaEditarSequencia : AppCompatActivity() {
         aposta = intent.extras.get("aposta") as Aposta
         indice = intent.extras.get("indice") as Int
         act = intent.extras.get("action") as String
-        sequencia = aposta.sequencias[indice]
+
 
         var campos = listOf<EditText>(
                 editar_sequencia_n1,
@@ -56,19 +56,23 @@ class TelaEditarSequencia : AppCompatActivity() {
             campo.filters = arrayOf<InputFilter>(InputFilterMinMax(1,60))
         }
         editar_sequencia_quantidade.filters = arrayOf<InputFilter>(InputFilterMinMax(1,15))
-        if("adicionar_sequencia" != act)preencheCampos(campos)
+        if("adicionar_sequencia" != act){
+            preencheCampos(campos)
+        }
+        else aposta.adicionarSequencia(6)
+        sequencia = aposta.sequencias[indice]
 
         editar_sequencia_btn_salvar.setOnClickListener {
 
             adicionaSequenciaNaAposta(campos)
             if(aposta.sequencias[indice].tamanho>=6){
-                Controller(this).atualizarAposta(aposta)
-                Controller(this).atualizarSequencia(sequencia)
                 var intent = Intent(this, TelaListaApostaUnitaria::class.java)
                 when (act) {
                     "aposta_nova","adicionar_sequencia" ->
                         intent.putExtra("action", "aposta_nova")
                     "aposta_editar" ->{
+                        Controller(this).atualizarAposta(aposta)
+                        Controller(this).atualizarSequencia(sequencia)
                         intent.putExtra("action", "aposta_editada")
                     }
                 }

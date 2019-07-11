@@ -92,6 +92,13 @@ class TelaListaApostaUnitaria : AppCompatActivity() {
                 false
             }
         }
+        btn_adicionar_aposta.setOnClickListener{
+            var intent = Intent(this, TelaEditarSequencia::class.java)
+            intent.putExtra("action","adicionar_sequencia")
+            intent.putExtra("aposta",this.aposta)
+            intent.putExtra("indice",this.aposta.sequencias.size)
+            startActivity(intent)
+        }
     }
     override fun onBackPressed() {
         
