@@ -68,13 +68,8 @@ class TelaEditarSequencia : AppCompatActivity() {
             if(aposta.sequencias[indice].tamanho>=6){
                 var intent = Intent(this, TelaListaApostaUnitaria::class.java)
                 when (act) {
-                    "aposta_nova","adicionar_sequencia" ->
-                        intent.putExtra("action", "aposta_nova")
-                    "aposta_editar" ->{
-                        Controller(this).atualizarAposta(aposta)
-                        Controller(this).atualizarSequencia(sequencia)
-                        intent.putExtra("action", "aposta_editada")
-                    }
+                    "aposta_nova","adicionar_sequencia" -> intent.putExtra("action", "aposta_nova")
+                    "aposta_editar" -> intent.putExtra("action", "aposta_editada")
                 }
                 intent . putExtra ("aposta", aposta)
                 startActivity(intent)

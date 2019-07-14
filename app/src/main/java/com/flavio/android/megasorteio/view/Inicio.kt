@@ -7,6 +7,7 @@ import android.os.VibrationEffect
 import android.os.Vibrator
 import android.support.v7.app.AppCompatActivity
 import com.flavio.android.megasorteio.R
+import com.flavio.android.megasorteio.model.Aposta
 import kotlinx.android.synthetic.main.activity_inicio.*
 
 class Inicio : AppCompatActivity() {
@@ -23,6 +24,13 @@ class Inicio : AppCompatActivity() {
         }
         btnInicioVerificarApostas.setOnClickListener{
             startActivity(Intent(this,TelaListaApostasTodas::class.java))
+        }
+
+        btnInicioGerarJogoManualmente.setOnClickListener{
+            var intent = Intent(this,TelaListaApostaUnitaria::class.java);
+            intent.putExtra("aposta",Aposta())
+            intent.putExtra("action","aposta_nova")
+            startActivity(intent)
         }
     }
 
