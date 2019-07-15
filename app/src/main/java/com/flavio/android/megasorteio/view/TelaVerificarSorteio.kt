@@ -24,7 +24,6 @@ class TelaVerificarSorteio : AppCompatActivity() {
     lateinit var aposta : Aposta
     lateinit var campos : ArrayList<EditText>
     lateinit var numeros : MutableList<Int>
-    lateinit var vibe : Vibrator
     lateinit var maiorSequenciaAcertada : MutableList<Int>
     private var sorteio = SorteioDTO()
     //7 possibilidades de quantidades de acertos (0,1,2,3,quadra,quina ou sena) cada sequencia incrementa em uma quantidade de acerto
@@ -33,7 +32,6 @@ class TelaVerificarSorteio : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_tela_verificar_sorteio)
-        vibe = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
         aposta = intent.extras.get("aposta") as Aposta
         aposta = Controller(this).pesquisarApostaComSequencia(aposta.idAposta)
         this.campos = arrayListOf(

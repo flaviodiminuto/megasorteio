@@ -109,4 +109,15 @@ class Aposta : ApostaInterface , Serializable {
         else
             "${retorno.removeRange(retorno.length-2,retorno.length)}"
     }
+
+    /**
+     * Retorna uma sequencia atraves do id
+     * @return sequencia com id 0L (zero) caso nao encontre  a sequencia
+     */
+    fun getSequencia(id : Long): Sequencia{
+        for(sequencia in sequencias){
+            if(sequencia.idSequencia == id) return sequencia
+        }
+        return Sequencia()
+    }
 }

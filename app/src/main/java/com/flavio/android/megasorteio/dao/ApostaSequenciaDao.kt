@@ -4,6 +4,7 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
 import android.database.SQLException
+import com.flavio.android.megasorteio.controller.Controller
 import com.flavio.android.megasorteio.database.Banco
 import com.flavio.android.megasorteio.enumeradores.Campos
 import com.flavio.android.megasorteio.model.Aposta
@@ -13,16 +14,23 @@ class ApostaSequenciaDao (private val context : Context){
     private val banco = Banco(context)
 
     fun saveApostaSequencia(aposta : Aposta): Long {
-        aposta.idAposta = ApostaDao(context).salvar(aposta)
+        if(aposta.idAposta==0L)
+            aposta.idAposta = ApostaDao(context).salvar(aposta)
+        else
+            ApostaDao(context).atualizaAposta(aposta)
         var sd = SequenciaDao(context)
         for(sequencia : Sequencia in aposta.sequencias){
-            sequencia.idSequencia = sd.salvarSequencia(sequencia)
-            var cv = ContentValues()
-            cv.putNull(Campos.APOSTA_SEQUENCIA_ID.nome)
-            cv.put(Campos.APOSTA_SEQUENCIA_SEQUENCIA.nome, sequencia.idSequencia)
-            cv.put(Campos.APOSTA_SEQUENCIA_APOSTA.nome, aposta.idAposta)
+            if(sequencia.idSequencia ==0L) {
+                sequencia.idSequencia = sd.salvarSequencia(sequencia)
+                var cv = ContentValues()
+                cv.putNull(Campos.APOSTA_SEQUENCIA_ID.nome)
+                cv.put(Campos.APOSTA_SEQUENCIA_SEQUENCIA.nome, sequencia.idSequencia)
+                cv.put(Campos.APOSTA_SEQUENCIA_APOSTA.nome, aposta.idAposta)
 
-            banco.use().insert(Campos.APOSTA_SEQUENCIA_TABLE.nome, null, cv)
+                banco.use().insert(Campos.APOSTA_SEQUENCIA_TABLE.nome, null, cv)
+            }else{
+                Controller(context).atualizarSequencia(sequencia)
+            }
         }
         return aposta.idAposta
     }

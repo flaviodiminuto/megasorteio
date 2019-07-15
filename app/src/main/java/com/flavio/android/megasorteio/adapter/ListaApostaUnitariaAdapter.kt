@@ -1,5 +1,6 @@
 package com.flavio.android.megasorteio.adapter
 
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.os.VibrationEffect
@@ -22,13 +23,11 @@ import kotlinx.android.synthetic.main.card_sequencia.view.*
 class ListaApostaUnitariaAdapter (private val sequencias: MutableList<Sequencia>, private val aposta : Aposta ) :
         RecyclerView.Adapter<ListaApostaUnitariaAdapter.ListaApostaUnitariaViewHolder>(){
 
-    lateinit var vibe : Vibrator
     class ListaApostaUnitariaViewHolder ( val view: View ) : RecyclerView.ViewHolder(view)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListaApostaUnitariaAdapter.ListaApostaUnitariaViewHolder {
         val view = LayoutInflater.from(parent.context)
                 .inflate(R.layout.card_sequencia, parent,false) as View
-        vibe = parent.context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
         return ListaApostaUnitariaViewHolder(view)
     }
 
@@ -74,20 +73,29 @@ class ListaApostaUnitariaAdapter (private val sequencias: MutableList<Sequencia>
             holder.view.context.startActivity(intent)
         }
         holder.view.card_sequencia_deletar_icon.setOnClickListener{
-            
             var controller = Controller(holder.view.context)
-            controller.deletarSequencia(sequencias[position])
-            sequencias.removeAt(position)
-            aposta.quantidadeSequencias=sequencias.size.toLong()
-            aposta.setValor()
-            notifyItemRemoved(position)
-            Toast.makeText(holder.view.context,"Sequencia deletada",Toast.LENGTH_LONG).show()
-            if(sequencias.size==0) {
-                controller.deletarAposta(aposta)
-                holder.view.context.startActivity(Intent(holder.view.context,TelaListaApostasTodas::class.java))
-            }else{
-                controller.atualizarAposta(aposta)
-            }
+            AlertDialog.Builder(holder.view.context)
+                    .setTitle("Remover Sequencia")
+                    .setMessage("Deseja remover aposta realmente?")
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setPositiveButton("SIM"){dialog, which ->
+                        controller.deletarSequencia(sequencias[position])
+                        sequencias.removeAt(position)
+                        aposta.quantidadeSequencias=sequencias.size.toLong()
+                        aposta.setValor()
+                        notifyItemRemoved(position)
+                        if(sequencias.size==0) {
+                            Toast.makeText(holder.view.context,"Aposta removida",Toast.LENGTH_LONG).show()
+                            controller.deletarAposta(aposta)
+                            holder.view.context.startActivity(Intent(holder.view.context,TelaListaApostasTodas::class.java))
+
+                        }else{
+                            controller.atualizarAposta(aposta)
+                            Toast.makeText(holder.view.context,"Sequencia removida",Toast.LENGTH_LONG).show()
+                        }
+                    }
+                    .setNegativeButton("NÃO"){dialog, which ->  }
+                    .show()
         }
     }
 

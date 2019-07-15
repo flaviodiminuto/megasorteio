@@ -25,16 +25,13 @@ class TelaEditarSequencia : AppCompatActivity() {
     lateinit var aposta : Aposta
     private var indice : Int = 0
     private var act = ""
-    lateinit var vibe : Vibrator
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_editar_sequencia)
-        vibe = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
 
-        aposta = intent.extras.get("aposta") as Aposta
-        indice = intent.extras.get("indice") as Int
-        act = intent.extras.get("action") as String
-
+        this.aposta = intent.extras.get("aposta") as Aposta
+        this.indice = intent.extras.get("indice") as Int
+        this.act = intent.extras.get("action") as String
 
         var campos = listOf<EditText>(
                 editar_sequencia_n1,
@@ -56,22 +53,16 @@ class TelaEditarSequencia : AppCompatActivity() {
             campo.filters = arrayOf<InputFilter>(InputFilterMinMax(1,60))
         }
         editar_sequencia_quantidade.filters = arrayOf<InputFilter>(InputFilterMinMax(1,15))
-        if("adicionar_sequencia" != act){
-            preencheCampos(campos)
-        }
-        else aposta.adicionarSequencia(6)
         sequencia = aposta.sequencias[indice]
+        preencheCampos(campos)
 
         editar_sequencia_btn_salvar.setOnClickListener {
 
             adicionaSequenciaNaAposta(campos)
             if(aposta.sequencias[indice].tamanho>=6){
                 var intent = Intent(this, TelaListaApostaUnitaria::class.java)
-                when (act) {
-                    "aposta_nova","adicionar_sequencia" -> intent.putExtra("action", "aposta_nova")
-                    "aposta_editar" -> intent.putExtra("action", "aposta_editada")
-                }
                 intent . putExtra ("aposta", aposta)
+                intent.putExtra("action",act)
                 startActivity(intent)
             }else Toast.makeText(this, "Informe ao menos 6 números",Toast.LENGTH_LONG).show()
 

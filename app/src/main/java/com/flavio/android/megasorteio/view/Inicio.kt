@@ -12,11 +12,9 @@ import kotlinx.android.synthetic.main.activity_inicio.*
 
 class Inicio : AppCompatActivity() {
 
-    lateinit var vibe : Vibrator
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_inicio)
-        vibe = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
 
         btnInicioGerarJogo.setOnClickListener{
             
@@ -27,9 +25,10 @@ class Inicio : AppCompatActivity() {
         }
 
         btnInicioGerarJogoManualmente.setOnClickListener{
-            var intent = Intent(this,TelaListaApostaUnitaria::class.java);
+            var intent = Intent(this,TelaListaApostaUnitaria::class.java)
             intent.putExtra("aposta",Aposta())
             intent.putExtra("action","aposta_nova")
+
             startActivity(intent)
         }
     }

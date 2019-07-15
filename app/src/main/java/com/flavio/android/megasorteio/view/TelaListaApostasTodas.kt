@@ -27,23 +27,21 @@ class TelaListaApostasTodas : AppCompatActivity() {
     private lateinit var recyclerview : RecyclerView
     private lateinit var layout : LinearLayoutManager
     private lateinit var ca : Controller
-    lateinit var vibe : Vibrator
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tela_lista_apostas_geradas)
-        vibe = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
 
         ca = Controller(this)
         apostas = ca.listarApostas()
         listaApostas()
         mostra_aposta_btn_selecionar_sequencia.setOnClickListener{
             
-            var numero: Int
+            var numero: Long
             if(mostra_aposta_edt_selecionar.text.toString()!=""){
-                numero = mostra_aposta_edt_selecionar.text.toString().toInt()
+                numero = mostra_aposta_edt_selecionar.text.toString().toLong()
                 try{
-                    var aposta : Aposta = ca.pesquisarApostaComSequencia(apostas[numero].idAposta)
+                    var aposta : Aposta = ca.pesquisarApostaComSequencia(numero)
                     if( aposta.idAposta>0){
                         var intent = Intent(this,TelaListaApostaUnitaria::class.java)
                         intent.putExtra("aposta", aposta)

@@ -14,13 +14,10 @@ import kotlinx.android.synthetic.main.activity_gerar_sequencias.*
 
 class GerarAposta : AppCompatActivity() {
     private var aposta = Aposta()
-    lateinit var vibe : Vibrator
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_gerar_sequencias)
-        vibe = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
-
         btnGerarAutomaticoGerarSequencia.setOnClickListener{
             this.aposta = gerarSequencias()
             if(!aposta.sequencias.isEmpty()){

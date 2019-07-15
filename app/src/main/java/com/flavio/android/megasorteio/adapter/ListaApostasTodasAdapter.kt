@@ -1,6 +1,8 @@
 package com.flavio.android.megasorteio.adapter
 
+import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.VibrationEffect
 import android.os.Vibrator
@@ -21,13 +23,11 @@ import kotlinx.android.synthetic.main.card_aposta.view.*
 class ListaApostasTodasAdapter(private val apostas : MutableList<Aposta>) :
         RecyclerView.Adapter<ListaApostasTodasAdapter.ListaApostaViewHolder>(){
 
-    lateinit var vibe : Vibrator
     class ListaApostaViewHolder (val view : View) : RecyclerView.ViewHolder (view)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListaApostasTodasAdapter.ListaApostaViewHolder {
         val view = LayoutInflater.from(parent.context)
                 .inflate(R.layout.card_aposta,parent,false) as View
-        vibe = parent.context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
         return ListaApostaViewHolder(view)
     }
 
@@ -45,15 +45,23 @@ class ListaApostasTodasAdapter(private val apostas : MutableList<Aposta>) :
             var intent = Intent(holder.view.context, TelaListaApostaUnitaria::class.java)
             intent.putExtra("aposta", aposta)
             intent.putExtra("action","aposta_editar")
+            intent.putExtra("sequencias_editadas",IntArray(0))
             holder.view.context.startActivity(intent)
         }
         holder.view.card_aposta_deletar_icon.setOnClickListener{
-            
-            var controller = Controller(holder.view.context)
-            controller.deletarApostaSequencia(aposta)
-            apostas.remove(aposta)
-            notifyItemRemoved(position)
-            Toast.makeText(holder.view.context,"Aposta deletada",Toast.LENGTH_LONG).show()
+            AlertDialog.Builder(holder.view.context)
+                    .setTitle("Remover Aposta")
+                    .setMessage("Deseja remover aposta realmente?")
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setPositiveButton("SIM"){dialog, which ->
+                        var controller = Controller(holder.view.context)
+                        controller.deletarApostaSequencia(aposta)
+                        apostas.remove(aposta)
+                        notifyItemRemoved(position)
+                        Toast.makeText(holder.view.context,"Aposta removida",Toast.LENGTH_LONG).show()
+                    }
+                    .setNegativeButton("NÃO"){dialog, which ->  }
+                    .show()
         }
         holder.view.card_aposta_btn_verificar_aposta.setOnClickListener{
             
@@ -64,7 +72,7 @@ class ListaApostasTodasAdapter(private val apostas : MutableList<Aposta>) :
     }
 
     private fun preencheCampos(id: TextView, aposta: Aposta, quantidade: TextView, valor: TextView,position: Int) {
-        id.text = "Aposta: $position"
+        id.text = "Aposta: ${aposta.idAposta}"
         quantidade.text = "Quantidade de sequencias: ${aposta.quantidadeSequencias}"
         valor.text = "Valor da aposta:  ${aposta.valor.formataParaMoedaBrasileira()}"
     }
