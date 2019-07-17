@@ -1,14 +1,12 @@
 package com.flavio.android.megasorteio.adapter
 
 import android.app.AlertDialog
-import android.content.Context
 import android.content.Intent
-import android.os.VibrationEffect
-import android.os.Vibrator
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import com.flavio.android.megasorteio.R
@@ -20,7 +18,7 @@ import com.flavio.android.megasorteio.view.TelaEditarSequencia
 import com.flavio.android.megasorteio.view.TelaListaApostasTodas
 import kotlinx.android.synthetic.main.card_sequencia.view.*
 
-class ListaApostaUnitariaAdapter (private val sequencias: MutableList<Sequencia>, private val aposta : Aposta ) :
+class ListaApostaUnitariaAdapter (private val sequencias: MutableList<Sequencia>, private var aposta : Aposta ) :
         RecyclerView.Adapter<ListaApostaUnitariaAdapter.ListaApostaUnitariaViewHolder>(){
 
     class ListaApostaUnitariaViewHolder ( val view: View ) : RecyclerView.ViewHolder(view)
@@ -34,6 +32,7 @@ class ListaApostaUnitariaAdapter (private val sequencias: MutableList<Sequencia>
 
     override fun onBindViewHolder(holder: ListaApostaUnitariaViewHolder, position: Int) {
         //Preenchendo os campos do card_sequencia
+        this.aposta.sequencias = this.sequencias
         when(sequencias[position].idSequencia){
             0L ->  holder.view.card_sequencia_texto.text = "Sequencia $position"
             else -> holder.view.card_sequencia_texto.text = "Sequencia $position"
@@ -59,6 +58,12 @@ class ListaApostaUnitariaAdapter (private val sequencias: MutableList<Sequencia>
                 holder.view.n15)
 
         preencheCamposNumericos(camposNumericos,sequencias[position].numeros)
+
+        var btnFixarSequencia = holder.view.card_sequencia_btn_fixar as ImageView
+        when(sequencias[position].fixa){
+            1 -> btnFixarSequencia.setImageResource(android.R.drawable.ic_menu_revert)
+            else -> btnFixarSequencia.setImageResource(android.R.drawable.ic_menu_mylocation)
+        }
 
         //Acao ao clicar em cima do card de uma sequencia
         holder.view.card_sequencia_editar.setOnClickListener{
@@ -96,6 +101,19 @@ class ListaApostaUnitariaAdapter (private val sequencias: MutableList<Sequencia>
                     }
                     .setNegativeButton("NÃO"){dialog, which ->  }
                     .show()
+        }
+
+        btnFixarSequencia.setOnClickListener{
+            when(sequencias[position].fixa){
+                1 -> {
+                    sequencias[position].fixa =0
+                    btnFixarSequencia.setImageResource(android.R.drawable.ic_menu_mylocation)
+                }
+                else -> {
+                    sequencias[position].fixa =1
+                    btnFixarSequencia.setImageResource(android.R.drawable.ic_menu_revert)
+                } //true
+            }
         }
     }
 
