@@ -50,7 +50,7 @@ class ApostaDao(context: Context)  {
         var cursor : Cursor? = null
         try {
             cursor = banco.use().rawQuery(sql, null)
-            if(cursor!!.moveToFirst())
+            if(cursor!=null && cursor!!.moveToFirst())
                 return preencheCamposAposta( cursor)
             else
                 return Aposta()

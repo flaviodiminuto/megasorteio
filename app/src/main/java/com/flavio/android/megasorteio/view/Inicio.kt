@@ -1,12 +1,10 @@
 package com.flavio.android.megasorteio.view
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.os.VibrationEffect
-import android.os.Vibrator
 import android.support.v7.app.AppCompatActivity
 import com.flavio.android.megasorteio.R
+import com.flavio.android.megasorteio.controller.Controller
 import com.flavio.android.megasorteio.model.Aposta
 import kotlinx.android.synthetic.main.activity_inicio.*
 
@@ -26,7 +24,9 @@ class Inicio : AppCompatActivity() {
 
         btnInicioGerarJogoManualmente.setOnClickListener{
             var intent = Intent(this,TelaListaApostaUnitaria::class.java)
-            intent.putExtra("aposta",Aposta())
+            var aposta = Aposta()
+            aposta.sequencias = Controller(this).consultarSequenciasFixas()
+            intent.putExtra("aposta",aposta)
             intent.putExtra("action","aposta_nova")
 
             startActivity(intent)

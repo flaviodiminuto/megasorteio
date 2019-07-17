@@ -37,6 +37,27 @@ class SequenciaDao(context: Context) {
             Sequencia()
         }
     }
+
+    fun consultarSequenciasFixas(): MutableList<Sequencia> {
+        var sql = "SELECT * FROM ${Campos.SEQUENCIA_TABLE.nome} " +
+                "WHERE ${Campos.SEQUENCIA_FIXA.nome}=1 "
+        var cursor : Cursor?
+        var sequencias = mutableListOf<Sequencia>()
+        return try {
+            cursor = banco.use().rawQuery(sql, null)
+            if(cursor!!.isBeforeFirst) {
+                while (cursor.moveToNext()) {
+                    sequencias.add(preencheCamposSequencia(cursor))
+                }
+                sequencias
+            }
+            else
+                mutableListOf()
+        }catch (e : SQLException){
+            mutableListOf()
+        }
+    }
+
     fun preencheCamposSequencia(cursor: Cursor):Sequencia{
         var sequencia = Sequencia()
         sequencia.idSequencia = cursor.getInt(cursor.getColumnIndex(Campos.SEQUENCIA_ID.nome)).toLong()

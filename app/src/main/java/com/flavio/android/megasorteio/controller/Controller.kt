@@ -22,4 +22,5 @@ class Controller(val context: Context) {
     fun deletarApostaSequencia(aposta: Aposta) = ApostaSequenciaDao(context).deletarApostaSequencia(aposta)
     fun verificarSorteio(numeros : MutableList<Int>) = ApostaSequenciaDao(context).verificarSorteio(numeros)
     fun atualizarOuSalvarSorteio(sorteio : SorteioDTO) = if(sorteio.idAposta<1) SorteioDao(context).salvar(sorteio) else SorteioDao(context).atualizar(sorteio)
+    fun consultarSequenciasFixas() = SequenciaDao(context).consultarSequenciasFixas()
 }

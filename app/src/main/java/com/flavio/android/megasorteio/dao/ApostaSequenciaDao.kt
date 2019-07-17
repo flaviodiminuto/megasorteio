@@ -47,10 +47,9 @@ class ApostaSequenciaDao (private val context : Context){
         var cursor : Cursor? = null
         return try {
             cursor = banco.use().rawQuery(sql, null)
-            if(cursor!!.isBeforeFirst) {
+            if(cursor!!.moveToFirst()) {
                 var ad = ApostaDao(context)  // para reaproveitar o metodo de preenchimento
                 var sd = SequenciaDao(context)  // para reaproveitar o metodo de preenchimento
-                cursor.moveToFirst()
                 aposta = ad.preencheCamposAposta(cursor)
                 do {
                     aposta.sequencias.add( sd.preencheCamposSequencia(cursor))
