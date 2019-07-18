@@ -9,6 +9,7 @@ import android.os.Vibrator
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import com.flavio.android.megasorteio.R
+import com.flavio.android.megasorteio.controller.Controller
 import com.flavio.android.megasorteio.model.Aposta
 import kotlinx.android.synthetic.main.activity_gerar_sequencias.*
 
@@ -47,6 +48,7 @@ class GerarAposta : AppCompatActivity() {
         var aposta = Aposta()
         var tamanho = 6
         aposta.sequencias.clear()
+        aposta.adicionarSequenciList(Controller(this).consultarSequenciasFixas())
         for(quantidade : Int in lerQuantidades()){
             aposta.adicionarSequencia(quantidade,tamanho)
             tamanho++

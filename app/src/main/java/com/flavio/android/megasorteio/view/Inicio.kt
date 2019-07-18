@@ -25,7 +25,7 @@ class Inicio : AppCompatActivity() {
         btnInicioGerarJogoManualmente.setOnClickListener{
             var intent = Intent(this,TelaListaApostaUnitaria::class.java)
             var aposta = Aposta()
-            aposta.sequencias = Controller(this).consultarSequenciasFixas()
+            aposta.adicionarSequenciList(Controller(this).consultarSequenciasFixas())
             intent.putExtra("aposta",aposta)
             intent.putExtra("action","aposta_nova")
 

@@ -63,7 +63,7 @@ class ApostaDao(context: Context)  {
         var aposta = Aposta()
         aposta.idAposta = cursor.getInt(cursor.getColumnIndex(Campos.APOSTA_ID.nome)).toLong()
         aposta.valor = cursor.getDouble(cursor.getColumnIndex(Campos.APOSTA_VALOR.nome))
-        aposta.quantidadeSequencias = cursor.getInt(cursor.getColumnIndex(Campos.APOSTA_QUANTIDADE_SEQUENCIAS.nome)).toLong()
+        aposta.quantidadeSequencias = cursor.getInt(cursor.getColumnIndex(Campos.APOSTA_QUANTIDADE_SEQUENCIAS.nome))
         aposta.sequencias = mutableListOf()
         return aposta
     }

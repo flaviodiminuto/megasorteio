@@ -86,7 +86,7 @@ class ListaApostaUnitariaAdapter (private val sequencias: MutableList<Sequencia>
                     .setPositiveButton("SIM"){dialog, which ->
                         controller.deletarSequencia(sequencias[position])
                         sequencias.removeAt(position)
-                        aposta.quantidadeSequencias=sequencias.size.toLong()
+                        aposta.quantidadeSequencias=sequencias.size
                         aposta.setValor()
                         notifyItemRemoved(position)
                         if(sequencias.size==0) {

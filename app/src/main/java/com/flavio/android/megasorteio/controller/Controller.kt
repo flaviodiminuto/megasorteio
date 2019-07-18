@@ -13,7 +13,7 @@ class Controller(val context: Context) {
 
     fun salvarAposta(aposta: Aposta) = ApostaSequenciaDao(context).saveApostaSequencia(aposta)
     fun listarApostas(): MutableList<Aposta>  = ApostaDao(context).listarTodasApostas()
-    fun pesquisarAposta(id : Long): Aposta  = ApostaDao(context).consultarAposta(id)
+    fun consultarAposta(id : Long): Aposta  = ApostaDao(context).consultarAposta(id)
     fun pesquisarApostaComSequencia(id : Long) = ApostaSequenciaDao(context).consultarApostaSequencia(id)
     fun atualizarAposta(aposta: Aposta) = ApostaDao(context).atualizaAposta(aposta)
     fun atualizarSequencia(sequencia: Sequencia) = SequenciaDao(context).atualizarSequencia(sequencia)

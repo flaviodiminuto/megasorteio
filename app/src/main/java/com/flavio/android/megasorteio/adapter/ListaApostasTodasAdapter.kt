@@ -43,6 +43,7 @@ class ListaApostasTodasAdapter(private val apostas : MutableList<Aposta>) :
             var controller = Controller(holder.view.context)
             aposta = controller.pesquisarApostaComSequencia(aposta.idAposta)
             var intent = Intent(holder.view.context, TelaListaApostaUnitaria::class.java)
+            aposta.adicionarSequenciList(Controller(holder.view.context).consultarSequenciasFixas())
             intent.putExtra("aposta", aposta)
             intent.putExtra("action","aposta_editar")
             intent.putExtra("sequencias_editadas",IntArray(0))

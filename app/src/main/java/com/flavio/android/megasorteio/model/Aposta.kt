@@ -6,7 +6,7 @@ import java.io.Serializable
 class Aposta : ApostaInterface , Serializable {
     var idAposta: Long = 0L
     var sequencias = mutableListOf<Sequencia>()
-    var quantidadeSequencias : Long = 0L
+    var quantidadeSequencias : Int = 0
     var valor : Double = 0.0
 
     override fun adicionarSequencia(quantidade: Int, tamanho: Int) : Boolean {
@@ -34,6 +34,15 @@ class Aposta : ApostaInterface , Serializable {
         return sequencias.add(sequencia)
     }
 
+    fun adicionarSequenciList(sequencias : MutableList<Sequencia>): Boolean{
+        if(this.sequencias.addAll(sequencias)) {
+            quantidadeSequencias = this.sequencias.size
+            setValor()
+            return true
+        }
+        return false
+    }
+
     override fun adicionarSequencia(numeros: ArrayList<Int>): Boolean {
         var sequencia = Sequencia(numeros.size)
         sequencia.numeros = sequencia.ordenaNumerosSequencia(numeros)
@@ -42,6 +51,8 @@ class Aposta : ApostaInterface , Serializable {
 
     override fun removerSequencia(sequencia : Sequencia): Boolean {
         return sequencias.remove(sequencia)
+        quantidadeSequencias = this.sequencias.size
+        setValor()
     }
 
     override fun alterarSequencia(novaSequencia: Sequencia, sequencias : MutableList<Sequencia>, index : Int){
