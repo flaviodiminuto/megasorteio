@@ -67,7 +67,6 @@ class ListaApostaUnitariaAdapter (private val sequencias: MutableList<Sequencia>
             }
         }
 
-        //Acao ao clicar em cima do card de uma sequencia
         holder.view.card_sequencia_editar.setOnClickListener{
             
             var intent = Intent(holder.view.context, TelaEditarSequencia::class.java)

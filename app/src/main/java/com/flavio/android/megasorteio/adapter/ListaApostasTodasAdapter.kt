@@ -39,7 +39,7 @@ class ListaApostasTodasAdapter(private val apostas : MutableList<Aposta>) :
         holder.view.card_aposta_visualizar.setOnClickListener {
             
             var controller = Controller(holder.view.context)
-            aposta = getApostaVisualizar(aposta, controller, holder.view.context)
+            aposta = getApostaVisualizar(aposta, controller)
             var intent = Intent(holder.view.context, TelaListaApostaUnitaria::class.java)
             intent.putExtra("aposta", aposta)
             intent.putExtra("action","aposta_editar")
@@ -69,13 +69,13 @@ class ListaApostasTodasAdapter(private val apostas : MutableList<Aposta>) :
         }
     }
 
-    private fun getApostaVisualizar(aposta: Aposta, controller: Controller, context: Context): Aposta {
+    private fun getApostaVisualizar(aposta: Aposta, controller: Controller): Aposta {
         var apostaRetorno = aposta
         apostaRetorno = controller.pesquisarApostaComSequencia(apostaRetorno.idAposta)
         var sequencias = mutableListOf<Sequencia>()
         sequencias.addAll(apostaRetorno.sequencias)
         apostaRetorno.sequencias.clear()
-        apostaRetorno.adicionarSequenciaList(Controller(context).consultarSequenciasFixas())
+        apostaRetorno.adicionarSequenciaList(controller.consultarSequenciasFixas())
         apostaRetorno.adicionarSequenciaList(sequencias)
         apostaRetorno.removeSequenciasFixasDuplicadas(sequencias.size)
         return apostaRetorno
