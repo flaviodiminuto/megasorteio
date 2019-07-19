@@ -34,7 +34,7 @@ class Aposta : ApostaInterface , Serializable {
         return sequencias.add(sequencia)
     }
 
-    fun adicionarSequenciList(sequencias : MutableList<Sequencia>): Boolean{
+    fun adicionarSequenciaList(sequencias : MutableList<Sequencia>): Boolean{
         if(this.sequencias.addAll(sequencias)) {
             quantidadeSequencias = this.sequencias.size
             setValor()
@@ -130,5 +130,20 @@ class Aposta : ApostaInterface , Serializable {
             if(sequencia.idSequencia == id) return sequencia
         }
         return Sequencia()
+    }
+
+    fun removeSequenciasFixasDuplicadas(qtdSequenciasFixas: Int): Aposta{
+        val fixas= mutableListOf<Sequencia>()
+        if(this.sequencias.isNotEmpty()){
+            fixas.addAll(this.sequencias.subList(0,qtdSequenciasFixas-1))
+        }
+        for(sequencia: Sequencia in fixas) {
+            for (i: Int in qtdSequenciasFixas until this.sequencias.size) {
+                if(this.sequencias[i].idSequencia == sequencia.idSequencia){
+                    this.sequencias.remove(this.sequencias[i])
+                }
+            }
+        }
+        return this
     }
 }

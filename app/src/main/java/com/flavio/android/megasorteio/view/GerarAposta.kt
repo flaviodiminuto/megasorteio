@@ -1,11 +1,8 @@
 package com.flavio.android.megasorteio.view
 
-import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.os.VibrationEffect
-import android.os.Vibrator
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import com.flavio.android.megasorteio.R
@@ -48,7 +45,7 @@ class GerarAposta : AppCompatActivity() {
         var aposta = Aposta()
         var tamanho = 6
         aposta.sequencias.clear()
-        aposta.adicionarSequenciList(Controller(this).consultarSequenciasFixas())
+        aposta.adicionarSequenciaList(Controller(this).consultarSequenciasFixas())
         for(quantidade : Int in lerQuantidades()){
             aposta.adicionarSequencia(quantidade,tamanho)
             tamanho++

@@ -62,7 +62,9 @@ class ListaApostaUnitariaAdapter (private val sequencias: MutableList<Sequencia>
         var btnFixarSequencia = holder.view.card_sequencia_btn_fixar as ImageView
         when(sequencias[position].fixa){
             1 -> btnFixarSequencia.setImageResource(android.R.drawable.ic_menu_revert)
-            else -> btnFixarSequencia.setImageResource(android.R.drawable.ic_menu_mylocation)
+            else -> {
+                btnFixarSequencia.setImageResource(android.R.drawable.ic_menu_mylocation)
+            }
         }
 
         //Acao ao clicar em cima do card de uma sequencia

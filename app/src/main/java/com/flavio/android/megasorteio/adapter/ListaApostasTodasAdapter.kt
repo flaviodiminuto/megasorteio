@@ -2,10 +2,7 @@ package com.flavio.android.megasorteio.adapter
 
 import android.app.AlertDialog
 import android.content.Context
-import android.content.DialogInterface
 import android.content.Intent
-import android.os.VibrationEffect
-import android.os.Vibrator
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -16,6 +13,7 @@ import com.flavio.android.megasorteio.R
 import com.flavio.android.megasorteio.controller.Controller
 import com.flavio.android.megasorteio.extension.formataParaMoedaBrasileira
 import com.flavio.android.megasorteio.model.Aposta
+import com.flavio.android.megasorteio.model.Sequencia
 import com.flavio.android.megasorteio.view.TelaListaApostaUnitaria
 import com.flavio.android.megasorteio.view.TelaVerificarSorteio
 import kotlinx.android.synthetic.main.card_aposta.view.*
@@ -41,9 +39,8 @@ class ListaApostasTodasAdapter(private val apostas : MutableList<Aposta>) :
         holder.view.card_aposta_visualizar.setOnClickListener {
             
             var controller = Controller(holder.view.context)
-            aposta = controller.pesquisarApostaComSequencia(aposta.idAposta)
+            aposta = getApostaVisualizar(aposta, controller, holder.view.context)
             var intent = Intent(holder.view.context, TelaListaApostaUnitaria::class.java)
-            aposta.adicionarSequenciList(Controller(holder.view.context).consultarSequenciasFixas())
             intent.putExtra("aposta", aposta)
             intent.putExtra("action","aposta_editar")
             intent.putExtra("sequencias_editadas",IntArray(0))
@@ -70,6 +67,18 @@ class ListaApostasTodasAdapter(private val apostas : MutableList<Aposta>) :
             intent.putExtra("aposta",apostas[position])
             holder.view.context.startActivity(intent)
         }
+    }
+
+    private fun getApostaVisualizar(aposta: Aposta, controller: Controller, context: Context): Aposta {
+        var apostaRetorno = aposta
+        apostaRetorno = controller.pesquisarApostaComSequencia(apostaRetorno.idAposta)
+        var sequencias = mutableListOf<Sequencia>()
+        sequencias.addAll(apostaRetorno.sequencias)
+        apostaRetorno.sequencias.clear()
+        apostaRetorno.adicionarSequenciaList(Controller(context).consultarSequenciasFixas())
+        apostaRetorno.adicionarSequenciaList(sequencias)
+        apostaRetorno.removeSequenciasFixasDuplicadas(sequencias.size)
+        return apostaRetorno
     }
 
     private fun preencheCampos(id: TextView, aposta: Aposta, quantidade: TextView, valor: TextView,position: Int) {
