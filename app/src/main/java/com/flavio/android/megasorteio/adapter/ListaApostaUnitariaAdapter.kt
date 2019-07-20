@@ -1,6 +1,7 @@
 package com.flavio.android.megasorteio.adapter
 
 import android.app.AlertDialog
+import android.content.Context
 import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -105,19 +106,54 @@ class ListaApostaUnitariaAdapter (private val sequencias: MutableList<Sequencia>
         }
 
         btnFixarSequencia.setOnClickListener{
-            when(sequencias[position].fixa){
-                1 -> {
-                    sequencias[position].fixa =0
-                    btnFixarSequencia.setImageResource(android.R.drawable.ic_menu_mylocation)
-                }
-                else -> {
-                    sequencias[position].fixa =1
-                    btnFixarSequencia.setImageResource(android.R.drawable.ic_menu_revert)
-                } //true
-            }
+            dialogDesafixar(holder.view,position)
         }
+
     }
 
+    private fun dialogDesafixar(view : View, position : Int){
+        var context = view.context
+        var controller = Controller(view.context)
+        var acaoRealizada : String
+        var acao : String
+        when(sequencias[position].fixa){
+            1 -> {
+               acao = "desafixar"
+               acaoRealizada = "desafixada"
+            }
+            else -> {
+                acao = "fixar"
+                acaoRealizada = "fixada"
+            }
+        }
+
+        AlertDialog.Builder(context)
+                .setTitle("${acao.capitalize()} Sequencia")
+                .setMessage("Deseja realmente $acao a sequencia?")
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setPositiveButton("SIM"){dialog, which ->
+                    Toast.makeText(context,"Sequencia $acaoRealizada",Toast.LENGTH_LONG).show()
+                    fixaDesafixaSequencia(position,view.card_sequencia_btn_fixar)
+                }
+                .setNegativeButton("NÃO"){dialog, which ->  }
+                .show()
+    }
+
+    private fun fixaDesafixaSequencia(position: Int,btnFixarSequencia : ImageView){
+        var valor : Double = sequencias[position].valor
+        when(sequencias[position].fixa){
+            1 -> { //desafixando sequencia
+                sequencias[position].fixa =0
+                btnFixarSequencia.setImageResource(android.R.drawable.ic_menu_mylocation)
+                valor = -valor
+            }
+            else -> { //fixando sequencia
+                sequencias[position].fixa =1
+                btnFixarSequencia.setImageResource(android.R.drawable.ic_menu_revert)
+            }
+        }
+        // TODO -- Alterar as quantidades de sequencias e valores de todas as apostas que NÃO forem a detentora da sequencia desafixada
+    }
     private fun preencheCamposNumericos(campos: MutableList<TextView>,numeros : MutableList<Int>) {
 
         for(i in 0 until campos.size){
